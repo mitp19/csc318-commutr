@@ -4,11 +4,13 @@ import {
   Text,
   StyleSheet,
 } from 'react-native'
+import FontAwesome, { Icons } from "react-native-fontawesome";
 
 class TabC extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Home',
+    tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 30, color: tintColor }}>{Icons.home}</FontAwesome>
   })
 
   render () {

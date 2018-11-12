@@ -1,14 +1,18 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 import {
   View,
   Text,
   StyleSheet,
-} from 'react-native'
+} from 'react-native';
 
 class TabA extends Component {
-
+  
+  // const mediaIcon = parseIcon('')
   static navigationOptions = ({ navigation }) => ({
     title: 'Media',
+    tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.play}</FontAwesome>
+
   })
 
   render () {
