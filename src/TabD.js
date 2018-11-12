@@ -1,11 +1,8 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native'
+import { StyleSheet } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
-
+import { View, Container, Header, Left, Body, Right, Button, Icon, Segment, Content, Text } from 'native-base';
+import ForumCard from './social/ForumCard.js';
 class TabD extends Component {
 
   static navigationOptions = ({ navigation }) => ({
@@ -14,12 +11,69 @@ class TabD extends Component {
 
   })
 
-  render () {
+  constructor(props) {
+    super(props);
+    this.firstpage = this.firstpage.bind(this);
+    this.secondpage = this.secondpage.bind(this);
+    this.state = {
+      page: 1,
+      firstpageactive: true,
+      secondpageactive: false,
+
+    }
+  }
+  firstpage() {
+    this.setState({
+      page: 1,
+      firstpageactive: true,
+      secondpageactive: false
+    })
+  }
+
+  secondpage() {
+    this.setState({
+      page: 2,
+      firstpageactive: false,
+      secondpageactive: true
+    })
+  }
+
+  forumView() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Social</Text>
-      </View>
-      )
+    <View>
+      <ForumCard/> 
+      <ForumCard/>
+    </View>
+    );
+
+  }
+  render() {
+    const page = this.state.page ;
+    let shows = null;
+    if (page == 1 ){
+      shows = this.forumView();
+    } else if (page == 2) {
+      shows = <Text> hello page 2 </Text>
+    }
+    return (
+      <Container>
+        <Header hasSegment>
+          <Body>
+            <Segment>
+              <Button active={this.state.firstpageactive} onPress={this.firstpage}>
+                <Text>Forum</Text>
+              </Button>
+              <Button active={this.state.secondpageactive} onPress={this.secondpage}>
+                <Text>Chat</Text>
+              </Button>
+            </Segment>
+          </Body>
+        </Header>
+        <Content padder>
+          {shows}
+         </Content>
+      </Container>
+    );
   }
 }
 
