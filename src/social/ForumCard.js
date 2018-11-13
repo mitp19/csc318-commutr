@@ -5,7 +5,7 @@ import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Ic
 export default class ForumCard extends Component {
   constructor(props) {
     super(props);
-    this.source = "https://dummyimage.com/300x200/000000/fff";
+    this.source = "https://dummyimage.com/300x200/000000/333333";
     this.likes = 12;
     this.comments = 3;
     this.user = "userA";

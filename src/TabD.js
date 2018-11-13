@@ -3,6 +3,7 @@ import { StyleSheet } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
 import { View, Container, Header, Left, Body, Right, Button, Icon, Segment, Content, Text, Card } from 'native-base';
 import ForumCard from './social/ForumCard.js';
+import Chat from './social/Chat.js';
 class TabD extends Component {
 
   static navigationOptions = ({ navigation }) => ({
@@ -37,6 +38,11 @@ class TabD extends Component {
       secondpageactive: true
     })
   }
+  chatView() {
+    return (
+      <Chat/>
+    );
+  }
 
   forumView() {
     return (
@@ -56,7 +62,7 @@ class TabD extends Component {
     if (page == 1 ){
       shows = this.forumView();
     } else if (page == 2) {
-      shows = <Text> hello page 2 </Text>
+      shows = this.chatView();
     }
     return (
       <Container>
