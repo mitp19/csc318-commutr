@@ -41,7 +41,7 @@ class TabA extends Component {
           <CardItem style={{width: 300}}>
             <Icon name='ios-musical-notes' type='Ionicons' />
             <Text style={{fontSize: 16}}>Music</Text>
-              <Button transparent style={{marginLeft: 135}}>
+              <Button transparent style={{marginLeft: 136}}>
                 <Icon 
                   name='chevron-circle-right' 
                   type='FontAwesome' 
@@ -65,7 +65,7 @@ class TabA extends Component {
           <CardItem style={{width: 300}}>
             <Icon name='download' type='Entypo' />
             <Text>Your Downloaded Items</Text>
-              <Button transparent style={{marginLeft: 26}}>
+              <Button transparent style={{marginLeft: 27}}>
                 <Icon 
                   name='chevron-circle-right' 
                   type='FontAwesome' 
