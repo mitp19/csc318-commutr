@@ -28,7 +28,7 @@ class TabB extends Component {
         <Content padder>
           <Card>
             <CardItem header bordered>
-              <Text> Where are going?</Text>
+              <Text> Where are you going?</Text>
             </CardItem>
             <CardItem bordered>
               <Body>
