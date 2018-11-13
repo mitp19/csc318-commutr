@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Image } from 'react-native';
+import { Image, View } from 'react-native';
 import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
 
 export default class ForumCard extends Component {
@@ -18,8 +18,9 @@ export default class ForumCard extends Component {
 
   render() {
     return (
-      <Container style={{padding:0, marginBottom:0, paddingBottom:0}}>
-        <Content style={{padding:0, marginBottom:0, paddingBottom:0}}>
+      <View>
+      <Container style={{height:360}}>
+        <Content>
           <Card>
             <CardItem>
               <Left>
@@ -53,6 +54,7 @@ export default class ForumCard extends Component {
           </Card>
         </Content>
       </Container>
+      </View>
     );
   }
 }

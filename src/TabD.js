@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
-import { View, Container, Header, Left, Body, Right, Button, Icon, Segment, Content, Text } from 'native-base';
+import { View, Container, Header, Left, Body, Right, Button, Icon, Segment, Content, Text, Card } from 'native-base';
 import ForumCard from './social/ForumCard.js';
 class TabD extends Component {
 
@@ -41,8 +41,11 @@ class TabD extends Component {
   forumView() {
     return (
     <View>
-      <ForumCard/> 
-      <ForumCard/>
+    <ForumCard> </ForumCard>
+    <ForumCard> </ForumCard>
+    <ForumCard> </ForumCard>
+    <ForumCard> </ForumCard>
+    <ForumCard> </ForumCard>
     </View>
     );
 
