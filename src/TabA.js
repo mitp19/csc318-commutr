@@ -10,10 +10,15 @@ import {
   Card, CardItem, Icon, Button, Right
 } from 'native-base';
 
-class TabA extends Component {
+import FontAwesome, { Icons } from 'react-native-fontawesome';
 
+class TabA extends Component {
+  
+  // const mediaIcon = parseIcon('')
   static navigationOptions = ({ navigation }) => ({
     title: 'Media',
+    tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.play}</FontAwesome>
+
   })
 
   render () {

@@ -1,22 +1,88 @@
 import React, { Component } from 'react'
-import {
-  View,
-  Text,
-  StyleSheet,
-} from 'react-native'
-
+import { StyleSheet } from 'react-native'
+import FontAwesome, { Icons } from "react-native-fontawesome";
+import { View, Container, Header, Left, Body, Right, Button, Icon, Segment, Content, Text, Card } from 'native-base';
+import ForumCard from './social/ForumCard.js';
+import Chat from './social/Chat.js';
 class TabD extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Social',
+    tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.users}</FontAwesome>
+
   })
 
-  render () {
+  constructor(props) {
+    super(props);
+    this.firstpage = this.firstpage.bind(this);
+    this.secondpage = this.secondpage.bind(this);
+    this.state = {
+      page: 1,
+      firstpageactive: true,
+      secondpageactive: false,
+
+    }
+  }
+  firstpage() {
+    this.setState({
+      page: 1,
+      firstpageactive: true,
+      secondpageactive: false
+    })
+  }
+
+  secondpage() {
+    this.setState({
+      page: 2,
+      firstpageactive: false,
+      secondpageactive: true
+    })
+  }
+  chatView() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Social</Text>
-      </View>
-      )
+      <Chat/>
+    );
+  }
+
+  forumView() {
+    return (
+    <View>
+    <ForumCard> </ForumCard>
+    <ForumCard> </ForumCard>
+    <ForumCard> </ForumCard>
+    <ForumCard> </ForumCard>
+    <ForumCard> </ForumCard>
+    </View>
+    );
+
+  }
+  render() {
+    const page = this.state.page ;
+    let shows = null;
+    if (page == 1 ){
+      shows = this.forumView();
+    } else if (page == 2) {
+      shows = this.chatView();
+    }
+    return (
+      <Container>
+        <Header hasSegment>
+          <Body>
+            <Segment>
+              <Button active={this.state.firstpageactive} onPress={this.firstpage}>
+                <Text>Forum</Text>
+              </Button>
+              <Button active={this.state.secondpageactive} onPress={this.secondpage}>
+                <Text>Chat</Text>
+              </Button>
+            </Segment>
+          </Body>
+        </Header>
+        <Content padder>
+          {shows}
+         </Content>
+      </Container>
+    );
   }
 }
 

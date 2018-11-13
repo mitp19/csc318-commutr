@@ -1,4 +1,5 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import FontAwesome, { Icons } from "react-native-fontawesome";
 import {
   View,
   StyleSheet,
@@ -13,6 +14,7 @@ class TabB extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Commute',
+    tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.bus}</FontAwesome>
   })
 
   render() {
