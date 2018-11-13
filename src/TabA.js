@@ -29,56 +29,48 @@ class TabA extends Component {
           <CardItem style={{width: 300}}>
             <Icon name='book' type='FontAwesome' />
             <Text style={{fontSize: 16}}>Books/Articles</Text>
-            <Right>
-              <Button transparent>
+              <Button transparent style={{marginLeft: 75}}>
                 <Icon 
                   name='chevron-circle-right' 
                   type='FontAwesome' 
                   style={{fontSize: 32, color: 'black'}}/>
               </Button>
-            </Right>
           </CardItem>
         </Card>
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='ios-musical-notes' type='Ionicons' />
             <Text style={{fontSize: 16}}>Music</Text>
-            <Right>
-              <Button transparent>
+              <Button transparent style={{marginLeft: 135}}>
                 <Icon 
                   name='chevron-circle-right' 
                   type='FontAwesome' 
                   style={{fontSize: 32, color: 'black'}}/>
               </Button>
-            </Right>
           </CardItem>
         </Card>
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='podcast' type='FontAwesome' />
             <Text>Podcasts</Text>
-            <Right>
-              <Button transparent>
+              <Button transparent style={{marginLeft: 120}}>
                 <Icon 
                   name='chevron-circle-right' 
                   type='FontAwesome' 
-                  style={{fontSize: 32, color: 'black'}}/>
+                  style={{fontSize: 32, color: 'black' }}/>
               </Button>
-            </Right>
           </CardItem>
         </Card>
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='download' type='Entypo' />
             <Text>Your Downloaded Items</Text>
-            <Right>
-              <Button transparent>
+              <Button transparent style={{marginLeft: 26}}>
                 <Icon 
                   name='chevron-circle-right' 
                   type='FontAwesome' 
                   style={{fontSize: 32, color: 'black'}}/>
               </Button>
-            </Right>
           </CardItem>
         </Card>
       </View>
