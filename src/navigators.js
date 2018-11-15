@@ -22,6 +22,9 @@ import TabC from './TabC'
 import TabD from './TabD'
 import TabE from './TabE'
 import BooksArticles from './Media/BooksArticles'
+import Music from './Media/Music'
+import Podcasts from './Media/Podcasts'
+import Downloads from './Media/Downloads'
 
 export const Home = createStackNavigator({
   TabC: { screen: TabC }
@@ -45,7 +48,10 @@ export const Art = createStackNavigator({
 
 export const Media = createStackNavigator({
   TabA: { screen: TabA },
-  BooksArticles: { screen: BooksArticles }
+  BooksArticles: { screen: BooksArticles },
+  Music: { screen: Music },
+  Podcasts: { screen: Podcasts },
+  Downloads: { screen: Downloads }
 }, 
 {headerMode: 'none'})
 

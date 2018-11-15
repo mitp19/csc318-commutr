@@ -34,7 +34,7 @@ class TabC extends Component {
           <Card>
             <CardItem header bordered>
               <Text style={{fontSize:30}}> Commute</Text>
-              <Button iconLeft transparent>
+              <Button iconLeft transparent >
                 <Icon name='arrow-forward' style={{fontSize:30}}/>
               </Button>
             </CardItem>
