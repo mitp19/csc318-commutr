@@ -12,6 +12,7 @@ import {
 export default class Goals extends Component {
     constructor(props) {
         super(props)
+        this.goalInput = React.createRef();
         this.state = {
             placeholder: "Add a new goal",
             items: [
@@ -31,13 +32,18 @@ export default class Goals extends Component {
     }
 
     handleAddNewGoal() {
-        let previousState = this.state
-        previousState.items.push({status: false, goal: previousState.new_goal})
+        let previousState = this.state;
+        let added_goal = previousState.new_goal;
+        if (previousState.items.includes(added_goal)) {alert("Goal Already Exists"); return;}
+        if (added_goal == "") {alert("No Goal Entered"); return;}
+        previousState.items.push({status: false, goal: added_goal})
         this.setState({
             items: previousState.items,
             new_goal: "",
             placeholder: previousState.placeholder})
-    }
+        this.goalInput.current._root.clear();
+        }
+    
     renderGoalList() {
         let GoalList = this.state.items.map((item) =>
                 <ListItem key={item.goal} style={{ width: 325 }}>
@@ -65,8 +71,10 @@ export default class Goals extends Component {
                         <CardItem>
                             <Item>
                                 <Input 
+                                ref={this.goalInput}
                                 onChangeText={(new_goal) => this.setState({new_goal})} 
-                                placeholder={this.state.placeholder} />
+                                placeholder={this.state.placeholder} 
+                                />
                                 <Button 
                                 onPress={this.handleAddNewGoal.bind(this)}
                                 active 
