@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from 'react-native';
 
 import {
@@ -29,6 +30,11 @@ class Podcasts extends Component {
       selected: "key0"
     };
   }
+
+  handleDownload() {
+    Alert.alert('Item Downloaded!')
+  }
+
   onValueChange(value: string) {
     this.setState({
       selected: value
@@ -79,32 +85,33 @@ class Podcasts extends Component {
               selectedValue={this.state.selected}
               onValueChange={this.onValueChange.bind(this)}
             >
-              <Picker.Item label="Alternative" value="key0"/>
-              <Picker.Item label="Classical" value="key1"/>
-              <Picker.Item label="Country" value="key2" />
-              <Picker.Item label="Electronic" value="key3" />
-              <Picker.Item label="Folk" value="key4" />
-              <Picker.Item label="Hip-hop/Rap" value="key5" />
-              <Picker.Item label="Indie" value="key6" />
-              <Picker.Item label="Jazz" value="key7" />
-              <Picker.Item label="Pop" value="key8" />
-              <Picker.Item label="Punk" value="key9" />
-              <Picker.Item label={"R&B/Soul"} value="key10" />
-              <Picker.Item label="Rock" value="key11" />
-              <Picker.Item label="Soundtrack" value="key12" />
-              <Picker.Item label="World" value="key13" />
+              <Picker.Item label="Art" value="key0"/>
+              <Picker.Item label="Business" value="key1"/>
+              <Picker.Item label="Comedy" value="key2" />
+              <Picker.Item label="Education" value="key3" />
+              <Picker.Item label={"Games & Hobbies"} value="key4" />
+              <Picker.Item label={"Government & Organizations"} value="key5" />
+              <Picker.Item label="Health" value="key6" />
+              <Picker.Item label={"Kids & Family"} value="key7" />
+              <Picker.Item label={"News & Politics"} value="key8" />
+              <Picker.Item label={"Religion & Spirituality"} value="key9" />
+              <Picker.Item label={"Science & Medicine"} value="key10" />
+              <Picker.Item label={"Society & Culture"} value="key11" />
+              <Picker.Item label={"Sports & Recreation"} value="key12" />
+              <Picker.Item label="Technology" value="key13" />
               <Picker.Item label="Other" value="key14" />
             </Picker>
             <Content padder>
         <Card>
           <CardItem bordered style={{width: 280}}>
             <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Party For One</Text>
-              <Text style={{fontSize: 11}}>by Carly Rae Jepsen</Text>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>The Argument</Text>
+              <Text style={{fontSize: 11}}>by The New York Times Opinion</Text>
             </View>
             <View>
               <Button transparent 
-              style={{marginLeft: 172}} 
+              style={{marginLeft: 105}} 
+              onPress={this.handleDownload}
                   >
                 <Icon 
                   name='download' 
@@ -113,7 +120,7 @@ class Podcasts extends Component {
               </Button>
               <Button 
               transparent 
-              style={{marginLeft: 172}}
+              style={{marginLeft: 105}}
                   >
                 <Icon 
                   name='play-circle' 
@@ -126,12 +133,13 @@ class Podcasts extends Component {
         <Card>
           <CardItem bordered style={{width: 280}}>
             <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Rose-Colored Boy</Text>
-              <Text style={{fontSize: 11}}>by Paramore</Text>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Dreamboy</Text>
+              <Text style={{fontSize: 11}}>by Night Vale Presents</Text>
             </View>
             <View>
               <Button transparent 
               style={{marginLeft: 155}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -153,12 +161,13 @@ class Podcasts extends Component {
         <Card>
           <CardItem bordered style={{width: 280}}>
             <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>So Sad, So Sad</Text>
-              <Text style={{fontSize: 11}}>by Varsity</Text>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Forever Ago</Text>
+              <Text style={{fontSize: 11}}>by American Public Media</Text>
             </View>
             <View>
               <Button transparent 
-              style={{marginLeft: 176}} 
+              style={{marginLeft: 139}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -167,7 +176,7 @@ class Podcasts extends Component {
               </Button>
               <Button 
               transparent 
-              style={{marginLeft: 176}}
+              style={{marginLeft: 139}}
                   >
                 <Icon 
                   name='play-circle' 
@@ -180,12 +189,13 @@ class Podcasts extends Component {
         <Card>
           <CardItem bordered style={{width: 280}}>
             <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>thank u, next</Text>
-              <Text style={{fontSize: 11}}>by Ariana Grande</Text>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Home Cooked</Text>
+              <Text style={{fontSize: 11}}>by Home Cooked</Text>
             </View>
             <View>
               <Button transparent 
-              style={{marginLeft: 188}} 
+              style={{marginLeft: 178}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -194,7 +204,7 @@ class Podcasts extends Component {
               </Button>
               <Button 
               transparent 
-              style={{marginLeft: 188}}
+              style={{marginLeft: 178}}
                   >
                 <Icon 
                   name='play-circle' 
@@ -207,12 +217,13 @@ class Podcasts extends Component {
         <Card>
           <CardItem bordered style={{width: 280}}>
             <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>We Belong Together</Text>
-              <Text style={{fontSize: 11}}>by Mariah Carey</Text>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Other People's Problems</Text>
+              <Text style={{fontSize: 11}}>by CBC Podcasts</Text>
             </View>
             <View>
               <Button transparent 
-              style={{marginLeft: 142}} 
+              style={{marginLeft: 105}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -221,7 +232,7 @@ class Podcasts extends Component {
               </Button>
               <Button 
               transparent 
-              style={{marginLeft: 142}}
+              style={{marginLeft: 105}}
                   >
                 <Icon 
                   name='play-circle' 

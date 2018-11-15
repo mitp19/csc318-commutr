@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from 'react-native';
 
 import {
@@ -29,6 +30,11 @@ class Music extends Component {
       selected: "key0"
     };
   }
+
+  handleDownload() {
+    Alert.alert('Item Downloaded!')
+  }
+
   onValueChange(value: string) {
     this.setState({
       selected: value
@@ -105,6 +111,7 @@ class Music extends Component {
             <View>
               <Button transparent 
               style={{marginLeft: 172}} 
+              onPress={this.handleDownload}
                   >
                 <Icon 
                   name='download' 
@@ -132,6 +139,7 @@ class Music extends Component {
             <View>
               <Button transparent 
               style={{marginLeft: 155}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -159,6 +167,7 @@ class Music extends Component {
             <View>
               <Button transparent 
               style={{marginLeft: 176}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -186,6 +195,7 @@ class Music extends Component {
             <View>
               <Button transparent 
               style={{marginLeft: 188}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -213,6 +223,7 @@ class Music extends Component {
             <View>
               <Button transparent 
               style={{marginLeft: 142}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 

@@ -3,7 +3,8 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet
+  StyleSheet,
+  Alert
 } from 'react-native';
 
 import {
@@ -28,6 +29,10 @@ class BooksArticles extends Component {
     this.state = {
       selected: "key0"
     };
+  }
+
+  handleDownload() {
+    Alert.alert('Item Downloaded!')
   }
 
   onValueChange(value: string) {
@@ -105,7 +110,8 @@ class BooksArticles extends Component {
             </View>
             <View>
               <Button transparent 
-              style={{marginLeft: 80}} 
+              style={{marginLeft: 80}}
+              onPress={this.handleDownload}
                   >
                 <Icon 
                   name='download' 
@@ -133,6 +139,7 @@ class BooksArticles extends Component {
             <View>
               <Button transparent 
               style={{marginLeft: 184}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -160,6 +167,7 @@ class BooksArticles extends Component {
             <View>
               <Button transparent 
               style={{marginLeft: 122}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -187,6 +195,7 @@ class BooksArticles extends Component {
             <View>
               <Button transparent 
               style={{marginLeft: 99}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
@@ -214,6 +223,7 @@ class BooksArticles extends Component {
             <View>
               <Button transparent 
               style={{marginLeft: 127}} 
+              onPress={this.handleDownload}
                   >
                 <Icon
                   name='download' 
