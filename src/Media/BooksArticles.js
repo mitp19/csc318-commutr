@@ -27,7 +27,7 @@ class BooksArticles extends Component {
       selected: "key0"
     };
   }
-  onValueChange(value: string) {
+  onValueChange(value) {
     this.setState({
       selected: value
     });

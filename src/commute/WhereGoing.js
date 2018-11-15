@@ -55,7 +55,10 @@ export default class WhereGoing extends Component {
                             <Body>
                                 <Item>
                                     <Input placeholder='Enter New Destination' />
-                                    <Icon active name='arrow-round-forward' />
+                                    <Button active>
+                                        <Icon active name='arrow-right' type="FontAwesome"/>
+                                    </Button>
+                                    
                                 </Item>
                             </Body>
                         </CardItem>
