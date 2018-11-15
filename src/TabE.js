@@ -10,8 +10,8 @@ class TabE extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Canvas AR',
-    tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.paintBrush}</FontAwesome>
-
+    tabBarIcon: ({ tintColor }) => 
+    <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.paintBrush}</FontAwesome>
   })
 
   render () {

@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import {
-  Card, CardItem, Icon, Button, Right
+  Card, CardItem, Icon, Button
 } from 'native-base';
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
@@ -17,19 +17,23 @@ class TabA extends Component {
   // const mediaIcon = parseIcon('')
   static navigationOptions = ({ navigation }) => ({
     title: 'Media',
-    tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.play}</FontAwesome>
-
+    tabBarIcon: ({ tintColor }) => 
+    <View><FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.play}</FontAwesome></View>
   })
 
   render () {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Media</Text>
+        <Text style={styles.text}>Explore</Text>
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='book' type='FontAwesome' />
             <Text style={{fontSize: 16}}>Books/Articles</Text>
-              <Button transparent style={{marginLeft: 75}}>
+              <Button transparent 
+              style={{marginLeft: 75}} 
+              onPress={() =>
+                    this.props.navigation.navigate('BooksArticles')
+                  }>
                 <Icon 
                   name='chevron-circle-right' 
                   type='FontAwesome' 
@@ -52,8 +56,8 @@ class TabA extends Component {
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='podcast' type='FontAwesome' />
-            <Text>Podcasts</Text>
-              <Button transparent style={{marginLeft: 120}}>
+            <Text style={{fontSize: 16}}>Podcasts</Text>
+              <Button transparent style={{marginLeft: 112.25}}>
                 <Icon 
                   name='chevron-circle-right' 
                   type='FontAwesome' 
@@ -64,8 +68,8 @@ class TabA extends Component {
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='download' type='Entypo' />
-            <Text>Your Downloaded Items</Text>
-              <Button transparent style={{marginLeft: 27}}>
+            <Text style={{fontSize: 16}}>Your Downloaded Items</Text>
+              <Button transparent style={{marginLeft: 7.5}}>
                 <Icon 
                   name='chevron-circle-right' 
                   type='FontAwesome' 
