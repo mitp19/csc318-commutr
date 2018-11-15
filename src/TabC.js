@@ -151,7 +151,7 @@ class TabC extends Component {
                   <Right>
                     <Button iconLeft transparent
                     onPress={() =>
-                      this.props.navigation.navigate('TabA')
+                      this.props.navigation.navigate('Downloads')
                     }>
                       <Icon name='chevron-circle-right' 
                   type='FontAwesome' style={{fontSize:30}} />
