@@ -24,7 +24,7 @@ class TabA extends Component {
   render () {
     return (
       <View style={styles.container}>
-        <Text style={styles.text}>Media</Text>
+        <Text style={styles.text}>Explore</Text>
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='book' type='FontAwesome' />
