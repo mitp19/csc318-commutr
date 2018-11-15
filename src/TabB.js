@@ -2,20 +2,50 @@ import React, { Component } from 'react';
 import FontAwesome, { Icons } from "react-native-fontawesome";
 import {
   View,
-  StyleSheet,
+  StyleSheet, Image
 } from 'react-native'
-
 import {
   Container, Header, Content, Card, CardItem,
   Text, Body, Button, Icon, Title, Left, Right, Item, Input
 } from "native-base";
+import Goals from "./commute/Goals";
 
 class TabB extends Component {
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      showCommute: false
+    };
+  }
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Commute',
     tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.bus}</FontAwesome>
   })
+
+  handleWorkPress() {
+    let previousState = this.state
+    this.setState({showCommute: !previousState.showCommute})
+  }
+  renderGoals() {
+    return (
+      <Goals/>
+    );
+  }
+  renderMap() {
+    return (
+      <Container style={{flex:1, height: 700, bottom: 5, alignSelf: 'auto'}}>
+      <Card> 
+        <CardItem cardBody>
+          <Image 
+          source={require('./assets/map.jpg')} 
+          style={{flex:1, height: 700, alignSelf: 'auto'}}/>
+        </CardItem>
+      </Card>
+      </Container>
+    );
+  }
 
   render() {
     return (
@@ -39,7 +69,7 @@ class TabB extends Component {
                     <Icon name='home' />
                     <Text>Home</Text>
                   </Button>
-                  <Button iconLeft primary style={{ left: 10 }}>
+                  <Button onPress={this.handleWorkPress.bind(this)} iconLeft primary style={{ left: 10 }}>
                     <Icon name='briefcase' />
                     <Text>Work</Text>
                   </Button>
@@ -65,10 +95,9 @@ class TabB extends Component {
                 </Item>
               </Body>
             </CardItem>
-
-            {/* </Body>
-            </CardItem> */}
           </Card>
+          {this.state.showCommute && this.renderMap()}
+          {this.renderGoals()}
         </Content>
       </Container>
     );

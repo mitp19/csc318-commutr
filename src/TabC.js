@@ -1,10 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import FontAwesome, { Icons } from "react-native-fontawesome";
 import {
   View,
-  Text,
   StyleSheet,
 } from 'react-native'
-import FontAwesome, { Icons } from "react-native-fontawesome";
+
+import {
+  Container, Header, Content, Card, CardItem,
+  Text, Body, Button, Icon, Title, Left, Right, Item, Input, Thumbnail
+} from "native-base";
+
 
 class TabC extends Component {
 
@@ -13,12 +18,234 @@ class TabC extends Component {
     tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 30, color: tintColor }}>{Icons.home}</FontAwesome>
   })
 
-  render () {
+  render() {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}> Home </Text>
-      </View>
-      )
+      <Container styles={styles.container}>
+        <Header style={{color: '#81c800'}}>
+          <Left />
+          <Body>
+            <Title>Home</Title>
+          </Body>
+          <Right />
+        </Header>
+        <Content padder>
+
+        {/* Commute card */}
+          <Card>
+            <CardItem header bordered>
+              <Text style={{fontSize:30}}> Commute</Text>
+              <Button iconLeft transparent>
+                <Icon name='arrow-forward' style={{fontSize:30}}/>
+              </Button>
+            </CardItem>
+
+            <CardItem bordered>
+              <Text>You are heading ...</Text>
+            </CardItem>
+
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={{fontSize: 20}}>Home</Text> 
+                  <Right>
+                    <Button iconLeft>
+                      <Icon name='chevron-circle-right' 
+                  type='FontAwesome' style={{fontSize:30}} />
+                      <Text style={{fontSize: 10}}>Change</Text>
+                    </Button>
+                  </Right>
+                </View>
+              </Body>
+            </CardItem>
+
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={{fontSize: 15}}>
+                    Arrival at
+                  </Text>
+                  <Text style={{fontSize: 20}}>
+                    {"\n"}9:17am
+                  </Text>
+                  <Right>
+                    <Button>
+                      <Text>No Delays</Text> 
+                    </Button>
+                  </Right>
+                </View>
+              </Body>
+            </CardItem>
+
+            <CardItem Bordered>
+              <Body>
+                <Item>
+                  <Input placeholder='Enter New Goal' />
+                  <Icon active name='arrow-round-forward' />
+                </Item>
+              </Body>
+            </CardItem>
+
+            <CardItem>
+              <Button block >
+                <Text>See All Goals</Text>
+              </Button>
+            </CardItem>
+          </Card>
+
+        {/* Media Card */}
+          <Card>
+            <CardItem header bordered>
+              <Text style={{fontSize:30}}>Media</Text>
+              <Button iconLeft transparent>
+                <Icon name='arrow-forward' style={{fontSize:30}}/>
+              </Button>
+            </CardItem>
+
+            <CardItem bordered>
+              <Text style={{fontSize: 15}}>Recent Media</Text>
+            </CardItem>
+
+            <CardItem>
+              
+              <Thumbnail source={{uri: "https://dummyimage.com/300x200/000000/333333"}}/>
+                <Body>
+                {/* <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}> */}
+                  <Text style={{fontSize:20, left :15}}>Out Of Your League </Text>
+                  <Text note style={{left :15}}>Blood Orange</Text>
+                {/* </View> */}
+                </Body>
+            </CardItem>
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                  
+                    <Button style={{left:15}}>
+                      <Text style={{fontSize: 10}}>Resume</Text>
+                    </Button>
+
+                </View>
+              </Body>
+            </CardItem>
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={{fontSize:25}}>View All Downloads</Text>
+                  <Right>
+                    <Button iconLeft transparent>
+                      <Icon name='chevron-circle-right' 
+                  type='FontAwesome' style={{fontSize:30}} />
+                    </Button>
+                  </Right>
+                </View>
+              </Body>
+            </CardItem>
+          </Card>
+
+          {/* Social Tab  */}
+          <Card>
+            <CardItem header bordered>
+              <Text style={{fontSize:30}}>Social</Text>
+              <Button iconLeft transparent>
+                <Icon name='arrow-forward' style={{fontSize:30}}/>
+              </Button>
+            </CardItem>
+
+            <CardItem >
+              <Text style={{fontSize: 15}}>Forum</Text>
+            </CardItem>
+
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={{fontSize:25}}>Go To Your Feed</Text>
+                  <Right>
+                    <Button iconLeft transparent>
+                      <Icon name='chevron-circle-right' 
+                  type='FontAwesome' style={{fontSize:30}} />
+                    </Button>
+                  </Right>
+                </View>
+              </Body>
+            </CardItem>
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                    <Button >
+                      <Text style={{fontSize:20}}>+ Create New Post</Text>
+                    </Button>
+                  
+                </View>
+              </Body>
+            </CardItem>
+            <CardItem >
+              <Text style={{fontSize: 15}}>Chat</Text>
+            </CardItem>
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={{fontSize:25}}>Enter Public Chatroom</Text>
+                  <Right>
+                    <Button iconLeft transparent>
+                      <Icon name='chevron-circle-right' 
+                  type='FontAwesome' style={{fontSize:30}} />
+                    </Button>
+                  </Right>
+                </View>
+              </Body>
+            </CardItem>
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                    <Button >
+                      <Text style={{fontSize:20}}>Enter Anonymously</Text>
+                    </Button>
+                  
+                </View>
+              </Body>
+            </CardItem>
+
+
+          </Card>
+
+          {/* Canvas AR Card */}
+          <Card>
+            <CardItem header bordered>
+              <Text style={{fontSize:30}}>Canvas AR</Text>
+              <Button iconLeft transparent>
+                <Icon name='arrow-forward' style={{fontSize:30}}/>
+              </Button>
+            </CardItem>
+
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={{fontSize:25}}>+ Create New Post</Text>
+                  <Right>
+                    <Button iconLeft transparent>
+                      <Icon name='chevron-circle-right' 
+                  type='FontAwesome' style={{fontSize:30}} />
+                    </Button>
+                  </Right>
+                </View>
+              </Body>
+            </CardItem>
+            <CardItem bordered>
+              <Body>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={{fontSize:25}}>View Saved Gallery</Text>
+                  <Right>
+                    <Button iconLeft transparent>
+                      <Icon name='chevron-circle-right' 
+                  type='FontAwesome' style={{fontSize:30}} />
+                    </Button>
+                  </Right>
+                </View>
+              </Body>
+            </CardItem>
+          </Card>
+        </Content>
+      </Container>
+    );
   }
 }
 
@@ -27,10 +254,10 @@ export default TabC
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-    backgroundColor: '#2c3e50',
-    padding: 20,
+    // alignItems: 'center',
+    // justifyContent: 'center',
+    backgroundColor: '#81c800',
+    // padding: 20,
   },
   text: {
     color: 'white',
