@@ -34,7 +34,12 @@ class TabC extends Component {
           <Card>
             <CardItem header bordered>
               <Text style={{fontSize:30}}> Commute</Text>
-              <Button iconLeft transparent >
+
+              <Button iconLeft transparent
+              onPress={() =>
+                this.props.navigation.navigate('TabB')
+              }>
+
                 <Icon name='arrow-forward' style={{fontSize:30}}/>
               </Button>
             </CardItem>
@@ -48,7 +53,10 @@ class TabC extends Component {
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                   <Text style={{fontSize: 20}}>Home</Text> 
                   <Right>
-                    <Button iconLeft>
+                    <Button iconLeft
+                    onPress={() =>
+                      this.props.navigation.navigate('TabB')
+                    }>
                       <Icon name='chevron-circle-right' 
                   type='FontAwesome' style={{fontSize:30}} />
                       <Text style={{fontSize: 10}}>Change</Text>
@@ -68,7 +76,10 @@ class TabC extends Component {
                     {"\n"}9:17am
                   </Text>
                   <Right>
-                    <Button>
+                    <Button
+                    onPress={() =>
+                      this.props.navigation.navigate('TabB')
+                    }>
                       <Text>No Delays</Text> 
                     </Button>
                   </Right>
@@ -86,7 +97,9 @@ class TabC extends Component {
             </CardItem>
 
             <CardItem>
-              <Button block >
+              <Button block onPress={() =>
+                    this.props.navigation.navigate('TabB')
+                  }>
                 <Text>See All Goals</Text>
               </Button>
             </CardItem>
@@ -96,7 +109,9 @@ class TabC extends Component {
           <Card>
             <CardItem header bordered>
               <Text style={{fontSize:30}}>Media</Text>
-              <Button iconLeft transparent>
+              <Button iconLeft transparent onPress={() =>
+                    this.props.navigation.navigate('TabA')
+                  }>
                 <Icon name='arrow-forward' style={{fontSize:30}}/>
               </Button>
             </CardItem>
@@ -119,7 +134,10 @@ class TabC extends Component {
               <Body>
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                   
-                    <Button style={{left:15}}>
+                    <Button style={{left:15}}
+                    onPress={() =>
+                      this.props.navigation.navigate('TabA')
+                    }>
                       <Text style={{fontSize: 10}}>Resume</Text>
                     </Button>
 
@@ -131,7 +149,10 @@ class TabC extends Component {
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                   <Text style={{fontSize:25}}>View All Downloads</Text>
                   <Right>
-                    <Button iconLeft transparent>
+                    <Button iconLeft transparent
+                    onPress={() =>
+                      this.props.navigation.navigate('TabA')
+                    }>
                       <Icon name='chevron-circle-right' 
                   type='FontAwesome' style={{fontSize:30}} />
                     </Button>
@@ -145,7 +166,10 @@ class TabC extends Component {
           <Card>
             <CardItem header bordered>
               <Text style={{fontSize:30}}>Social</Text>
-              <Button iconLeft transparent>
+              <Button iconLeft transparent
+              onPress={() =>
+                this.props.navigation.navigate('TabD')
+              }>
                 <Icon name='arrow-forward' style={{fontSize:30}}/>
               </Button>
             </CardItem>
@@ -159,7 +183,10 @@ class TabC extends Component {
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                   <Text style={{fontSize:25}}>Go To Your Feed</Text>
                   <Right>
-                    <Button iconLeft transparent>
+                    <Button iconLeft transparent
+                    onPress={() =>
+                      this.props.navigation.navigate('TabD')
+                    }>
                       <Icon name='chevron-circle-right' 
                   type='FontAwesome' style={{fontSize:30}} />
                     </Button>
@@ -170,7 +197,9 @@ class TabC extends Component {
             <CardItem bordered>
               <Body>
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
-                    <Button >
+                    <Button onPress={() =>
+                    this.props.navigation.navigate('TabD')
+                  }>
                       <Text style={{fontSize:20}}>+ Create New Post</Text>
                     </Button>
                   
@@ -185,7 +214,10 @@ class TabC extends Component {
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                   <Text style={{fontSize:25}}>Enter Public Chatroom</Text>
                   <Right>
-                    <Button iconLeft transparent>
+                    <Button iconLeft transparent
+                    onPress={() =>
+                      this.props.navigation.navigate('TabD')
+                    }>
                       <Icon name='chevron-circle-right' 
                   type='FontAwesome' style={{fontSize:30}} />
                     </Button>
@@ -196,7 +228,10 @@ class TabC extends Component {
             <CardItem bordered>
               <Body>
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
-                    <Button >
+                    <Button 
+                    onPress={() =>
+                      this.props.navigation.navigate('TabD')
+                    }>
                       <Text style={{fontSize:20}}>Enter Anonymously</Text>
                     </Button>
                   
@@ -211,7 +246,10 @@ class TabC extends Component {
           <Card>
             <CardItem header bordered>
               <Text style={{fontSize:30}}>Canvas AR</Text>
-              <Button iconLeft transparent>
+              <Button iconLeft transparent
+              onPress={() =>
+                this.props.navigation.navigate('TabE')
+              }>
                 <Icon name='arrow-forward' style={{fontSize:30}}/>
               </Button>
             </CardItem>
@@ -221,7 +259,10 @@ class TabC extends Component {
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                   <Text style={{fontSize:25}}>+ Create New Post</Text>
                   <Right>
-                    <Button iconLeft transparent>
+                    <Button iconLeft transparent
+                    onPress={() =>
+                      this.props.navigation.navigate('TabE')
+                    }>
                       <Icon name='chevron-circle-right' 
                   type='FontAwesome' style={{fontSize:30}} />
                     </Button>
@@ -234,7 +275,10 @@ class TabC extends Component {
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                   <Text style={{fontSize:25}}>View Saved Gallery</Text>
                   <Right>
-                    <Button iconLeft transparent>
+                    <Button iconLeft transparent
+                    onPress={() =>
+                      this.props.navigation.navigate('TabE')
+                    }>
                       <Icon name='chevron-circle-right' 
                   type='FontAwesome' style={{fontSize:30}} />
                     </Button>
