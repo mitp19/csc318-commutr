@@ -10,7 +10,45 @@ import {
 } from "native-base";
 
 export default class Goals extends Component {
+    constructor(props) {
+        super(props)
+        this.state = {
+            placeholder: "Add a new goal",
+            items: [
+                {status: true, goal: "Read Chapter 3 of Factfulness"},
+                {status: false, goal: "Reply back to Mom's text"},
+                {status: false, goal: "Figure out what life is"}
+            ], 
+            new_goal: ""
+        }
+    }
 
+    getColor(truth) {
+        if (truth) {
+            return "green";
+        }
+        return "red";
+    }
+
+    handleAddNewGoal() {
+        let previousState = this.state
+        previousState.items.push({status: false, goal: previousState.new_goal})
+        this.setState({
+            items: previousState.items,
+            new_goal: "",
+            placeholder: previousState.placeholder})
+    }
+    renderGoalList() {
+        let GoalList = this.state.items.map((item) =>
+                <ListItem key={item.goal} style={{ width: 325 }}>
+                    <CheckBox checked={item.status} color={this.getColor(item.status)}/>
+                    <Body>
+                        <Text> {item.goal}</Text>
+                    </Body>
+                </ListItem>
+        )
+        return GoalList;
+    }
     render() {
         return (
             <Container styles={styles.container}>
@@ -21,33 +59,20 @@ export default class Goals extends Component {
                         </CardItem>
                         <CardItem bordered cardBody>
                             <Body>
-                                <ListItem style={{ width: 325 }}>
-                                    <CheckBox checked={true} />
-                                    <Body>
-                                        <Text> Read Chapter 3 of Factfulness  </Text>
-                                    </Body>
-                                </ListItem>
-                                <ListItem style={{ width: 325 }}>
-                                    <CheckBox checked={false} color="red" />
-                                    <Body>
-                                        <Text> Reply Back to Mom's Text</Text>
-                                    </Body>
-                                </ListItem>
-                                <ListItem style={{ width: 325 }}>
-                                    <CheckBox checked={false} color="red" />
-                                    <Body>
-                                        <Text> Figure what life is </Text>
-                                    </Body>
-                                </ListItem>
+                                {this.renderGoalList()}
                             </Body>
                         </CardItem>
                         <CardItem>
                             <Item>
-                                <Input placeholder='Add a new goal' />
-                                <Button active transparent>
-                                <Icon type="FontAwesome" name='plus-circle' color="green"/>
+                                <Input 
+                                onChangeText={(new_goal) => this.setState({new_goal})} 
+                                placeholder={this.state.placeholder} />
+                                <Button 
+                                onPress={this.handleAddNewGoal.bind(this)}
+                                active 
+                                transparent>
+                                    <Icon type="FontAwesome" name='plus-circle' color="green"/>
                                 </Button>
-                                
                             </Item>
                         </CardItem>
                     </Card>
