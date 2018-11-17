@@ -7,10 +7,12 @@ import {
 } from 'react-native';
 
 import {
-  Card, CardItem, Icon, Button
+  Card, CardItem, Icon, Button, Header, Left, Body, Title, Right, Container
 } from 'native-base';
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
+
+import { SearchBar } from 'react-native-elements'
 
 class TabA extends Component {
   
@@ -23,8 +25,22 @@ class TabA extends Component {
 
   render () {
     return (
-      <View style={styles.container}>
-        <Text style={styles.text}>Explore</Text>
+      <Container style={styles.header}>
+      <Header>
+        <Right>
+          <Body>
+            <Title>Explore
+            </Title>
+          </Body>
+          </Right>
+          <SearchBar
+            inputStyle={{backgroundColor: 'white'}}
+            containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+            showLoading
+            cancelButtonTitle="Cancel"
+            placeholder='Search' />
+        </Header>
+        <View style={styles.container}>
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='book' type='FontAwesome' />
@@ -91,6 +107,7 @@ class TabA extends Component {
           </CardItem>
         </Card>
       </View>
+      </Container>
       )
   }
 }
@@ -103,7 +120,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#c0392b',
-    padding: 40,
+    padding: 40
+  },
+  header: {
+    flex: 10
   },
   text: {
     color: 'white',

@@ -7,12 +7,52 @@ import {
 } from 'react-native';
 
 import {
-  Container, Header, Icon, Picker, Left, Right, Button, Body, Title, Card, CardItem,Content
+  Container, Header, Icon, Picker, Left, Right, Button, 
+  Body, Title, Card, CardItem,Content, Grid, Col
 } from 'native-base';
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import { SearchBar } from 'react-native-elements'
+
+const downloads = [
+  {
+    type: "Podcasts",
+    title: "Dreamboy",
+    artist: "Night Vale Presents",
+    margin: 170
+  },
+  {
+    type: "Podcasts",
+    title: "Forever Ago",
+    artist: "American Public Media",
+    margin: 160
+  },
+  {
+    type: "Books/Articles",
+    title: "A Gentleman in Moscow",
+    artist: "Amor Towles",
+    margin: 150
+  },
+  {
+    type: "Books/Articles",
+    title: "Little Fires Everywhere",
+    artist: "Celeste Ng",
+    margin: 150
+  },
+  {
+    type: "Music",
+    title: "Party For One",
+    artist: "Carly Rae Jepsen",
+    margin: 175
+  },
+  {
+    type: "Music",
+    title: "Rose-Colored Boy",
+    artist: "Paramore",
+    margin: 158
+  }
+]
 
 class Downloads extends Component {
   
@@ -33,6 +73,118 @@ class Downloads extends Component {
     this.setState({
       selected: value
     });
+  }
+
+  renderCards(filter) {
+    let keyId = 1;
+    return (
+      downloads.map((element) => {
+        if ((filter === "key0" || filter === "key2") && 
+        (element.type === "Music")) {
+        return (
+          <Card key={keyId++}>
+          <CardItem bordered>
+            <View>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
+              <Text style={{fontSize: 11}}>by {element.artist}</Text>
+            </View>
+            <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+            <Right>
+              <Button transparent 
+              onPress={this.handleDelete}
+                  >
+                <Icon 
+                  name='ios-trash' 
+                  type='Ionicons' 
+                  style={{fontSize: 26, color: 'black'}}/>
+              </Button>
+              <Button 
+              transparent 
+                  >
+                <Icon 
+                  name='play-circle'
+                  type='FontAwesome'
+                  style={{fontSize: 20, color: 'black'}}/>
+              </Button>
+              </Right>
+              </Body>
+          </CardItem>
+        </Card>
+        )
+      } else if ((filter === "key0" || filter === "key1") && 
+      (element.type === "Books/Articles")) {
+        return (
+          <Card key={keyId++}>
+          <CardItem bordered>
+            <View>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
+              <Text style={{fontSize: 11}}>by {element.artist}</Text>
+            </View>
+            <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+            <View>
+              <Right>
+              <Button transparent 
+              onPress={this.handleDelete}
+                  >
+                <Icon 
+                  name='ios-trash' 
+                  type='Ionicons' 
+                  style={{fontSize: 26, color: 'black'}}/>
+              </Button>
+              </Right>
+              <Right>
+              <Button 
+              transparent 
+                  >
+                <Icon 
+                  name='open-in-new' 
+                  type='MaterialCommunityIcons' 
+                  style={{fontSize: 20, color: 'black'}}/>
+              </Button>
+              </Right>
+            </View>
+            </Body>
+          </CardItem>
+        </Card>
+        )
+      } else if ((filter === "key0" || filter === "key3") && 
+      (element.type === "Podcasts")) {
+      return (
+        <Card key={keyId++}>
+        <CardItem bordered>
+          <View>
+            <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
+            <Text style={{fontSize: 11}}>by {element.artist}</Text>
+          </View>
+            <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+            <View>
+            <Right>
+            <Button transparent 
+            onPress={this.handleDownload}
+                >
+              <Icon 
+                name='ios-trash' 
+                type='Ionicons' 
+                style={{fontSize: 26, color: 'black'}}/>
+            </Button>
+            <Button 
+            transparent 
+                >
+              <Icon 
+                  name='play-circle'
+                  type='FontAwesome'
+                  style={{fontSize: 20, color: 'black'}}/>
+            </Button>
+            </Right>
+            </View>
+            </Body>
+        </CardItem>
+      </Card>
+      )
+      }
+    }
+    )
+    )
   }
 
   render () {
@@ -84,142 +236,8 @@ class Downloads extends Component {
               <Picker.Item label="Music" value="key2" />
               <Picker.Item label="Podcasts" value="key3" />
             </Picker>
-            <Content padder>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Party For One</Text>
-              <Text style={{fontSize: 11}}>by Carly Rae Jepsen</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 175}} 
-                  >
-                <Icon 
-                  name='ios-trash' 
-                  type='Ionicons' 
-                  style={{fontSize: 26, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 172}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Rose-Colored Boy</Text>
-              <Text style={{fontSize: 11}}>by Paramore</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 158}} 
-                  >
-                <Icon 
-                  name='ios-trash' 
-                  type='Ionicons' 
-                  style={{fontSize: 26, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 155}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>So Sad, So Sad</Text>
-              <Text style={{fontSize: 11}}>by Varsity</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 179}} 
-                  >
-                <Icon 
-                  name='ios-trash' 
-                  type='Ionicons' 
-                  style={{fontSize: 26, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 176}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>thank u, next</Text>
-              <Text style={{fontSize: 11}}>by Ariana Grande</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 191}} 
-                  >
-                <Icon 
-                  name='ios-trash' 
-                  type='Ionicons' 
-                  style={{fontSize: 26, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 188}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>We Belong Together</Text>
-              <Text style={{fontSize: 11}}>by Mariah Carey</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 145}} 
-                  >
-                <Icon 
-                  name='ios-trash' 
-                  type='Ionicons' 
-                  style={{fontSize: 26, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 142}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
+        <Content padder>
+          {this.renderCards(this.state.selected)}
         </Content>
       </Container>
       )

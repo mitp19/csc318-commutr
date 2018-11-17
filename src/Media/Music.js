@@ -13,7 +13,30 @@ import {
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
-import { SearchBar } from 'react-native-elements'
+import { SearchBar } from 'react-native-elements';
+
+const music = [
+  {
+    title: "Party For One",
+    artist: "Carly Rae Jepsen"
+  },
+  {
+    title: "Rose-Colored Boy",
+    artist: "Paramore"
+  },
+  {
+    title: "So Sad, So Sad",
+    artist: "Varsity"
+  },
+  {
+    title: "thank u, next",
+    artist: "Ariana Grande"
+  },
+  {
+    title: "We Belong Together",
+    artist: "Mariah Carey"
+  }
+]
 
 class Music extends Component {
   
@@ -39,6 +62,44 @@ class Music extends Component {
     this.setState({
       selected: value
     });
+  }
+
+  renderMusicCards() {
+    let keyId = 1;
+    return (
+      music.map((element) => {
+        return (
+          <Card key={keyId++}>
+          <CardItem bordered>
+            <View>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
+              <Text style={{fontSize: 11}}>by {element.artist}</Text>
+            </View>
+            <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+            <View>
+              <Button transparent 
+              onPress={this.handleDownload}
+                  >
+                <Icon
+                  name='download' 
+                  type='Feather' 
+                  style={{fontSize: 20, color: 'black'}}/>
+              </Button>
+              <Button 
+              transparent 
+                  >
+                <Icon 
+                  name='play-circle'
+                  type='FontAwesome'
+                  style={{fontSize: 20, color: 'black'}}/>
+              </Button>
+              </View>
+              </Body>
+          </CardItem>
+        </Card>
+        )
+      })
+    )
   }
 
   render () {
@@ -101,147 +162,8 @@ class Music extends Component {
               <Picker.Item label="World" value="key13" />
               <Picker.Item label="Other" value="key14" />
             </Picker>
-            <Content padder>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Party For One</Text>
-              <Text style={{fontSize: 11}}>by Carly Rae Jepsen</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 172}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon 
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 172}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Rose-Colored Boy</Text>
-              <Text style={{fontSize: 11}}>by Paramore</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 155}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 155}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>So Sad, So Sad</Text>
-              <Text style={{fontSize: 11}}>by Varsity</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 176}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 176}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>thank u, next</Text>
-              <Text style={{fontSize: 11}}>by Ariana Grande</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 188}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 188}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>We Belong Together</Text>
-              <Text style={{fontSize: 11}}>by Mariah Carey</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 142}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 142}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
+        <Content padder>
+        {this.renderMusicCards()}
         </Content>
       </Container>
       )

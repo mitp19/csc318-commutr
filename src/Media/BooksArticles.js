@@ -30,7 +30,7 @@ class BooksArticles extends Component {
       selected: "key0"
     };
   }
-
+  
   handleDownload() {
     Alert.alert('Item Downloaded!')
   }
