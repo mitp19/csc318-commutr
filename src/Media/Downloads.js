@@ -105,6 +105,27 @@ class Downloads extends Component {
     })
   }
 
+  componentDidMount() {
+    const newDownload = {}
+    if (!(this.props.navigation.state.params === undefined)) {
+      console.log("boo")
+      newDownload.type = this.props.navigation.state.params.newDownload.type;
+      newDownload.title = this.props.navigation.state.params.newDownload.title;
+      newDownload.artist = this.props.navigation.state.params.newDownload.artist;
+      const newDownloads = this.state.downloads
+      let inDownloads = false
+      for (let i = 0; i < this.state.downloads.length; i++) {
+        if (this.state.downloads[i].title === newDownload.title) {
+          inDownloads = true
+        }
+      }
+      if (inDownloads === false) {
+        newDownloads.push(newDownload)
+      }
+      this.setState({downloads: newDownloads, search: newDownloads})
+    }
+  }
+
   renderCards(filter) {
     return (
       this.state.downloads.map((element) => {
@@ -167,6 +188,9 @@ class Downloads extends Component {
               <Right>
               <Button 
               transparent 
+              onPress={() =>
+                this.props.navigation.navigate('PlaceHolderBook')
+              }
                   >
                 <Icon 
                   name='open-in-new' 

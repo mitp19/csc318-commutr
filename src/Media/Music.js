@@ -30,24 +30,35 @@ class Music extends Component {
       selected: "key0",
       music: [
         {
+          type: "Music",
+          genre: ["key9", "key12"],
+          title: "Hard Times",
+          artist: "Paramore",
+          downloaded: false
+        },
+        {
+          type: "Music",
           genre: ["key9"],
           title: "Party For One",
           artist: "Carly Rae Jepsen",
           downloaded: false
         },
         {
+          type: "Music",
           genre: ["key9", "key12"],
           title: "Rose-Colored Boy",
           artist: "Paramore",
           downloaded: false
         },
         {
+          type: "Music",
           genre: ["key1", "key12"],
           title: "So Sad, So Sad",
           artist: "Varsity",
           downloaded: false
         },
         {
+          type: "Music",
           genre: ["key9"],
           title: "thank u, next",
           artist: "Ariana Grande",
@@ -62,30 +73,35 @@ class Music extends Component {
       ],
       search: [
         {
+          type: "Music",
           genre: ["key9"],
           title: "Party For One",
           artist: "Carly Rae Jepsen",
           downloaded: false
         },
         {
+          type: "Music",
           genre: ["key9", "key12"],
           title: "Rose-Colored Boy",
           artist: "Paramore",
           downloaded: false
         },
         {
+          type: "Music",
           genre: ["key1", "key12"],
           title: "So Sad, So Sad",
           artist: "Varsity",
           downloaded: false
         },
         {
+          type: "Music",
           genre: ["key9"],
           title: "thank u, next",
           artist: "Ariana Grande",
           downloaded: false
         },
         {
+          type: "Music",
           genre: ["key11"],
           title: "We Belong Together",
           artist: "Mariah Carey",
@@ -157,7 +173,7 @@ class Music extends Component {
               <Body>
               <Button transparent bordered dark small
               onPress={() =>
-                this.props.navigation.navigate('Downloads')}
+                this.props.navigation.navigate('Downloads', {newDownload: element})}
                     >
                   <Text style={{fontSize: 8}}>View in Downloads</Text>
                 </Button>

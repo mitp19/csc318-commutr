@@ -15,8 +15,6 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import { SearchBar } from 'react-native-elements'
 
-import Downloads from './Downloads'
-
 class BooksArticles extends Component {
   
   // const mediaIcon = parseIcon('')
@@ -32,65 +30,75 @@ class BooksArticles extends Component {
       selected: "key0",
       books: [
         {
+          type: "Books/Articles",
           genre: ["key2", "key7", "key13"],
           title: "The Astonishing Color of After",
-          author: "Emily X.R. Pan",
+          artist: "Emily X.R. Pan",
           downloaded: false
         },
         {
+          type: "Books/Articles",
           genre: ["key2"],
           title: "Beartown",
-          author: "Fredrik Backman",
+          artist: "Fredrik Backman",
           downloaded: false
         },
         {
+          type: "Books/Articles",
           genre: ["key5"],
           title: "A Gentleman in Moscow",
-          author: "Amor Towles",
+          artist: "Amor Towles",
           downloaded: false
         },
         {
+          type: "Books/Articles",
           genre: ["key5"],
           title: "The Heart's Invisible Furies",
-          author: "John Boyne",
+          artist: "John Boyne",
           downloaded: false
         },
         {
+          type: "Books/Articles",
           genre: ["key2"],
           title: "Little Fires Everywhere",
-          author: "Celeste Ng",
+          artist: "Celeste Ng",
           downloaded: false
         }
       ],
       search: [
         {
+          type: "Books/Articles",
           genre: ["key2", "key7", "key13"],
           title: "The Astonishing Color of After",
-          author: "Emily X.R. Pan",
+          artist: "Emily X.R. Pan",
           downloaded: false
         },
         {
+          type: "Books/Articles",
           genre: ["key2"],
           title: "Beartown",
-          author: "Fredrik Backman",
+          artist: "Fredrik Backman",
           downloaded: false
         },
         {
+          type: "Books/Articles",
           genre: ["key5"],
           title: "A Gentleman in Moscow",
-          author: "Amor Towles",
+          artist: "Amor Towles",
           downloaded: false
         },
         {
+          type: "Books/Articles",
           genre: ["key5"],
           title: "The Heart's Invisible Furies",
-          author: "John Boyne",
+          artist: "John Boyne",
           downloaded: false
         },
         {
+          type: "Books/Articles",
           genre: ["key2"],
           title: "Little Fires Everywhere",
-          author: "Celeste Ng",
+          artist: "Celeste Ng",
           downloaded: false
         }
       ]
@@ -113,7 +121,7 @@ class BooksArticles extends Component {
           <CardItem bordered>
             <View>
               <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
-              <Text style={{fontSize: 11}}>by {element.author}</Text>
+              <Text style={{fontSize: 11}}>by {element.artist}</Text>
             </View>
             <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
             <View>
@@ -135,6 +143,9 @@ class BooksArticles extends Component {
               </Button>
               <Button 
               transparent 
+              onPress={() =>
+                this.props.navigation.navigate('PlaceHolderBook')
+              }
                   >
                 <Icon 
                   name='open-in-new' 
@@ -152,7 +163,7 @@ class BooksArticles extends Component {
             <CardItem bordered>
               <View>
                 <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
-                <Text style={{fontSize: 11}}>by {element.author}</Text>
+                <Text style={{fontSize: 11}}>by {element.artist}</Text>
               </View>
               <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
               <View>
@@ -166,6 +177,9 @@ class BooksArticles extends Component {
               </Body>
                 <Button 
                 transparent 
+                onPress={() =>
+                  this.props.navigation.navigate('PlaceHolderBook')
+                }
                     >
                   <Icon 
                     name='open-in-new' 
@@ -208,7 +222,7 @@ class BooksArticles extends Component {
             onChangeText={(text) =>
               {const newBooks = this.state.search.filter(book => {
                  return book.title.toUpperCase().includes(text.toUpperCase()) || 
-                 book.author.toUpperCase().includes(text.toUpperCase())
+                 book.artist.toUpperCase().includes(text.toUpperCase())
                })
                this.setState({
                  books: newBooks

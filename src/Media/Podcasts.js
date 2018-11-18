@@ -30,48 +30,114 @@ class Podcasts extends Component {
       selected: "key0",
       podcasts: [
         {
+          type: "Podcasts",
           genre: ["key8"],
           title: "The Argument",
           artist: "The New York Times Opinion",
           downloaded: false
         },
         {
+          type: "Podcasts",
           genre: ["key1"],
           title: "Dreamboy",
           artist: "Night Vale Presents",
           downloaded: false
         },
         {
+          type: "Podcasts",
           genre: ["key4"],
           title: "Eyes Before Flippers",
           artist: "Dan Riskin",
           downloaded: false
         },
         {
+          type: "Podcasts",
           genre: ["key7"],
           title: "Forever Ago",
           artist: "American Public Media",
           downloaded: false
         },
         {
+          type: "Podcasts",
           genre: ["key1", "key6"],
           title: "Home Cooked",
           artist: "Home Cooked",
           downloaded: false
         },
         {
+          type: "Podcasts",
           genre: ["key11"],
           title: "Other People's Problems",
           artist: "CBC Podcasts",
           downloaded: false
         },
         {
+          type: "Podcasts",
           genre: ["key3"],
           title: "Pete's Paranormal Chronicles",
           artist: "PPC",
           downloaded: false
         },
         {
+          type: "Podcasts",
+          genre: ["key3"],
+          title: "Wonderful!",
+          artist: "Rachel and Griffin McElroy",
+          downloaded: false
+        }
+      ],
+      search: [
+        {
+          type: "Podcasts",
+          genre: ["key8"],
+          title: "The Argument",
+          artist: "The New York Times Opinion",
+          downloaded: false
+        },
+        {
+          type: "Podcasts",
+          genre: ["key1"],
+          title: "Dreamboy",
+          artist: "Night Vale Presents",
+          downloaded: false
+        },
+        {
+          type: "Podcasts",
+          genre: ["key4"],
+          title: "Eyes Before Flippers",
+          artist: "Dan Riskin",
+          downloaded: false
+        },
+        {
+          type: "Podcasts",
+          genre: ["key7"],
+          title: "Forever Ago",
+          artist: "American Public Media",
+          downloaded: false
+        },
+        {
+          type: "Podcasts",
+          genre: ["key1", "key6"],
+          title: "Home Cooked",
+          artist: "Home Cooked",
+          downloaded: false
+        },
+        {
+          type: "Podcasts",
+          genre: ["key11"],
+          title: "Other People's Problems",
+          artist: "CBC Podcasts",
+          downloaded: false
+        },
+        {
+          type: "Podcasts",
+          genre: ["key3"],
+          title: "Pete's Paranormal Chronicles",
+          artist: "PPC",
+          downloaded: false
+        },
+        {
+          type: "Podcasts",
           genre: ["key3"],
           title: "Wonderful!",
           artist: "Rachel and Griffin McElroy",
@@ -194,7 +260,7 @@ class Podcasts extends Component {
                  podcast.artist.toUpperCase().includes(text.toUpperCase())
                })
                this.setState({
-                 music: newPodcasts
+                 podcasts: newPodcasts
                })}}
             cancelButtonTitle="Cancel"
             placeholder='Search' />
