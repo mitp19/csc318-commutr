@@ -244,8 +244,8 @@ class Downloads extends Component {
         <AwesomeAlert
                 show={this.state.showAlert}
                 showProgress={false}
-                title="AwesomeAlert"
-                message="I have a message for you!"
+                title="Are you sure?"
+                message="Once deleted, you will not be able to recover this file!"
                 closeOnTouchOutside={true}
                 closeOnHardwareBackPress={false}
                 showCancelButton={true}
