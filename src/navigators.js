@@ -7,13 +7,9 @@ import {
 } from 'react-native';
 
 // Navigators
-import { DrawerNavigator, createStackNavigator, createBottomTabNavigator } from 'react-navigation'
+import { createStackNavigator, createBottomTabNavigator } from 'react-navigation'
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
-
-// StackNavigator screens
-import ItemList from './ItemList'
-import Item from './Item'
 
 // TabNavigator screens
 import TabA from './Media/TabA'
@@ -25,6 +21,7 @@ import BooksArticles from './Media/BooksArticles'
 import Music from './Media/Music'
 import Podcasts from './Media/Podcasts'
 import Downloads from './Media/Downloads'
+import PlaceHolderBook from './Media/PlaceHolderBook'
 
 export const Home = createStackNavigator({
   TabC: { screen: TabC }
@@ -51,7 +48,8 @@ export const Media = createStackNavigator({
   BooksArticles: { screen: BooksArticles },
   Music: { screen: Music },
   Podcasts: { screen: Podcasts },
-  Downloads: { screen: Downloads }
+  Downloads: { screen: Downloads },
+  PlaceHolderBook: { screen: PlaceHolderBook }
 }, 
 {headerMode: 'none'})
 
@@ -79,9 +77,3 @@ export const Tabs = createBottomTabNavigator({
 }, {initialRouteName: 'Home', 
 tabBarOptions: {showIcon: true}, 
 })
-
-// export const Drawer = DrawerNavigator({
-//   Stack: { screen: Stack },
-//   Tabs: { screen: Tabs },
-//   Plain: { screen: Plain }
-// })
