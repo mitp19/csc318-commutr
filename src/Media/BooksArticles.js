@@ -15,6 +15,8 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import { SearchBar } from 'react-native-elements'
 
+import Downloads from './Downloads'
+
 class BooksArticles extends Component {
   
   // const mediaIcon = parseIcon('')
@@ -30,31 +32,69 @@ class BooksArticles extends Component {
       selected: "key0",
       books: [
         {
+          genre: ["key2", "key7", "key13"],
           title: "The Astonishing Color of After",
-          author: "Emily X.R. Pan"
+          author: "Emily X.R. Pan",
+          downloaded: false
         },
         {
+          genre: ["key2"],
           title: "Beartown",
-          author: "Fredrik Backman"
+          author: "Fredrik Backman",
+          downloaded: false
         },
         {
+          genre: ["key5"],
           title: "A Gentleman in Moscow",
-          author: "Amor Towles"
+          author: "Amor Towles",
+          downloaded: false
         },
         {
+          genre: ["key5"],
           title: "The Heart's Invisible Furies",
-          author: "John Boyne"
+          author: "John Boyne",
+          downloaded: false
         },
         {
+          genre: ["key2"],
           title: "Little Fires Everywhere",
-          author: "Celeste Ng"
+          author: "Celeste Ng",
+          downloaded: false
+        }
+      ],
+      search: [
+        {
+          genre: ["key2", "key7", "key13"],
+          title: "The Astonishing Color of After",
+          author: "Emily X.R. Pan",
+          downloaded: false
+        },
+        {
+          genre: ["key2"],
+          title: "Beartown",
+          author: "Fredrik Backman",
+          downloaded: false
+        },
+        {
+          genre: ["key5"],
+          title: "A Gentleman in Moscow",
+          author: "Amor Towles",
+          downloaded: false
+        },
+        {
+          genre: ["key5"],
+          title: "The Heart's Invisible Furies",
+          author: "John Boyne",
+          downloaded: false
+        },
+        {
+          genre: ["key2"],
+          title: "Little Fires Everywhere",
+          author: "Celeste Ng",
+          downloaded: false
         }
       ]
     }
-  }
-  
-  handleDownload() {
-    Alert.alert('Item Downloaded!')
   }
 
   onValueChange(value: string) {
@@ -63,12 +103,13 @@ class BooksArticles extends Component {
     });
   }
 
-  renderBookCards() {
-    let keyId = 1;
+  renderBookCards(filter) {
     return (
       this.state.books.map((element) => {
+        if ((element.genre.includes(filter) || filter === "key0") && 
+        element.downloaded == false) {
         return (
-          <Card key={keyId++}>
+          <Card key={element.title}>
           <CardItem bordered>
             <View>
               <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
@@ -77,7 +118,15 @@ class BooksArticles extends Component {
             <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
             <View>
               <Button transparent 
-              onPress={this.handleDownload}
+              onPress={() => {
+                Alert.alert('Item Downloaded!')
+                const index = this.state.books.indexOf(element)
+                const newBooks = this.state.books
+                newBooks[index].downloaded = true
+                this.setState({
+                  books: newBooks
+                });
+              }}
                   >
                 <Icon
                   name='download' 
@@ -96,7 +145,39 @@ class BooksArticles extends Component {
               </Body>
           </CardItem>
         </Card>
-        )
+        )} else if ((element.genre.includes(filter) || filter === "key0") && 
+        element.downloaded == true) {
+          return (
+            <Card key={element.title}>
+            <CardItem bordered>
+              <View>
+                <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
+                <Text style={{fontSize: 11}}>by {element.author}</Text>
+              </View>
+              <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+              <View>
+              <Body>
+              <Button transparent bordered dark small
+              onPress={() =>
+                this.props.navigation.navigate('Downloads')}
+                    >
+                  <Text style={{fontSize: 8}}>View in Downloads</Text>
+                </Button>
+              </Body>
+                <Button 
+                transparent 
+                    >
+                  <Icon 
+                    name='open-in-new' 
+                    type='MaterialCommunityIcons' 
+                    style={{fontSize: 20, color: 'black'}}/>
+                </Button>
+                </View>
+                </Body>
+            </CardItem>
+          </Card>
+          )
+        }
       })
     )
   }
@@ -108,7 +189,7 @@ class BooksArticles extends Component {
           <Left>
             <Button transparent
             onPress={() =>
-              this.props.navigation.navigate('TabA')
+              this.props.navigation.goBack(this.props.navigation.state.key)
             }>
               <Icon 
                 name='chevron-circle-left' 
@@ -124,6 +205,14 @@ class BooksArticles extends Component {
             inputStyle={{backgroundColor: 'white'}}
             containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
             showLoading
+            onChangeText={(text) =>
+              {const newBooks = this.state.search.filter(book => {
+                 return book.title.toUpperCase().includes(text.toUpperCase()) || 
+                 book.author.toUpperCase().includes(text.toUpperCase())
+               })
+               this.setState({
+                 books: newBooks
+               })}}
             cancelButtonTitle="Cancel"
             placeholder='Search' />
         </Header>
@@ -145,7 +234,7 @@ class BooksArticles extends Component {
               selectedValue={this.state.selected}
               onValueChange={this.onValueChange.bind(this)}
             >
-              <Picker.Item label="Action/Adventure" value="key0"/>
+              <Picker.Item label="View All" value="key0"/>
               <Picker.Item label="Classics" value="key1"/>
               <Picker.Item label="Contemporary" value="key2" />
               <Picker.Item label="Dystopia" value="key3" />
@@ -162,7 +251,7 @@ class BooksArticles extends Component {
               <Picker.Item label="Other" value="key14" />
             </Picker>
           <Content padder>
-            {this.renderBookCards()}
+            {this.renderBookCards(this.state.selected)}
         </Content>
       </Container>
       )

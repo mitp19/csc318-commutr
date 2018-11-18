@@ -63,6 +63,38 @@ class Downloads extends Component {
           title: "Rose-Colored Boy",
           artist: "Paramore"
         }
+      ],
+      search: [
+        {
+          type: "Podcasts",
+          title: "Dreamboy",
+          artist: "Night Vale Presents"
+        },
+        {
+          type: "Podcasts",
+          title: "Forever Ago",
+          artist: "American Public Media"
+        },
+        {
+          type: "Books/Articles",
+          title: "A Gentleman in Moscow",
+          artist: "Amor Towles"
+        },
+        {
+          type: "Books/Articles",
+          title: "Little Fires Everywhere",
+          artist: "Celeste Ng"
+        },
+        {
+          type: "Music",
+          title: "Party For One",
+          artist: "Carly Rae Jepsen"
+        },
+        {
+          type: "Music",
+          title: "Rose-Colored Boy",
+          artist: "Paramore"
+        }
       ]
     }
   }
@@ -196,7 +228,7 @@ class Downloads extends Component {
           <Left>
             <Button transparent
             onPress={() =>
-              this.props.navigation.navigate('TabA')
+              this.props.navigation.goBack(this.props.navigation.state.key)
             }>
               <Icon 
                 name='chevron-circle-left' 
@@ -212,6 +244,14 @@ class Downloads extends Component {
             inputStyle={{backgroundColor: 'white'}}
             containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
             showLoading
+            onChangeText={(text) =>
+             {const newDownloads = this.state.search.filter(download => {
+                return download.title.toUpperCase().includes(text.toUpperCase()) || 
+                download.artist.toUpperCase().includes(text.toUpperCase())
+              })
+              this.setState({
+                downloads: newDownloads
+              })}}
             cancelButtonTitle="Cancel"
             placeholder='Search' />
         </Header>

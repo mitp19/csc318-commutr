@@ -30,31 +30,55 @@ class Podcasts extends Component {
       selected: "key0",
       podcasts: [
         {
+          genre: ["key8"],
           title: "The Argument",
-          artist: "The New York Times Opinion"
+          artist: "The New York Times Opinion",
+          downloaded: false
         },
         {
+          genre: ["key1"],
           title: "Dreamboy",
-          artist: "Night Vale Presents"
+          artist: "Night Vale Presents",
+          downloaded: false
         },
         {
+          genre: ["key4"],
+          title: "Eyes Before Flippers",
+          artist: "Dan Riskin",
+          downloaded: false
+        },
+        {
+          genre: ["key7"],
           title: "Forever Ago",
-          artist: "American Public Media"
+          artist: "American Public Media",
+          downloaded: false
         },
         {
+          genre: ["key1", "key6"],
           title: "Home Cooked",
-          artist: "Home Cooked"
+          artist: "Home Cooked",
+          downloaded: false
         },
         {
+          genre: ["key11"],
           title: "Other People's Problems",
-          artist: "CBC Podcasts"
+          artist: "CBC Podcasts",
+          downloaded: false
+        },
+        {
+          genre: ["key3"],
+          title: "Pete's Paranormal Chronicles",
+          artist: "PPC",
+          downloaded: false
+        },
+        {
+          genre: ["key3"],
+          title: "Wonderful!",
+          artist: "Rachel and Griffin McElroy",
+          downloaded: false
         }
       ]
     };
-  }
-
-  handleDownload() {
-    Alert.alert('Item Downloaded!')
   }
 
   onValueChange(value: string) {
@@ -63,12 +87,13 @@ class Podcasts extends Component {
     });
   }
 
-  renderPodcastCards() {
-    let keyId = 1;
+  renderPodcastCards(filter) {
     return (
       this.state.podcasts.map((element) => {
+        if ((element.genre.includes(filter) || filter === "key0") && 
+        element.downloaded == false) {
         return (
-          <Card key={keyId++}>
+          <Card key={element.title}>
           <CardItem bordered>
             <View>
               <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
@@ -77,7 +102,15 @@ class Podcasts extends Component {
             <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
             <View>
               <Button transparent 
-              onPress={this.handleDownload}
+              onPress={() => {
+                Alert.alert('Item Downloaded!')
+                const index = this.state.podcasts.indexOf(element)
+                const newPodcasts = this.state.podcasts
+                newPodcasts[index].downloaded = true
+                this.setState({
+                  books: newPodcasts
+                });
+              }}
                   >
                 <Icon
                   name='download' 
@@ -96,7 +129,38 @@ class Podcasts extends Component {
               </Body>
           </CardItem>
         </Card>
-        )
+        )} else if ((element.genre.includes(filter) || filter === "key0") && 
+        element.downloaded == true) {
+          return (
+            <Card key={element.title}>
+            <CardItem bordered>
+              <View>
+                <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
+                <Text style={{fontSize: 11}}>by {element.artist}</Text>
+              </View>
+              <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+              <View>
+              <Body>
+              <Button transparent bordered dark small
+              onPress={() =>
+                this.props.navigation.navigate('Downloads')}
+                    >
+                  <Text style={{fontSize: 8}}>View in Downloads</Text>
+                </Button>
+              </Body>
+                <Button 
+                transparent 
+                    >
+                  <Icon 
+                    name='play-circle'
+                    type='FontAwesome'
+                    style={{fontSize: 20, color: 'black'}}/>
+                </Button>
+                </View>
+                </Body>
+            </CardItem>
+          </Card>
+          )}
       })
     )
   }
@@ -108,7 +172,7 @@ class Podcasts extends Component {
           <Left>
             <Button transparent
             onPress={() =>
-              this.props.navigation.navigate('TabA')
+              this.props.navigation.goBack(this.props.navigation.state.key)
             }>
               <Icon 
                 name='chevron-circle-left' 
@@ -124,6 +188,14 @@ class Podcasts extends Component {
             inputStyle={{backgroundColor: 'white'}}
             containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
             showLoading
+            onChangeText={(text) =>
+              {const newPodcasts = this.state.search.filter(podcast => {
+                 return podcast.title.toUpperCase().includes(text.toUpperCase()) || 
+                 podcast.artist.toUpperCase().includes(text.toUpperCase())
+               })
+               this.setState({
+                 music: newPodcasts
+               })}}
             cancelButtonTitle="Cancel"
             placeholder='Search' />
         </Header>
@@ -145,12 +217,12 @@ class Podcasts extends Component {
               selectedValue={this.state.selected}
               onValueChange={this.onValueChange.bind(this)}
             >
-              <Picker.Item label="Art" value="key0"/>
-              <Picker.Item label="Business" value="key1"/>
-              <Picker.Item label="Comedy" value="key2" />
-              <Picker.Item label="Education" value="key3" />
-              <Picker.Item label={"Games & Hobbies"} value="key4" />
-              <Picker.Item label={"Government & Organizations"} value="key5" />
+              <Picker.Item label="View All" value="key0"/>
+              <Picker.Item label="Art" value="key1"/>
+              <Picker.Item label="Business" value="key2"/>
+              <Picker.Item label="Comedy" value="key3" />
+              <Picker.Item label="Education" value="key4" />
+              <Picker.Item label={"Games & Hobbies"} value="key5" />
               <Picker.Item label="Health" value="key6" />
               <Picker.Item label={"Kids & Family"} value="key7" />
               <Picker.Item label={"News & Politics"} value="key8" />
@@ -162,7 +234,7 @@ class Podcasts extends Component {
               <Picker.Item label="Other" value="key14" />
             </Picker>
         <Content padder>
-          {this.renderPodcastCards()}
+          {this.renderPodcastCards(this.state.selected)}
         </Content>
       </Container>
       )

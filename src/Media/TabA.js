@@ -40,21 +40,8 @@ class TabA extends Component {
   render () {
     return (
       <Container style={styles.header}>
-      <Header>
-        <Right>
-          <Body>
-            <Title>Explore
-            </Title>
-          </Body>
-          </Right>
-          <SearchBar
-            inputStyle={{backgroundColor: 'white'}}
-            containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
-            showLoading
-            cancelButtonTitle="Cancel"
-            placeholder='Search' />
-        </Header>
         <View style={styles.container}>
+        <Text style={styles.text}>Explore</Text>
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='book' type='FontAwesome' />
