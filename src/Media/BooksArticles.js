@@ -27,8 +27,30 @@ class BooksArticles extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: "key0"
-    };
+      selected: "key0",
+      books: [
+        {
+          title: "The Astonishing Color of After",
+          author: "Emily X.R. Pan"
+        },
+        {
+          title: "Beartown",
+          author: "Fredrik Backman"
+        },
+        {
+          title: "A Gentleman in Moscow",
+          author: "Amor Towles"
+        },
+        {
+          title: "The Heart's Invisible Furies",
+          author: "John Boyne"
+        },
+        {
+          title: "Little Fires Everywhere",
+          author: "Celeste Ng"
+        }
+      ]
+    }
   }
   
   handleDownload() {
@@ -39,6 +61,44 @@ class BooksArticles extends Component {
     this.setState({
       selected: value
     });
+  }
+
+  renderBookCards() {
+    let keyId = 1;
+    return (
+      this.state.books.map((element) => {
+        return (
+          <Card key={keyId++}>
+          <CardItem bordered>
+            <View>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
+              <Text style={{fontSize: 11}}>by {element.author}</Text>
+            </View>
+            <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+            <View>
+              <Button transparent 
+              onPress={this.handleDownload}
+                  >
+                <Icon
+                  name='download' 
+                  type='Feather' 
+                  style={{fontSize: 20, color: 'black'}}/>
+              </Button>
+              <Button 
+              transparent 
+                  >
+                <Icon 
+                  name='open-in-new' 
+                  type='MaterialCommunityIcons' 
+                  style={{fontSize: 20, color: 'black'}}/>
+              </Button>
+              </View>
+              </Body>
+          </CardItem>
+        </Card>
+        )
+      })
+    )
   }
 
   render () {
@@ -101,147 +161,8 @@ class BooksArticles extends Component {
               <Picker.Item label="Young Adult" value="key13" />
               <Picker.Item label="Other" value="key14" />
             </Picker>
-            <Content padder>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>The Astonishing Color of After</Text>
-              <Text style={{fontSize: 11}}>by Emily X.R. Pan</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 80}}
-              onPress={this.handleDownload}
-                  >
-                <Icon 
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 80}}
-                  >
-                <Icon 
-                  name='open-in-new' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Beartown</Text>
-              <Text style={{fontSize: 11}}>by Fredrik Backman</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 184}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 184}}
-                  >
-                <Icon 
-                  name='open-in-new' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>A Gentleman in Moscow</Text>
-              <Text style={{fontSize: 11}}>by Amor Towles</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 122}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 122}}
-                  >
-                <Icon 
-                  name='open-in-new' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>The Heart's Invisible Furies</Text>
-              <Text style={{fontSize: 11}}>by John Boyne</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 99}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 99}}
-                  >
-                <Icon 
-                  name='open-in-new' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Little Fires Everywhere</Text>
-              <Text style={{fontSize: 11}}>by Celeste Ng</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 127}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 127}}
-                  >
-                <Icon 
-                  name='open-in-new' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
+          <Content padder>
+            {this.renderBookCards()}
         </Content>
       </Container>
       )

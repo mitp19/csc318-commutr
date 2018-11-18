@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import {
-  Card, CardItem, Icon, Button, Header, Left, Body, Title, Right, Container
+  Card, CardItem, Icon, Button, Header, Body, Title, Right, Container
 } from 'native-base';
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
@@ -16,12 +16,26 @@ import { SearchBar } from 'react-native-elements'
 
 class TabA extends Component {
   
-  // const mediaIcon = parseIcon('')
   static navigationOptions = ({ navigation }) => ({
     title: 'Media',
     tabBarIcon: ({ tintColor }) => 
     <View><FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.play}</FontAwesome></View>
-  })
+  });
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      counter: 0
+    }
+    this.handlePress = this.handlePress.bind(this)
+  };
+
+  handlePress(category) {
+    this.setState({
+      counter: this.state.counter + 1
+    })
+    this.props.navigation.navigate(category)
+  };
 
   render () {
     return (
@@ -48,7 +62,7 @@ class TabA extends Component {
               <Button transparent 
               style={{marginLeft: 75}} 
               onPress={() =>
-                    this.props.navigation.navigate('BooksArticles')
+                    this.handlePress('BooksArticles')
                   }>
                 <Icon 
                   name='chevron-circle-right' 
@@ -64,7 +78,7 @@ class TabA extends Component {
               <Button transparent 
               style={{marginLeft: 136}}
               onPress={() =>
-                this.props.navigation.navigate('Music')
+                this.handlePress('Music')
               }
               >
                 <Icon 
@@ -81,7 +95,7 @@ class TabA extends Component {
               <Button transparent 
               style={{marginLeft: 112.25}}
               onPress={() =>
-                this.props.navigation.navigate('Podcasts')
+                this.handlePress('Podcasts')
               }>
                 <Icon 
                   name='chevron-circle-right' 
@@ -97,7 +111,7 @@ class TabA extends Component {
               <Button transparent 
               style={{marginLeft: 7.5}}
               onPress={() =>
-                this.props.navigation.navigate('Downloads')
+                this.handlePress('Downloads')
               }>
                 <Icon 
                   name='chevron-circle-right' 

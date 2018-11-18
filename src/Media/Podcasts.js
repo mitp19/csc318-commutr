@@ -27,7 +27,29 @@ class Podcasts extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: "key0"
+      selected: "key0",
+      podcasts: [
+        {
+          title: "The Argument",
+          artist: "The New York Times Opinion"
+        },
+        {
+          title: "Dreamboy",
+          artist: "Night Vale Presents"
+        },
+        {
+          title: "Forever Ago",
+          artist: "American Public Media"
+        },
+        {
+          title: "Home Cooked",
+          artist: "Home Cooked"
+        },
+        {
+          title: "Other People's Problems",
+          artist: "CBC Podcasts"
+        }
+      ]
     };
   }
 
@@ -39,6 +61,44 @@ class Podcasts extends Component {
     this.setState({
       selected: value
     });
+  }
+
+  renderPodcastCards() {
+    let keyId = 1;
+    return (
+      this.state.podcasts.map((element) => {
+        return (
+          <Card key={keyId++}>
+          <CardItem bordered>
+            <View>
+              <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
+              <Text style={{fontSize: 11}}>by {element.artist}</Text>
+            </View>
+            <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+            <View>
+              <Button transparent 
+              onPress={this.handleDownload}
+                  >
+                <Icon
+                  name='download' 
+                  type='Feather' 
+                  style={{fontSize: 20, color: 'black'}}/>
+              </Button>
+              <Button 
+              transparent 
+                  >
+                <Icon 
+                  name='play-circle'
+                  type='FontAwesome'
+                  style={{fontSize: 20, color: 'black'}}/>
+              </Button>
+              </View>
+              </Body>
+          </CardItem>
+        </Card>
+        )
+      })
+    )
   }
 
   render () {
@@ -101,147 +161,8 @@ class Podcasts extends Component {
               <Picker.Item label="Technology" value="key13" />
               <Picker.Item label="Other" value="key14" />
             </Picker>
-            <Content padder>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>The Argument</Text>
-              <Text style={{fontSize: 11}}>by The New York Times Opinion</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 105}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon 
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 105}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Dreamboy</Text>
-              <Text style={{fontSize: 11}}>by Night Vale Presents</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 155}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 155}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Forever Ago</Text>
-              <Text style={{fontSize: 11}}>by American Public Media</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 139}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 139}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Home Cooked</Text>
-              <Text style={{fontSize: 11}}>by Home Cooked</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 178}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 178}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
-        <Card>
-          <CardItem bordered style={{width: 280}}>
-            <View>
-              <Text style={{fontSize: 14, fontWeight: 'bold'}}>Other People's Problems</Text>
-              <Text style={{fontSize: 11}}>by CBC Podcasts</Text>
-            </View>
-            <View>
-              <Button transparent 
-              style={{marginLeft: 105}} 
-              onPress={this.handleDownload}
-                  >
-                <Icon
-                  name='download' 
-                  type='Feather' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              <Button 
-              transparent 
-              style={{marginLeft: 105}}
-                  >
-                <Icon 
-                  name='play-circle' 
-                  type='MaterialCommunityIcons' 
-                  style={{fontSize: 20, color: 'black'}}/>
-              </Button>
-              </View>
-          </CardItem>
-        </Card>
+        <Content padder>
+          {this.renderPodcastCards()}
         </Content>
       </Container>
       )

@@ -8,51 +8,14 @@ import {
 
 import {
   Container, Header, Icon, Picker, Left, Right, Button, 
-  Body, Title, Card, CardItem,Content, Grid, Col
+  Body, Title, Card, CardItem, Content
 } from 'native-base';
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import { SearchBar } from 'react-native-elements'
 
-const downloads = [
-  {
-    type: "Podcasts",
-    title: "Dreamboy",
-    artist: "Night Vale Presents",
-    margin: 170
-  },
-  {
-    type: "Podcasts",
-    title: "Forever Ago",
-    artist: "American Public Media",
-    margin: 160
-  },
-  {
-    type: "Books/Articles",
-    title: "A Gentleman in Moscow",
-    artist: "Amor Towles",
-    margin: 150
-  },
-  {
-    type: "Books/Articles",
-    title: "Little Fires Everywhere",
-    artist: "Celeste Ng",
-    margin: 150
-  },
-  {
-    type: "Music",
-    title: "Party For One",
-    artist: "Carly Rae Jepsen",
-    margin: 175
-  },
-  {
-    type: "Music",
-    title: "Rose-Colored Boy",
-    artist: "Paramore",
-    margin: 158
-  }
-]
+import AwesomeAlert from 'react-native-awesome-alerts'
 
 class Downloads extends Component {
   
@@ -64,25 +27,59 @@ class Downloads extends Component {
   })
 
   constructor(props) {
-    super(props);
+    super(props)
     this.state = {
-      selected: "key0"
-    };
+      delete: '',
+      showAlert: false,
+      selected: "key0",
+      downloads: [
+        {
+          type: "Podcasts",
+          title: "Dreamboy",
+          artist: "Night Vale Presents"
+        },
+        {
+          type: "Podcasts",
+          title: "Forever Ago",
+          artist: "American Public Media"
+        },
+        {
+          type: "Books/Articles",
+          title: "A Gentleman in Moscow",
+          artist: "Amor Towles"
+        },
+        {
+          type: "Books/Articles",
+          title: "Little Fires Everywhere",
+          artist: "Celeste Ng"
+        },
+        {
+          type: "Music",
+          title: "Party For One",
+          artist: "Carly Rae Jepsen"
+        },
+        {
+          type: "Music",
+          title: "Rose-Colored Boy",
+          artist: "Paramore"
+        }
+      ]
+    }
   }
+
   onValueChange(value: string) {
     this.setState({
       selected: value
-    });
+    })
   }
 
   renderCards(filter) {
-    let keyId = 1;
     return (
-      downloads.map((element) => {
+      this.state.downloads.map((element) => {
         if ((filter === "key0" || filter === "key2") && 
         (element.type === "Music")) {
         return (
-          <Card key={keyId++}>
+          <Card key={element.title}>
           <CardItem bordered>
             <View>
               <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
@@ -91,7 +88,8 @@ class Downloads extends Component {
             <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
             <Right>
               <Button transparent 
-              onPress={this.handleDelete}
+              onPress={() => {
+                this.setState({delete: element.title, showAlert: true})}}
                   >
                 <Icon 
                   name='ios-trash' 
@@ -114,7 +112,7 @@ class Downloads extends Component {
       } else if ((filter === "key0" || filter === "key1") && 
       (element.type === "Books/Articles")) {
         return (
-          <Card key={keyId++}>
+          <Card key={element.title}>
           <CardItem bordered>
             <View>
               <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
@@ -124,13 +122,15 @@ class Downloads extends Component {
             <View>
               <Right>
               <Button transparent 
-              onPress={this.handleDelete}
+              onPress={() => {
+                this.setState({delete: element.title, showAlert: true})}}
                   >
                 <Icon 
                   name='ios-trash' 
                   type='Ionicons' 
                   style={{fontSize: 26, color: 'black'}}/>
               </Button>
+              {this.state.alert}
               </Right>
               <Right>
               <Button 
@@ -150,7 +150,7 @@ class Downloads extends Component {
       } else if ((filter === "key0" || filter === "key3") && 
       (element.type === "Podcasts")) {
       return (
-        <Card key={keyId++}>
+        <Card key={element.title}>
         <CardItem bordered>
           <View>
             <Text style={{fontSize: 14, fontWeight: 'bold'}}>{element.title}</Text>
@@ -160,13 +160,15 @@ class Downloads extends Component {
             <View>
             <Right>
             <Button transparent 
-            onPress={this.handleDownload}
+            onPress={() => {
+              this.setState({delete: element.title, showAlert: true})}}
                 >
               <Icon 
                 name='ios-trash' 
                 type='Ionicons' 
                 style={{fontSize: 26, color: 'black'}}/>
             </Button>
+            {this.state.alert}
             <Button 
             transparent 
                 >
@@ -239,6 +241,29 @@ class Downloads extends Component {
         <Content padder>
           {this.renderCards(this.state.selected)}
         </Content>
+        <AwesomeAlert
+                show={this.state.showAlert}
+                showProgress={false}
+                title="AwesomeAlert"
+                message="I have a message for you!"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                cancelText="No, cancel"
+                confirmText="Yes, delete it"
+                confirmButtonColor="#DD6B55"
+                onCancelPressed={() => this.setState({showAlert: false})}
+                onConfirmPressed={() => {
+                  const newDownloads = this.state.downloads.filter(download => {
+                    return download.title !== this.state.delete
+                  })
+                  this.setState({
+                    showAlert: false,
+                    downloads: newDownloads
+                  })
+                }}
+                />
       </Container>
       )
   }

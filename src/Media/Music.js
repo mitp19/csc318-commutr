@@ -15,29 +15,6 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import { SearchBar } from 'react-native-elements';
 
-const music = [
-  {
-    title: "Party For One",
-    artist: "Carly Rae Jepsen"
-  },
-  {
-    title: "Rose-Colored Boy",
-    artist: "Paramore"
-  },
-  {
-    title: "So Sad, So Sad",
-    artist: "Varsity"
-  },
-  {
-    title: "thank u, next",
-    artist: "Ariana Grande"
-  },
-  {
-    title: "We Belong Together",
-    artist: "Mariah Carey"
-  }
-]
-
 class Music extends Component {
   
   // const mediaIcon = parseIcon('')
@@ -50,7 +27,29 @@ class Music extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      selected: "key0"
+      selected: "key0",
+      music: [
+        {
+          title: "Party For One",
+          artist: "Carly Rae Jepsen"
+        },
+        {
+          title: "Rose-Colored Boy",
+          artist: "Paramore"
+        },
+        {
+          title: "So Sad, So Sad",
+          artist: "Varsity"
+        },
+        {
+          title: "thank u, next",
+          artist: "Ariana Grande"
+        },
+        {
+          title: "We Belong Together",
+          artist: "Mariah Carey"
+        }
+      ]
     };
   }
 
@@ -60,14 +59,14 @@ class Music extends Component {
 
   onValueChange(value: string) {
     this.setState({
-      selected: value
+      selected: value,
     });
   }
 
   renderMusicCards() {
     let keyId = 1;
     return (
-      music.map((element) => {
+      this.state.music.map((element) => {
         return (
           <Card key={keyId++}>
           <CardItem bordered>
