@@ -17,6 +17,76 @@ import { SearchBar } from 'react-native-elements'
 
 import AwesomeAlert from 'react-native-awesome-alerts'
 
+let state = {
+  delete: '',
+  showAlert: false,
+  selected: "key0",
+  downloads: [
+    {
+      type: "Podcasts",
+      title: "Dreamboy",
+      artist: "Night Vale Presents"
+    },
+    {
+      type: "Podcasts",
+      title: "Forever Ago",
+      artist: "American Public Media"
+    },
+    {
+      type: "Books/Articles",
+      title: "A Gentleman in Moscow",
+      artist: "Amor Towles"
+    },
+    {
+      type: "Books/Articles",
+      title: "Little Fires Everywhere",
+      artist: "Celeste Ng"
+    },
+    {
+      type: "Music",
+      title: "Party For One",
+      artist: "Carly Rae Jepsen"
+    },
+    {
+      type: "Music",
+      title: "Rose-Colored Boy",
+      artist: "Paramore"
+    }
+  ],
+  search: [
+    {
+      type: "Podcasts",
+      title: "Dreamboy",
+      artist: "Night Vale Presents"
+    },
+    {
+      type: "Podcasts",
+      title: "Forever Ago",
+      artist: "American Public Media"
+    },
+    {
+      type: "Books/Articles",
+      title: "A Gentleman in Moscow",
+      artist: "Amor Towles"
+    },
+    {
+      type: "Books/Articles",
+      title: "Little Fires Everywhere",
+      artist: "Celeste Ng"
+    },
+    {
+      type: "Music",
+      title: "Party For One",
+      artist: "Carly Rae Jepsen"
+    },
+    {
+      type: "Music",
+      title: "Rose-Colored Boy",
+      artist: "Paramore"
+    }
+  ]
+}
+
 class Downloads extends Component {
   
   // const mediaIcon = parseIcon('')
@@ -28,75 +98,13 @@ class Downloads extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      delete: '',
-      showAlert: false,
-      selected: "key0",
-      downloads: [
-        {
-          type: "Podcasts",
-          title: "Dreamboy",
-          artist: "Night Vale Presents"
-        },
-        {
-          type: "Podcasts",
-          title: "Forever Ago",
-          artist: "American Public Media"
-        },
-        {
-          type: "Books/Articles",
-          title: "A Gentleman in Moscow",
-          artist: "Amor Towles"
-        },
-        {
-          type: "Books/Articles",
-          title: "Little Fires Everywhere",
-          artist: "Celeste Ng"
-        },
-        {
-          type: "Music",
-          title: "Party For One",
-          artist: "Carly Rae Jepsen"
-        },
-        {
-          type: "Music",
-          title: "Rose-Colored Boy",
-          artist: "Paramore"
-        }
-      ],
-      search: [
-        {
-          type: "Podcasts",
-          title: "Dreamboy",
-          artist: "Night Vale Presents"
-        },
-        {
-          type: "Podcasts",
-          title: "Forever Ago",
-          artist: "American Public Media"
-        },
-        {
-          type: "Books/Articles",
-          title: "A Gentleman in Moscow",
-          artist: "Amor Towles"
-        },
-        {
-          type: "Books/Articles",
-          title: "Little Fires Everywhere",
-          artist: "Celeste Ng"
-        },
-        {
-          type: "Music",
-          title: "Party For One",
-          artist: "Carly Rae Jepsen"
-        },
-        {
-          type: "Music",
-          title: "Rose-Colored Boy",
-          artist: "Paramore"
-        }
-      ]
-    }
+    //Retrieve last state
+    this.state = state;
+  }
+
+  componentWillUnmount() {
+    // Remember state for the next mount
+    state = this.state;
   }
 
   onValueChange(value: string) {
@@ -108,7 +116,6 @@ class Downloads extends Component {
   componentDidMount() {
     const newDownload = {}
     if (!(this.props.navigation.state.params === undefined)) {
-      console.log("boo")
       newDownload.type = this.props.navigation.state.params.newDownload.type;
       newDownload.title = this.props.navigation.state.params.newDownload.title;
       newDownload.artist = this.props.navigation.state.params.newDownload.artist;

@@ -37,7 +37,7 @@ class PlaceHolderBook extends Component {
             </Button>
           </Left>
           <Body>
-          <Title>Book Title</Title>
+          <Title>{this.props.navigation.state.params.title}</Title>
           </Body>
           <Right />
         </Header>

@@ -15,6 +15,84 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import { SearchBar } from 'react-native-elements'
 
+let state = state = {
+  selected: "key0",
+  books: [
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key7", "key13"],
+      title: "The Astonishing Color of After",
+      artist: "Emily X.R. Pan",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2"],
+      title: "Beartown",
+      artist: "Fredrik Backman",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key5"],
+      title: "A Gentleman in Moscow",
+      artist: "Amor Towles",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key5"],
+      title: "The Heart's Invisible Furies",
+      artist: "John Boyne",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2"],
+      title: "Little Fires Everywhere",
+      artist: "Celeste Ng",
+      downloaded: false
+    }
+  ],
+  search: [
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key7", "key13"],
+      title: "The Astonishing Color of After",
+      artist: "Emily X.R. Pan",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2"],
+      title: "Beartown",
+      artist: "Fredrik Backman",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key5"],
+      title: "A Gentleman in Moscow",
+      artist: "Amor Towles",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key5"],
+      title: "The Heart's Invisible Furies",
+      artist: "John Boyne",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2"],
+      title: "Little Fires Everywhere",
+      artist: "Celeste Ng",
+      downloaded: false
+    }
+  ]
+}
+
 class BooksArticles extends Component {
   
   // const mediaIcon = parseIcon('')
@@ -26,83 +104,12 @@ class BooksArticles extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      selected: "key0",
-      books: [
-        {
-          type: "Books/Articles",
-          genre: ["key2", "key7", "key13"],
-          title: "The Astonishing Color of After",
-          artist: "Emily X.R. Pan",
-          downloaded: false
-        },
-        {
-          type: "Books/Articles",
-          genre: ["key2"],
-          title: "Beartown",
-          artist: "Fredrik Backman",
-          downloaded: false
-        },
-        {
-          type: "Books/Articles",
-          genre: ["key5"],
-          title: "A Gentleman in Moscow",
-          artist: "Amor Towles",
-          downloaded: false
-        },
-        {
-          type: "Books/Articles",
-          genre: ["key5"],
-          title: "The Heart's Invisible Furies",
-          artist: "John Boyne",
-          downloaded: false
-        },
-        {
-          type: "Books/Articles",
-          genre: ["key2"],
-          title: "Little Fires Everywhere",
-          artist: "Celeste Ng",
-          downloaded: false
-        }
-      ],
-      search: [
-        {
-          type: "Books/Articles",
-          genre: ["key2", "key7", "key13"],
-          title: "The Astonishing Color of After",
-          artist: "Emily X.R. Pan",
-          downloaded: false
-        },
-        {
-          type: "Books/Articles",
-          genre: ["key2"],
-          title: "Beartown",
-          artist: "Fredrik Backman",
-          downloaded: false
-        },
-        {
-          type: "Books/Articles",
-          genre: ["key5"],
-          title: "A Gentleman in Moscow",
-          artist: "Amor Towles",
-          downloaded: false
-        },
-        {
-          type: "Books/Articles",
-          genre: ["key5"],
-          title: "The Heart's Invisible Furies",
-          artist: "John Boyne",
-          downloaded: false
-        },
-        {
-          type: "Books/Articles",
-          genre: ["key2"],
-          title: "Little Fires Everywhere",
-          artist: "Celeste Ng",
-          downloaded: false
-        }
-      ]
-    }
+    this.state = state;
+  }
+
+  componentWillUnmount() {
+    // Remember state for the next mount
+    state = this.state;
   }
 
   onValueChange(value: string) {
@@ -144,7 +151,7 @@ class BooksArticles extends Component {
               <Button 
               transparent 
               onPress={() =>
-                this.props.navigation.navigate('PlaceHolderBook')
+                this.props.navigation.navigate('PlaceHolderBook', {title: element.title})
               }
                   >
                 <Icon 
@@ -170,7 +177,7 @@ class BooksArticles extends Component {
               <Body>
               <Button transparent bordered dark small
               onPress={() =>
-                this.props.navigation.navigate('Downloads')}
+                this.props.navigation.navigate('Downloads', {newDownload: element})}
                     >
                   <Text style={{fontSize: 8}}>View in Downloads</Text>
                 </Button>
@@ -178,7 +185,7 @@ class BooksArticles extends Component {
                 <Button 
                 transparent 
                 onPress={() =>
-                  this.props.navigation.navigate('PlaceHolderBook')
+                  this.props.navigation.navigate('PlaceHolderBook', {title: element.title})
                 }
                     >
                   <Icon 

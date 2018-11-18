@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import {
-  Card, CardItem, Icon, Button, Header, Body, Title, Right, Container
+  Card, CardItem, Icon, Button, Container
 } from 'native-base';
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
@@ -22,21 +22,6 @@ class TabA extends Component {
     <View><FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.play}</FontAwesome></View>
   });
 
-  constructor(props) {
-    super(props)
-    this.state = {
-      counter: 0
-    }
-    this.handlePress = this.handlePress.bind(this)
-  };
-
-  handlePress(category) {
-    this.setState({
-      counter: this.state.counter + 1
-    })
-    this.props.navigation.navigate(category)
-  };
-
   render () {
     return (
       <Container style={styles.header}>
@@ -49,7 +34,7 @@ class TabA extends Component {
               <Button transparent 
               style={{marginLeft: 75}} 
               onPress={() =>
-                    this.handlePress('BooksArticles')
+                this.props.navigation.navigate('BooksArticles')
                   }>
                 <Icon 
                   name='chevron-circle-right' 
@@ -65,7 +50,7 @@ class TabA extends Component {
               <Button transparent 
               style={{marginLeft: 136}}
               onPress={() =>
-                this.handlePress('Music')
+                this.props.navigation.navigate('Music')
               }
               >
                 <Icon 
@@ -98,7 +83,7 @@ class TabA extends Component {
               <Button transparent 
               style={{marginLeft: 7.5}}
               onPress={() =>
-                this.handlePress('Downloads')
+                this.props.navigation.navigate('Downloads')
               }>
                 <Icon 
                   name='chevron-circle-right' 

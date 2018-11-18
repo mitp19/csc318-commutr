@@ -15,6 +15,125 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import { SearchBar } from 'react-native-elements'
 
+let state = {
+  selected: "key0",
+  podcasts: [
+    {
+      type: "Podcasts",
+      genre: ["key8"],
+      title: "The Argument",
+      artist: "The New York Times Opinion",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key1"],
+      title: "Dreamboy",
+      artist: "Night Vale Presents",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key4"],
+      title: "Eyes Before Flippers",
+      artist: "Dan Riskin",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key7"],
+      title: "Forever Ago",
+      artist: "American Public Media",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key1", "key6"],
+      title: "Home Cooked",
+      artist: "Home Cooked",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key11"],
+      title: "Other People's Problems",
+      artist: "CBC Podcasts",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key3"],
+      title: "Pete's Paranormal Chronicles",
+      artist: "PPC",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key3"],
+      title: "Wonderful!",
+      artist: "Rachel and Griffin McElroy",
+      downloaded: false
+    }
+  ],
+  search: [
+    {
+      type: "Podcasts",
+      genre: ["key8"],
+      title: "The Argument",
+      artist: "The New York Times Opinion",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key1"],
+      title: "Dreamboy",
+      artist: "Night Vale Presents",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key4"],
+      title: "Eyes Before Flippers",
+      artist: "Dan Riskin",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key7"],
+      title: "Forever Ago",
+      artist: "American Public Media",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key1", "key6"],
+      title: "Home Cooked",
+      artist: "Home Cooked",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key11"],
+      title: "Other People's Problems",
+      artist: "CBC Podcasts",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key3"],
+      title: "Pete's Paranormal Chronicles",
+      artist: "PPC",
+      downloaded: false
+    },
+    {
+      type: "Podcasts",
+      genre: ["key3"],
+      title: "Wonderful!",
+      artist: "Rachel and Griffin McElroy",
+      downloaded: false
+    }
+  ]}
+
 class Podcasts extends Component {
   
   // const mediaIcon = parseIcon('')
@@ -26,125 +145,13 @@ class Podcasts extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      selected: "key0",
-      podcasts: [
-        {
-          type: "Podcasts",
-          genre: ["key8"],
-          title: "The Argument",
-          artist: "The New York Times Opinion",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key1"],
-          title: "Dreamboy",
-          artist: "Night Vale Presents",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key4"],
-          title: "Eyes Before Flippers",
-          artist: "Dan Riskin",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key7"],
-          title: "Forever Ago",
-          artist: "American Public Media",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key1", "key6"],
-          title: "Home Cooked",
-          artist: "Home Cooked",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key11"],
-          title: "Other People's Problems",
-          artist: "CBC Podcasts",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key3"],
-          title: "Pete's Paranormal Chronicles",
-          artist: "PPC",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key3"],
-          title: "Wonderful!",
-          artist: "Rachel and Griffin McElroy",
-          downloaded: false
-        }
-      ],
-      search: [
-        {
-          type: "Podcasts",
-          genre: ["key8"],
-          title: "The Argument",
-          artist: "The New York Times Opinion",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key1"],
-          title: "Dreamboy",
-          artist: "Night Vale Presents",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key4"],
-          title: "Eyes Before Flippers",
-          artist: "Dan Riskin",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key7"],
-          title: "Forever Ago",
-          artist: "American Public Media",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key1", "key6"],
-          title: "Home Cooked",
-          artist: "Home Cooked",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key11"],
-          title: "Other People's Problems",
-          artist: "CBC Podcasts",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key3"],
-          title: "Pete's Paranormal Chronicles",
-          artist: "PPC",
-          downloaded: false
-        },
-        {
-          type: "Podcasts",
-          genre: ["key3"],
-          title: "Wonderful!",
-          artist: "Rachel and Griffin McElroy",
-          downloaded: false
-        }
-      ]
-    };
+    //Retrieve last state
+    this.state = state;
+  }
+
+  componentWillUnmount() {
+    // Remember state for the next mount
+    state = this.state;
   }
 
   onValueChange(value: string) {
@@ -209,7 +216,7 @@ class Podcasts extends Component {
               <Body>
               <Button transparent bordered dark small
               onPress={() =>
-                this.props.navigation.navigate('Downloads')}
+                this.props.navigation.navigate('Downloads', {newDownload: element})}
                     >
                   <Text style={{fontSize: 8}}>View in Downloads</Text>
                 </Button>

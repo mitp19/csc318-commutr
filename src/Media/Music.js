@@ -15,6 +15,90 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 
 import { SearchBar } from 'react-native-elements';
 
+state = {
+  selected: "key0",
+  music: [
+    {
+      type: "Music",
+      genre: ["key9", "key12"],
+      title: "Hard Times",
+      artist: "Paramore",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key9"],
+      title: "Party For One",
+      artist: "Carly Rae Jepsen",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key9", "key12"],
+      title: "Rose-Colored Boy",
+      artist: "Paramore",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key1", "key12"],
+      title: "So Sad, So Sad",
+      artist: "Varsity",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key9"],
+      title: "thank u, next",
+      artist: "Ariana Grande",
+      downloaded: false
+    },
+    {
+      genre: ["key11"],
+      title: "We Belong Together",
+      artist: "Mariah Carey",
+      downloaded: false
+    }
+  ],
+  search: [
+    {
+      type: "Music",
+      genre: ["key9"],
+      title: "Party For One",
+      artist: "Carly Rae Jepsen",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key9", "key12"],
+      title: "Rose-Colored Boy",
+      artist: "Paramore",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key1", "key12"],
+      title: "So Sad, So Sad",
+      artist: "Varsity",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key9"],
+      title: "thank u, next",
+      artist: "Ariana Grande",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key11"],
+      title: "We Belong Together",
+      artist: "Mariah Carey",
+      downloaded: false
+    }
+  ]
+}
+
 class Music extends Component {
   
   // const mediaIcon = parseIcon('')
@@ -26,89 +110,13 @@ class Music extends Component {
 
   constructor(props) {
     super(props);
-    this.state = {
-      selected: "key0",
-      music: [
-        {
-          type: "Music",
-          genre: ["key9", "key12"],
-          title: "Hard Times",
-          artist: "Paramore",
-          downloaded: false
-        },
-        {
-          type: "Music",
-          genre: ["key9"],
-          title: "Party For One",
-          artist: "Carly Rae Jepsen",
-          downloaded: false
-        },
-        {
-          type: "Music",
-          genre: ["key9", "key12"],
-          title: "Rose-Colored Boy",
-          artist: "Paramore",
-          downloaded: false
-        },
-        {
-          type: "Music",
-          genre: ["key1", "key12"],
-          title: "So Sad, So Sad",
-          artist: "Varsity",
-          downloaded: false
-        },
-        {
-          type: "Music",
-          genre: ["key9"],
-          title: "thank u, next",
-          artist: "Ariana Grande",
-          downloaded: false
-        },
-        {
-          genre: ["key11"],
-          title: "We Belong Together",
-          artist: "Mariah Carey",
-          downloaded: false
-        }
-      ],
-      search: [
-        {
-          type: "Music",
-          genre: ["key9"],
-          title: "Party For One",
-          artist: "Carly Rae Jepsen",
-          downloaded: false
-        },
-        {
-          type: "Music",
-          genre: ["key9", "key12"],
-          title: "Rose-Colored Boy",
-          artist: "Paramore",
-          downloaded: false
-        },
-        {
-          type: "Music",
-          genre: ["key1", "key12"],
-          title: "So Sad, So Sad",
-          artist: "Varsity",
-          downloaded: false
-        },
-        {
-          type: "Music",
-          genre: ["key9"],
-          title: "thank u, next",
-          artist: "Ariana Grande",
-          downloaded: false
-        },
-        {
-          type: "Music",
-          genre: ["key11"],
-          title: "We Belong Together",
-          artist: "Mariah Carey",
-          downloaded: false
-        }
-      ]
-    };
+    // Retrieve the last state
+    this.state = state;
+  }
+
+  componentWillUnmount() {
+    // Remember state for the next mount
+    state = this.state;
   }
 
   onValueChange(value: string) {
