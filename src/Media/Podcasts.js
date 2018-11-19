@@ -30,7 +30,7 @@ let state = {
       genre: ["key1"],
       title: "Dreamboy",
       artist: "Night Vale Presents",
-      downloaded: false
+      downloaded: true
     },
     {
       type: "Podcasts",
@@ -44,7 +44,7 @@ let state = {
       genre: ["key7"],
       title: "Forever Ago",
       artist: "American Public Media",
-      downloaded: false
+      downloaded: true
     },
     {
       type: "Podcasts",
@@ -88,7 +88,7 @@ let state = {
       genre: ["key1"],
       title: "Dreamboy",
       artist: "Night Vale Presents",
-      downloaded: false
+      downloaded: true
     },
     {
       type: "Podcasts",
@@ -102,7 +102,7 @@ let state = {
       genre: ["key7"],
       title: "Forever Ago",
       artist: "American Public Media",
-      downloaded: false
+      downloaded: true
     },
     {
       type: "Podcasts",
@@ -192,6 +192,10 @@ class Podcasts extends Component {
               </Button>
               <Button 
               transparent 
+              onPress={() =>
+                this.props.navigation.navigate('PlaceHolderMusicPodcast', 
+                {title: element.title, artist: element.artist})
+              }
                   >
                 <Icon 
                   name='play-circle'
@@ -223,6 +227,10 @@ class Podcasts extends Component {
               </Body>
                 <Button 
                 transparent 
+                onPress={() =>
+                  this.props.navigation.navigate('PlaceHolderMusicPodcast', 
+                  {title: element.title, artist: element.artist})
+                }
                     >
                   <Icon 
                     name='play-circle'

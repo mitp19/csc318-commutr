@@ -3,7 +3,9 @@ import {
   View,
   Text,
   StyleSheet,
+  ScrollView
 } from 'react-native'
+
 import FontAwesome, { Icons } from "react-native-fontawesome";
 
 class TabE extends Component {

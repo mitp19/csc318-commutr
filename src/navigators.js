@@ -22,6 +22,7 @@ import Music from './Media/Music'
 import Podcasts from './Media/Podcasts'
 import Downloads from './Media/Downloads'
 import PlaceHolderBook from './Media/PlaceHolderBook'
+import PlaceHolderMusicPodcast from './Media/PlaceHolderMusicPodcast'
 
 export const Home = createStackNavigator({
   TabC: { screen: TabC }
@@ -49,7 +50,8 @@ export const Media = createStackNavigator({
   Music: { screen: Music },
   Podcasts: { screen: Podcasts },
   Downloads: { screen: Downloads },
-  PlaceHolderBook: { screen: PlaceHolderBook }
+  PlaceHolderBook: { screen: PlaceHolderBook },
+  PlaceHolderMusicPodcast: { screen: PlaceHolderMusicPodcast }
 }, 
 {headerMode: 'none'})
 

@@ -18,37 +18,43 @@ import { SearchBar } from 'react-native-elements'
 import AwesomeAlert from 'react-native-awesome-alerts'
 
 let state = {
-  delete: '',
+  delete: {},
   showAlert: false,
   selected: "key0",
   downloads: [
     {
       type: "Podcasts",
+      genre: ["key1"],
       title: "Dreamboy",
       artist: "Night Vale Presents"
     },
     {
       type: "Podcasts",
+      genre: ["key7"],
       title: "Forever Ago",
       artist: "American Public Media"
     },
     {
       type: "Books/Articles",
+      genre: ["key5"],
       title: "A Gentleman in Moscow",
       artist: "Amor Towles"
     },
     {
       type: "Books/Articles",
+      genre: ["key2"],
       title: "Little Fires Everywhere",
       artist: "Celeste Ng"
     },
     {
       type: "Music",
+      genre: ["key9"],
       title: "Party For One",
       artist: "Carly Rae Jepsen"
     },
     {
       type: "Music",
+      genre: ["key9", "key12"],
       title: "Rose-Colored Boy",
       artist: "Paramore"
     }
@@ -56,31 +62,37 @@ let state = {
   search: [
     {
       type: "Podcasts",
+      genre: ["key1"],
       title: "Dreamboy",
       artist: "Night Vale Presents"
     },
     {
       type: "Podcasts",
+      genre: ["key7"],
       title: "Forever Ago",
       artist: "American Public Media"
     },
     {
       type: "Books/Articles",
+      genre: ["key5"],
       title: "A Gentleman in Moscow",
       artist: "Amor Towles"
     },
     {
       type: "Books/Articles",
+      genre: ["key2"],
       title: "Little Fires Everywhere",
       artist: "Celeste Ng"
     },
     {
       type: "Music",
+      genre: ["key9"],
       title: "Party For One",
       artist: "Carly Rae Jepsen"
     },
     {
       type: "Music",
+      genre: ["key9", "key12"],
       title: "Rose-Colored Boy",
       artist: "Paramore"
     }
@@ -100,6 +112,12 @@ class Downloads extends Component {
     super(props)
     //Retrieve last state
     this.state = state;
+  }
+
+  returnDownloads() {
+    return (
+      this.state.downloads
+    )
   }
 
   componentWillUnmount() {
@@ -149,7 +167,7 @@ class Downloads extends Component {
             <Right>
               <Button transparent 
               onPress={() => {
-                this.setState({delete: element.title, showAlert: true})}}
+                this.setState({delete: element, showAlert: true})}}
                   >
                 <Icon 
                   name='ios-trash' 
@@ -158,6 +176,10 @@ class Downloads extends Component {
               </Button>
               <Button 
               transparent 
+              onPress={() =>
+                this.props.navigation.navigate('PlaceHolderMusicPodcast', 
+                {title: element.title, artist: element.artist})
+              }
                   >
                 <Icon 
                   name='play-circle'
@@ -183,7 +205,7 @@ class Downloads extends Component {
               <Right>
               <Button transparent 
               onPress={() => {
-                this.setState({delete: element.title, showAlert: true})}}
+                this.setState({delete: element, showAlert: true})}}
                   >
                 <Icon 
                   name='ios-trash' 
@@ -196,7 +218,7 @@ class Downloads extends Component {
               <Button 
               transparent 
               onPress={() =>
-                this.props.navigation.navigate('PlaceHolderBook')
+                this.props.navigation.navigate('PlaceHolderBook', {title: element.title})
               }
                   >
                 <Icon 
@@ -224,7 +246,7 @@ class Downloads extends Component {
             <Right>
             <Button transparent 
             onPress={() => {
-              this.setState({delete: element.title, showAlert: true})}}
+              this.setState({delete: element, showAlert: true})}}
                 >
               <Icon 
                 name='ios-trash' 
@@ -234,6 +256,10 @@ class Downloads extends Component {
             {this.state.alert}
             <Button 
             transparent 
+            onPress={() =>
+              this.props.navigation.navigate('PlaceHolderMusicPodcast', 
+              {title: element.title, artist: element.artist})
+            }
                 >
               <Icon 
                   name='play-circle'
@@ -327,7 +353,7 @@ class Downloads extends Component {
                 onCancelPressed={() => this.setState({showAlert: false})}
                 onConfirmPressed={() => {
                   const newDownloads = this.state.downloads.filter(download => {
-                    return download.title !== this.state.delete
+                    return download.title !== this.state.delete.title
                   })
                   this.setState({
                     showAlert: false,
@@ -340,7 +366,7 @@ class Downloads extends Component {
   }
 }
 
-export default Downloads;
+export default Downloads
 
 const styles = StyleSheet.create({
   container: {

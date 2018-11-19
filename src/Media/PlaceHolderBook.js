@@ -42,7 +42,7 @@ class PlaceHolderBook extends Component {
           <Right />
         </Header>
           <Content padder>
-            <Text>Hi</Text>
+            <Text>You're currently reading "{this.props.navigation.state.params.title}".</Text>
         </Content>
       </Container>
       )

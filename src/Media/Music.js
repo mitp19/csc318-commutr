@@ -20,6 +20,20 @@ state = {
   music: [
     {
       type: "Music",
+      genre: ["key1", "key7"],
+      title: "Call It Off",
+      artist: "Tegan and Sara",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key9", "key12"],
+      title: "Fake Happy",
+      artist: "Paramore",
+      downloaded: false
+    },
+    {
+      type: "Music",
       genre: ["key9", "key12"],
       title: "Hard Times",
       artist: "Paramore",
@@ -27,23 +41,37 @@ state = {
     },
     {
       type: "Music",
+      genre: ["key6"],
+      title: "Hotline Bling",
+      artist: "Drake",
+      downloaded: false
+    },
+    {
+      type: "Music",
       genre: ["key9"],
       title: "Party For One",
       artist: "Carly Rae Jepsen",
-      downloaded: false
+      downloaded: true
     },
     {
       type: "Music",
       genre: ["key9", "key12"],
       title: "Rose-Colored Boy",
       artist: "Paramore",
-      downloaded: false
+      downloaded: true
     },
     {
       type: "Music",
       genre: ["key1", "key12"],
       title: "So Sad, So Sad",
       artist: "Varsity",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key13"],
+      title: "Start of Something New",
+      artist: "Zac Efron & Vanessa Hudgens",
       downloaded: false
     },
     {
@@ -57,23 +85,58 @@ state = {
       genre: ["key11"],
       title: "We Belong Together",
       artist: "Mariah Carey",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key13"],
+      title: "We're All in This Together",
+      artist: "High School Musical Cast",
       downloaded: false
     }
   ],
   search: [
     {
       type: "Music",
+      genre: ["key1", "key7"],
+      title: "Call It Off",
+      artist: "Tegan and Sara",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key9", "key12"],
+      title: "Fake Happy",
+      artist: "Paramore",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key9", "key12"],
+      title: "Hard Times",
+      artist: "Paramore",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key6"],
+      title: "Hotline Bling",
+      artist: "Drake",
+      downloaded: false
+    },
+    {
+      type: "Music",
       genre: ["key9"],
       title: "Party For One",
       artist: "Carly Rae Jepsen",
-      downloaded: false
+      downloaded: true
     },
     {
       type: "Music",
       genre: ["key9", "key12"],
       title: "Rose-Colored Boy",
       artist: "Paramore",
-      downloaded: false
+      downloaded: true
     },
     {
       type: "Music",
@@ -84,16 +147,29 @@ state = {
     },
     {
       type: "Music",
+      genre: ["key13"],
+      title: "Start of Something New",
+      artist: "Zac Efron & Vanessa Hudgens",
+      downloaded: false
+    },
+    {
+      type: "Music",
       genre: ["key9"],
       title: "thank u, next",
       artist: "Ariana Grande",
       downloaded: false
     },
     {
-      type: "Music",
       genre: ["key11"],
       title: "We Belong Together",
       artist: "Mariah Carey",
+      downloaded: false
+    },
+    {
+      type: "Music",
+      genre: ["key13"],
+      title: "We're All in This Together",
+      artist: "High School Musical Cast",
       downloaded: false
     }
   ]
@@ -118,6 +194,20 @@ class Music extends Component {
     // Remember state for the next mount
     state = this.state;
   }
+
+ // componentWillMount() {
+   // console.log(Music.downloads)
+    //const downloaded = Music.downloads;
+    //const newMusic = this.state.music
+    //for (let i = 0; i < this.state.music.length; i++) {
+      //for (let j = 0; j < downloaded.length; j++) {
+        //if (this.state.music[i].title === downloaded[j].title) {
+          //newMusic[i].downloaded = true
+          //this.setState({music: newMusic, search: newMusic})
+        //}
+      //}
+    //}
+  //}
 
   onValueChange(value: string) {
     this.setState({
@@ -157,6 +247,10 @@ class Music extends Component {
               </Button>
               <Button 
               transparent 
+              onPress={() =>
+                this.props.navigation.navigate('PlaceHolderMusicPodcast', 
+                {title: element.title, artist: element.artist})
+              }
                   >
                 <Icon 
                   name='play-circle'
@@ -188,6 +282,10 @@ class Music extends Component {
               </Body>
                 <Button 
                 transparent 
+                onPress={() =>
+                  this.props.navigation.navigate('PlaceHolderMusicPodcast', 
+                  {title: element.title, artist: element.artist})
+                }
                     >
                   <Icon 
                     name='play-circle'

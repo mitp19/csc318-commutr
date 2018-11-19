@@ -12,8 +12,6 @@ import {
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
 
-import { SearchBar } from 'react-native-elements'
-
 class TabA extends Component {
   
   static navigationOptions = ({ navigation }) => ({
@@ -67,7 +65,7 @@ class TabA extends Component {
               <Button transparent 
               style={{marginLeft: 112.25}}
               onPress={() =>
-                this.handlePress('Podcasts')
+                this.props.navigation.navigate('Podcasts')
               }>
                 <Icon 
                   name='chevron-circle-right' 

@@ -20,74 +20,270 @@ let state = state = {
   books: [
     {
       type: "Books/Articles",
-      genre: ["key2", "key7", "key13"],
+      genre: ["key3", "key4" ,"key12"],
+      title: "The Ask and the Answer",
+      artist: "Patrick Ness",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key4", "key7", "key13"],
       title: "The Astonishing Color of After",
       artist: "Emily X.R. Pan",
       downloaded: false
     },
     {
       type: "Books/Articles",
-      genre: ["key2"],
+      genre: ["key2", "key4"],
       title: "Beartown",
       artist: "Fredrik Backman",
       downloaded: false
     },
     {
       type: "Books/Articles",
-      genre: ["key5"],
-      title: "A Gentleman in Moscow",
-      artist: "Amor Towles",
+      genre: ["key9"],
+      title: "Born a Crime",
+      artist: "Trevor Noah",
       downloaded: false
     },
     {
       type: "Books/Articles",
-      genre: ["key5"],
+      genre: ["key4", "key5", "key12"],
+      title: "The Buried Giant",
+      artist: "Kazuo Ishiguro",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key8"],
+      title: "The Dry (Aaron Falk #1)",
+      artist: "Jane Harper",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key8"],
+      title: "Force of Nature (Aaron Falk #2)",
+      artist: "Jane Harper",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key5"],
+      title: "A Gentleman in Moscow",
+      artist: "Amor Towles",
+      downloaded: true
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key8"],
+      title: "The Girl on the Train",
+      artist: "Paula Hawkins",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key4", "key13"],
+      title: "The Hate U Give",
+      artist: "Angie Thomas",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key5"],
       title: "The Heart's Invisible Furies",
       artist: "John Boyne",
       downloaded: false
     },
     {
       type: "Books/Articles",
-      genre: ["key2"],
+      genre: ["key9"],
+      title: "Killers of the Flower Moon",
+      artist: "David Grann",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key3", "key4" ,"key12"],
+      title: "The Knife of Never Letting Go",
+      artist: "Patrick Ness",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key4"],
       title: "Little Fires Everywhere",
       artist: "Celeste Ng",
+      downloaded: true
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key3", "key4" ,"key12"],
+      title: "Monsters of Men",
+      artist: "Patrick Ness",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key4", "key13"],
+      title: "Noteworthy",
+      artist: "Riley Redgate",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key1", "key4", "key11", "key12", "key13"],
+      title: "The Princess Bride",
+      artist: "William Goldman",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key6", "key8"],
+      title: "The Silence of the Lambs",
+      artist: "Thomas Harris",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key9"],
+      title: "When Breath Becomes Air",
+      artist: "Paul Kalanithi",
       downloaded: false
     }
   ],
   search: [
     {
       type: "Books/Articles",
-      genre: ["key2", "key7", "key13"],
+      genre: ["key3", "key4" ,"key12"],
+      title: "The Ask and the Answer",
+      artist: "Patrick Ness",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key4", "key7", "key13"],
       title: "The Astonishing Color of After",
       artist: "Emily X.R. Pan",
       downloaded: false
     },
     {
       type: "Books/Articles",
-      genre: ["key2"],
+      genre: ["key2", "key4"],
       title: "Beartown",
       artist: "Fredrik Backman",
       downloaded: false
     },
     {
       type: "Books/Articles",
-      genre: ["key5"],
-      title: "A Gentleman in Moscow",
-      artist: "Amor Towles",
+      genre: ["key9"],
+      title: "Born a Crime",
+      artist: "Trevor Noah",
       downloaded: false
     },
     {
       type: "Books/Articles",
-      genre: ["key5"],
+      genre: ["key4", "key5", "key12"],
+      title: "The Buried Giant",
+      artist: "Kazuo Ishiguro",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key8"],
+      title: "The Dry (Aaron Falk #1)",
+      artist: "Jane Harper",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key8"],
+      title: "Force of Nature (Aaron Falk #2)",
+      artist: "Jane Harper",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key5"],
+      title: "A Gentleman in Moscow",
+      artist: "Amor Towles",
+      downloaded: true
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key8"],
+      title: "The Girl on the Train",
+      artist: "Paula Hawkins",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key4", "key13"],
+      title: "The Hate U Give",
+      artist: "Angie Thomas",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key5"],
       title: "The Heart's Invisible Furies",
       artist: "John Boyne",
       downloaded: false
     },
     {
       type: "Books/Articles",
-      genre: ["key2"],
+      genre: ["key9"],
+      title: "Killers of the Flower Moon",
+      artist: "David Grann",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key3", "key4" ,"key12"],
+      title: "The Knife of Never Letting Go",
+      artist: "Patrick Ness",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key4"],
       title: "Little Fires Everywhere",
       artist: "Celeste Ng",
+      downloaded: true
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key3", "key4" ,"key12"],
+      title: "Monsters of Men",
+      artist: "Patrick Ness",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key2", "key4", "key13"],
+      title: "Noteworthy",
+      artist: "Riley Redgate",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key1", "key4", "key11", "key12", "key13"],
+      title: "The Princess Bride",
+      artist: "William Goldman",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key4", "key6", "key8"],
+      title: "The Silence of the Lambs",
+      artist: "Thomas Harris",
+      downloaded: false
+    },
+    {
+      type: "Books/Articles",
+      genre: ["key9"],
+      title: "When Breath Becomes Air",
+      artist: "Paul Kalanithi",
       downloaded: false
     }
   ]
