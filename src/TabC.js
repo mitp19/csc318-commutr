@@ -75,17 +75,31 @@ class TabC extends Component {
                   <Text style={{fontSize: 20}}>
                     {"\n"}9:17am
                   </Text>
+                </View>
+              </Body>
+            </CardItem>
+
+            <CardItem bordered>
+              <Body>
+              <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                  <Text style={{color:'#afafaf'}}>
+                    No delays
+                  </Text>
                   <Right>
-                    <Button
-                    onPress={() =>
-                      this.props.navigation.navigate('TabB')
-                    }>
-                      <Text>No Delays</Text> 
+                    <Button iconLeft transparent onPress={() =>
+                    this.props.navigation.navigate('TabB')
+                  }>
+                      <Icon name='chevron-circle-right' type='FontAwesome'/>
+                      <Text>
+                        See More Info
+                      </Text>
+
                     </Button>
                   </Right>
                 </View>
               </Body>
             </CardItem>
+
 
             <CardItem Bordered>
               <Body>
@@ -136,7 +150,7 @@ class TabC extends Component {
                   
                     <Button style={{left:15}}
                     onPress={() =>
-                      this.props.navigation.navigate('TabA')
+                      this.props.navigation.navigate('PlaceHolderMusicPodcast', {title:'Out Of My League' , artist:'Blood Orange'})
                     }>
                       <Text style={{fontSize: 10}}>Resume</Text>
                     </Button>
@@ -212,7 +226,7 @@ class TabC extends Component {
             <CardItem bordered>
               <Body>
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
-                  <Text style={{fontSize:25}}>Enter Public Chatroom</Text>
+                  <Text style={{fontSize:25}}>Browse Public Chatrooms</Text>
                   <Right>
                     <Button iconLeft transparent
                     onPress={() =>
@@ -225,19 +239,7 @@ class TabC extends Component {
                 </View>
               </Body>
             </CardItem>
-            <CardItem bordered>
-              <Body>
-                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
-                    <Button 
-                    onPress={() =>
-                      this.props.navigation.navigate('PublicChatList')
-                    }>
-                      <Text style={{fontSize:20}}>Enter Anonymously</Text>
-                    </Button>
-                  
-                </View>
-              </Body>
-            </CardItem>
+            
 
 
           </Card>

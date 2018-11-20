@@ -90,6 +90,13 @@ class TabB extends Component {
             <CardItem>
               <Body>
                 <Item>
+                  <Input placeholder='Enter Starting Location' />
+                </Item>
+              </Body>
+            </CardItem>
+            <CardItem>
+              <Body>
+                <Item>
                   <Input placeholder='Enter New Destination' />
                   <Icon active name='arrow-round-forward' />
                 </Item>
