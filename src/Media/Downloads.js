@@ -19,6 +19,7 @@ import AwesomeAlert from 'react-native-awesome-alerts'
 
 let state = {
   delete: {},
+  prevTab: 'TabA',
   showAlert: false,
   selected: "key0",
   downloads: [
@@ -97,7 +98,7 @@ let state = {
       artist: "Paramore"
     }
   ]
-}
+};
 
 class Downloads extends Component {
   
@@ -124,6 +125,7 @@ class Downloads extends Component {
     // Remember state for the next mount
     state = this.state;
   }
+  
 
   onValueChange(value: string) {
     this.setState({
@@ -133,7 +135,7 @@ class Downloads extends Component {
 
   componentDidMount() {
     const newDownload = {}
-    if (!(this.props.navigation.state.params === undefined)) {
+    if (this.props.navigation.state.params) {
       newDownload.type = this.props.navigation.state.params.newDownload.type;
       newDownload.title = this.props.navigation.state.params.newDownload.title;
       newDownload.artist = this.props.navigation.state.params.newDownload.artist;
@@ -147,7 +149,17 @@ class Downloads extends Component {
       if (inDownloads === false) {
         newDownloads.push(newDownload)
       }
-      this.setState({downloads: newDownloads, search: newDownloads})
+      let tab;
+      if (newDownload.type === 'Books/Articles') {
+        tab = 'BooksArticles'
+      } else if (newDownload.type === 'Music') {
+        tab = 'Music'
+      } else if (newDownload.type === 'Podcasts') {
+        tab = 'Podcasts'
+      }
+      this.setState({prevTab: tab, downloads: newDownloads, search: newDownloads})
+    } else {
+      this.setState({prevTab: 'TabA'})
     }
   }
 
@@ -285,8 +297,19 @@ class Downloads extends Component {
           <Left>
             <Button transparent
             onPress={() =>
-              this.props.navigation.goBack(this.props.navigation.state.key)
-            }>
+                
+              { if (this.state.prevTab === 'BooksArticles') {
+                this.props.navigation.navigate('BooksArticles', {downloaded: this.state.downloads})
+              } else if (this.state.prevTab === 'TabA') {
+                this.props.navigation.navigate("TabA", {downloaded: this.state.downloads})
+              } else if (this.state.prevTab === 'Music') {
+                this.props.navigation.navigate("Music", {downloaded: this.state.downloads})
+              } else if (this.state.prevTab === 'Podcasts') {
+                this.props.navigation.navigate("Podcasts", {downloaded: this.state.downloads})
+              }
+            }
+            }  
+            >
               <Icon 
                 name='chevron-circle-left' 
                 type='FontAwesome' 
@@ -366,7 +389,7 @@ class Downloads extends Component {
   }
 }
 
-export default Downloads
+export default Downloads;
 
 const styles = StyleSheet.create({
   container: {

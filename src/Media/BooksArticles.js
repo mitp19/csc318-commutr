@@ -308,6 +308,26 @@ class BooksArticles extends Component {
     state = this.state;
   }
 
+  componentWillMount() {
+    if ((this.props.navigation.state.params)) {
+      const newBooks = this.state.books
+      for (let i = 0; i < this.state.books.length; i++ ) {
+        if (this.state.books[i].downloaded) {
+          let flag = false
+          for (let j = 0; j < this.props.navigation.state.params.downloaded.length; j++) {
+            if (this.props.navigation.state.params.downloaded[j].title === 
+              this.state.books[i].title) {
+                flag = true
+              }
+          }
+          newBooks[i].downloaded = flag
+        }
+      }
+      this.setState({books: newBooks, search: newBooks})
+    }
+  }
+
+
   onValueChange(value: string) {
     this.setState({
       selected: value
@@ -406,7 +426,7 @@ class BooksArticles extends Component {
           <Left>
             <Button transparent
             onPress={() =>
-              this.props.navigation.goBack(this.props.navigation.state.key)
+              this.props.navigation.navigate("TabA")
             }>
               <Icon 
                 name='chevron-circle-left' 

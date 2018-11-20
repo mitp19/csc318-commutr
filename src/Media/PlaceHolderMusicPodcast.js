@@ -3,8 +3,7 @@ import React, { Component } from 'react';
 import {
   View,
   Text,
-  StyleSheet,
-  Alert
+  StyleSheet
 } from 'react-native';
 
 import {

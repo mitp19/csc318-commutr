@@ -15,7 +15,7 @@ import FontAwesome, { Icons } from 'react-native-fontawesome';
 import TabA from './Media/TabA'
 import TabB from './TabB'
 import TabC from './TabC'
-import TabD from './TabD'
+import TabD from './social/TabD'
 import TabE from './TabE'
 import BooksArticles from './Media/BooksArticles'
 import Music from './Media/Music'
@@ -23,6 +23,12 @@ import Podcasts from './Media/Podcasts'
 import Downloads from './Media/Downloads'
 import PlaceHolderBook from './Media/PlaceHolderBook'
 import PlaceHolderMusicPodcast from './Media/PlaceHolderMusicPodcast'
+import ChatView from './social/Chat'
+import ChatHome from './social/ChatHome'
+import PublicChatList from './social/PublicChatList'
+import PrivateChatList from './social/PrivateChatList'
+import ForumCard from './social/ForumCard'
+import CreateChat from './social/CreateChat'
 
 export const Home = createStackNavigator({
   TabC: { screen: TabC }
@@ -30,7 +36,12 @@ export const Home = createStackNavigator({
 {headerMode: 'none'})
 
 export const Social = createStackNavigator({
-  TabD: { screen: TabD }
+  ForumCard: { screen: ForumCard },
+  ChatHome: { screen: ChatHome },
+  ChatView: { screen: ChatView },
+  PublicChatList: { screen: PublicChatList },
+  PrivateChatList: { screen: PrivateChatList },
+  CreateChat: { screen: CreateChat }
 },
 {headerMode: 'none'})
 

@@ -195,24 +195,29 @@ class Music extends Component {
     state = this.state;
   }
 
- // componentWillMount() {
-   // console.log(Music.downloads)
-    //const downloaded = Music.downloads;
-    //const newMusic = this.state.music
-    //for (let i = 0; i < this.state.music.length; i++) {
-      //for (let j = 0; j < downloaded.length; j++) {
-        //if (this.state.music[i].title === downloaded[j].title) {
-          //newMusic[i].downloaded = true
-          //this.setState({music: newMusic, search: newMusic})
-        //}
-      //}
-    //}
-  //}
-
   onValueChange(value: string) {
     this.setState({
       selected: value,
     });
+  }
+
+  componentWillMount() {
+    if ((this.props.navigation.state.params)) {
+      const newMusic = this.state.music
+      for (let i = 0; i < this.state.music.length; i++ ) {
+        if (this.state.music[i].downloaded) {
+          let flag = false
+          for (let j = 0; j < this.props.navigation.state.params.downloaded.length; j++) {
+            if (this.props.navigation.state.params.downloaded[j].title === 
+              this.state.music[i].title) {
+                flag = true
+              }
+          }
+          newMusic[i].downloaded = flag
+        }
+      }
+      this.setState({music: newMusic, search: newMusic})
+    }
   }
 
   renderMusicCards(filter) {
@@ -308,7 +313,7 @@ class Music extends Component {
           <Left>
             <Button transparent
             onPress={() =>
-              this.props.navigation.goBack(this.props.navigation.state.key)
+              this.props.navigation.navigate("TabA")
             }>
               <Icon 
                 name='chevron-circle-left' 

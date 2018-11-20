@@ -168,7 +168,7 @@ class TabC extends Component {
               <Text style={{fontSize:30}}>Social</Text>
               <Button iconLeft transparent
               onPress={() =>
-                this.props.navigation.navigate('TabD')
+                this.props.navigation.navigate('ForumCard')
               }>
                 <Icon name='arrow-forward' style={{fontSize:30}}/>
               </Button>
@@ -185,7 +185,7 @@ class TabC extends Component {
                   <Right>
                     <Button iconLeft transparent
                     onPress={() =>
-                      this.props.navigation.navigate('TabD')
+                      this.props.navigation.navigate('ForumCard')
                     }>
                       <Icon name='chevron-circle-right' 
                   type='FontAwesome' style={{fontSize:30}} />
@@ -198,7 +198,7 @@ class TabC extends Component {
               <Body>
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                     <Button onPress={() =>
-                    this.props.navigation.navigate('TabD')
+                    this.props.navigation.navigate('ForumCard')
                   }>
                       <Text style={{fontSize:20}}>+ Create New Post</Text>
                     </Button>
@@ -216,7 +216,7 @@ class TabC extends Component {
                   <Right>
                     <Button iconLeft transparent
                     onPress={() =>
-                      this.props.navigation.navigate('TabD')
+                      this.props.navigation.navigate('PublicChatList')
                     }>
                       <Icon name='chevron-circle-right' 
                   type='FontAwesome' style={{fontSize:30}} />
@@ -230,7 +230,7 @@ class TabC extends Component {
                 <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
                     <Button 
                     onPress={() =>
-                      this.props.navigation.navigate('TabD')
+                      this.props.navigation.navigate('PublicChatList')
                     }>
                       <Text style={{fontSize:20}}>Enter Anonymously</Text>
                     </Button>

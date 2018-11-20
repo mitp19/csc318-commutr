@@ -149,6 +149,46 @@ class Podcasts extends Component {
     this.state = state;
   }
 
+  // static getDerivedStateFromProps(nextProps, prevState){
+  //   if(nextProps.downloaded !== prevState.podcasts){
+  //     const newPodcasts = this.state.podcasts
+  //     for (let i = 0; i < this.state.podcasts.length; i++ ) {
+  //       if (this.state.podcasts[i].downloaded) {
+  //         let flag = false
+  //         for (let j = 0; j < nextProps.downloaded.length; j++) {
+  //           if (nextProps.downloaded[j].title === 
+  //             this.state.podcasts[i].title) {
+  //               flag = true
+  //             }
+  //         }
+  //         newPodcasts[i].downloaded = flag
+  //         return { podcasts: newPodcasts};
+  //       } else {
+  //         return null
+  //     }
+  //     }
+  //   }}
+  
+  componentDidMount() {
+    console.log(this.props.navigation.state.params)
+    if ((this.props.navigation.state.params)) {
+      const newPodcasts = this.state.podcasts
+      for (let i = 0; i < this.state.podcasts.length; i++ ) {
+        if (this.state.podcasts[i].downloaded) {
+          let flag = false
+          for (let j = 0; j < this.props.navigation.state.params.downloaded.length; j++) {
+            if (this.props.navigation.state.params.downloaded[j].title === 
+              this.state.podcasts[i].title) {
+                flag = true
+              }
+          }
+          newPodcasts[i].downloaded = flag
+        }
+      }
+      this.setState({podcasts: newPodcasts, search: newPodcasts})
+    }
+  }
+
   componentWillUnmount() {
     // Remember state for the next mount
     state = this.state;
@@ -253,7 +293,7 @@ class Podcasts extends Component {
           <Left>
             <Button transparent
             onPress={() =>
-              this.props.navigation.goBack(this.props.navigation.state.key)
+              this.props.navigation.navigate("TabA")
             }>
               <Icon 
                 name='chevron-circle-left' 

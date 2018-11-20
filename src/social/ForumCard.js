@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import { Image, View } from 'react-native';
-import { Container, Header, Content, Card, CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right } from 'native-base';
+import { StyleSheet } from 'react-native'
+import { Container, Header, Content, Card, 
+  CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right,
+Title, Segment } from 'native-base';
 
 export default class ForumCard extends Component {
   constructor(props) {
@@ -16,9 +19,8 @@ export default class ForumCard extends Component {
   //   this.bind(this);
   // }
 
-  render() {
+  renderForumCard() {
     return (
-      <View>
       <Container style={{height:360}}>
         <Content>
           <Card>
@@ -54,7 +56,50 @@ export default class ForumCard extends Component {
           </Card>
         </Content>
       </Container>
-      </View>
     );
   }
+
+
+render() {
+  return (
+    <Container >
+      <Header hasSegment>
+      <Body>
+          <Title>Social</Title>
+        </Body>
+      </Header>
+          <Segment>
+            <Button first active onPress={() => this.props.navigation.navigate("ForumCard")}>
+              <Text>Forum</Text>
+            </Button>
+            <Button last onPress={() => this.props.navigation.navigate("ChatHome")}>
+              <Text>Chat</Text>
+            </Button>
+          </Segment>
+          <Container style={styles.container}>
+          <Content>
+            {this.renderForumCard()}
+            {this.renderForumCard()}
+            {this.renderForumCard()}
+            {this.renderForumCard()}
+            {this.renderForumCard()}
+            {this.renderForumCard()}
+          </Content>
+    </Container>
+       </Container>
+  )
+  }
 }
+
+const styles = StyleSheet.create({
+  container: {
+    justifyContent: 'center',
+    alignContent: 'center',
+        backgroundColor: '#26365e',
+        padding: 10},
+  text: {
+    color: 'white',
+    fontSize: 40,
+    fontWeight: 'bold',
+  }
+})

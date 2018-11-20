@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import { Text, View, StyleSheet, ScrollView, KeyboardAvoidingView, TextInput, TouchableHighlight, Keyboard } from 'react-native';
+import { 
+  StyleSheet, ScrollView, KeyboardAvoidingView, 
+  TextInput, TouchableHighlight, Keyboard } from 'react-native';
+import { Subtitle, Icon, Left, Right, Title, Container, Header, Button, Body, Text, View, Segment } from 'native-base'
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import AutogrowInput from 'react-native-autogrow-input';
 
@@ -9,7 +12,7 @@ function getRandomInt(min, max) {
 }
 
 // The actual chat view itself- a ScrollView of BubbleMessages, with an InputBar at the bottom, which moves with the keyboard
-export default class ChatView extends Component {
+class ChatView extends Component {
 
   constructor(props) {
     super(props);
@@ -39,10 +42,6 @@ export default class ChatView extends Component {
       inputBarText: ''
     }
   }
-
-  static navigationOptions = {
-    title: 'Chat',
-  };
 
   //fun keyboard stuff- we use these to get the end of the ScrollView to "follow" the top of the InputBar as the keyboard rises and falls
   componentWillMount () {
@@ -106,7 +105,7 @@ export default class ChatView extends Component {
     }.bind(this))
   }
 
-  render() {
+  chatView() {
 
     var messages = [];
 
@@ -129,7 +128,49 @@ export default class ChatView extends Component {
               </View>
             );
   }
+
+  render() {
+    return (
+      <Container >
+        <Header hasSegment>
+        <Left>
+        <Button transparent
+            onPress={() => {let page='PublicChatList'
+              if (this.props.navigation.state.params.type === 'public') {
+                page = 'PublicChatList'
+            } else if (this.props.navigation.state.params.type === 'private') {
+              page = 'PrivateChatList'
+            } 
+            this.props.navigation.navigate(page)            
+            }}  
+            >
+              <Icon 
+                name='chevron-circle-left' 
+                type='FontAwesome' 
+                style={{fontSize: 28, color: 'black'}}/>
+            </Button>
+          </Left>
+        <Body>
+            <Title>{this.props.navigation.state.params.name}</Title>
+            <Subtitle>You are {this.props.navigation.state.params.anonymity} to other users</Subtitle>
+          </Body>
+          <Right/>
+        </Header>
+            <Segment>
+              <Button first onPress={() => this.props.navigation.navigate("ForumCard")}>
+                <Text>Forum</Text>
+              </Button>
+              <Button last active onPress={() => this.props.navigation.navigate("ChatHome")}>
+                <Text>Chat</Text>
+              </Button>
+            </Segment>
+          {this.chatView()}
+         </Container>
+    )
+  }
 }
+
+export default ChatView;
 
 //The bubbles that appear on the left or the right for the messages.
 class MessageBubble extends Component {
