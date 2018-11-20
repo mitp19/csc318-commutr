@@ -135,13 +135,8 @@ class ChatView extends Component {
         <Header hasSegment>
         <Left>
         <Button transparent
-            onPress={() => {let page='PublicChatList'
-              if (this.props.navigation.state.params.type === 'public') {
-                page = 'PublicChatList'
-            } else if (this.props.navigation.state.params.type === 'private') {
-              page = 'PrivateChatList'
-            } 
-            this.props.navigation.navigate(page)            
+            onPress={() => {
+            this.props.navigation.goBack(this.props.navigation.state.key)           
             }}  
             >
               <Icon 

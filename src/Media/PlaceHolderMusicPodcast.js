@@ -15,7 +15,7 @@ class PlaceHolderMusicPodcast extends Component {
     super(props)
     //Retrieve last state
     this.state = {
-      button: 'controller-play',
+      button: 'controller-paus',
       musicState: 'Playing'
     }
   }
@@ -64,9 +64,9 @@ class PlaceHolderMusicPodcast extends Component {
                 transparent 
                 onPress={() => {
                   {if (this.state.button === 'controller-play') {
-                    this.setState({button: 'controller-paus', musicState: 'Paused'})
+                    this.setState({button: 'controller-paus', musicState: 'Playing'})
                   } else if (this.state.button === 'controller-paus') {
-                    this.setState({button: 'controller-play', musicState: 'Playing'})
+                    this.setState({button: 'controller-play', musicState: 'Paused'})
                   }        
                 }}}
                     >

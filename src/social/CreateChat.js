@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
 import { View, Container, Header, Left, Body, Right, 
   List, ListItem, Thumbnail, Button, Icon, Segment, Content, Text, Card, CardItem, Title, Form, Item, Input,
@@ -18,23 +18,31 @@ class CreateChat extends Component {
     this.state = {
       selected: "key0",
       name: '',
-      disabled: true,
+      checkedNum: 0,
       friendList: [
         {
           name: 'Jiayin',
-          thumbnail: ''
+          thumbnail: '',
+          checked: false,
+        checkBox: 'checkbox-blank-outline',
       },
       {
         name: 'Jenni',
-        thumbnail: ''
+        thumbnail: '',
+        checked: false,
+        checkBox: 'checkbox-blank-outline',
       }, 
         {
           name: 'Guohai',
-          thumbnail: ''
+          thumbnail: '',
+          checked: false,
+         checkBox: 'checkbox-blank-outline',
         },
         {
           name: 'Ping',
-          thumbnail: ''
+          thumbnail: '',
+          checked: false,
+        checkBox: 'checkbox-blank-outline',
         }
       ]
     };
@@ -46,15 +54,14 @@ class CreateChat extends Component {
     });
   }
 
-  friendList() {
-    return(
-<Item stackedLabel>
-<Label style={{color: "black", fontSize: 16, fontWeight: 'bold'}}>Choose Friends to Add</Label>
-<Card >
+  friendLoop() {
+    this.state.friendList.map((friend) => {
+      return(
+        <Card key={friend.name}>
           <CardItem style = {{width: 360}}>
           <Thumbnail />
           <Text>
-            Browse Public Chatrooms
+            {friend.name}
           </Text>
           <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
           <Button transparent>
@@ -67,7 +74,31 @@ class CreateChat extends Component {
                   
           </CardItem>
         </Card>
-  </Item>
+        )
+    })
+  }
+
+  itemLabel() {
+    return(
+      <Item>
+       <Label style={{color: "black", fontSize: 16, fontWeight: 'bold'}}>
+                Add Friends to Join Chat
+                </Label>
+      </Item>
+    )
+  }
+
+  isDisabled() {
+    let disabled = true;
+    if (this.state.name && this.state.selected === "key0") {
+      disabled = false;
+    } else if (this.state.name && this.state.selected == "key1") {
+      if (this.state.checkedNum > 0) {
+        disabled = false;
+      }
+    }
+    return (
+      disabled
     )
   }
 
@@ -100,6 +131,7 @@ class CreateChat extends Component {
                 <Text>Chat</Text>
               </Button>
             </Segment>
+            <ScrollView>
             <Container style={{justifyContent: 'center', alignContent: 'center',
           padding: 10}}>
           <Form>
@@ -109,15 +141,7 @@ class CreateChat extends Component {
                 </Label>
                 <Input style={{fontSize: 14}} 
                 onChangeText={(text) => {
-                  let disabled = this.state.disabled;
-                  if (text) {
-                    if (this.state.selected === 'key0') {
-                      disabled = false
-                    }
-                  } else {
-                    disabled = true
-                  }
-                  this.setState({name: text, disabled: disabled})}}
+                  this.setState({name: text})}}
                 placeholder={"Enter name"}/>
               </Item>
               <Item stackedLabel>
@@ -138,16 +162,63 @@ class CreateChat extends Component {
                 <Picker.Item label="Private" value="key1" />
               </Picker>
             </Item>
-            {this.state.selected === 'key1' && this.friendList()}
-            
+            {this.state.selected === "key1" && this.itemLabel()}
+            {this.state.selected === "key1" && (
+              this.state.friendList.map((friend) => {
+                let index = 0;
+                    for (let i = 0; i < this.state.friendList.length; i++) {
+                      if (this.state.friendList[i].name === friend.name) {
+                        index = i;
+                      }
+                    }
+              return(
+                <Card key={friend.name}>
+                  <CardItem style = {{width: 360}}>
+                  <Thumbnail />
+                  <Text>
+                    {friend.name}
+                  </Text>
+                  <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+                  <Button transparent 
+                  onPress={() => {
+                    let newFriends = this.state.friendList
+                    let num = this.state.checkedNum
+                    if (this.state.friendList[index].checked) {
+                      newFriends[index].checked = false
+                      newFriends[index].checkBox = 'checkbox-blank-outline'
+                      num = num - 1
+                    } else {
+                      newFriends[index].checked = true
+                      newFriends[index].checkBox = 'checkbox-marked'
+                      num = num + 1
+                    }
+                    this.setState({checkedNum: num, friendList: newFriends})
+                  }}>
+                  <Icon 
+                          name={this.state.friendList[index].checkBox} 
+                          type='MaterialCommunityIcons' 
+                          style={{fontSize: 30, color: 'black'}}/>
+                          </Button>
+                          </Body>
+                          
+                  </CardItem>
+                </Card>
+                )
+            })
+            )
+            }
             </Form>
             <Content padder>
-            <Button disabled={this.state.disabled} block>
+            <Button disabled={this.isDisabled()} block
+            onPress={() => 
+              this.props.navigation.navigate("ChatView", {name: this.state.name,
+            anonymity: "public"})
+            }>
               <Text>Create Chatroom!</Text>
             </Button>
-            
             </Content>
             </Container>
+            </ScrollView>
       </Container>
     )
   }
