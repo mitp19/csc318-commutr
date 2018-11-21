@@ -61,7 +61,7 @@ class CreatePost extends Component {
                         <Icon name='camera'/>
                     </Button>
                     <Right>
-                    <Button style={{bgcolor:'#34ed46'}}>
+                    <Button success>
                         <Text>
                             Post
                         </Text>
