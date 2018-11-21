@@ -30,6 +30,7 @@ import YourChatList from './social/YourChatList'
 import ForumCard from './social/ForumCard'
 import CreateChat from './social/CreateChat'
 import Members from './social/Members'
+import CreatePost from './social/CreatePost'
 
 export const Home = createStackNavigator({
   TabC: { screen: TabC }
@@ -43,7 +44,8 @@ export const Social = createStackNavigator({
   PublicChatList: { screen: PublicChatList },
   YourChatList: { screen: YourChatList },
   CreateChat: { screen: CreateChat },
-  Members: { screen: Members }
+  Members: { screen: Members },
+  CreatePost: {screen: CreatePost}
 },
 {headerMode: 'none'})
 
