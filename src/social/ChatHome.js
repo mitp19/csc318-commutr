@@ -53,7 +53,7 @@ class ChatHome extends Component {
           <CardItem header button
           onPress={() => navigate("CreateChat")}>
           <Text>
-            Create Own Chatroom
+            Create Your Own Chatroom
           </Text>
           <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
           <Icon 

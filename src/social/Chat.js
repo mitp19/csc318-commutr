@@ -5,6 +5,7 @@ import {
 import { Subtitle, Icon, Left, Right, Title, Container, Header, Button, Body, Text, View, Segment } from 'native-base'
 import KeyboardSpacer from 'react-native-keyboard-spacer';
 import AutogrowInput from 'react-native-autogrow-input';
+import AwesomeAlert from 'react-native-awesome-alerts'
 
 //used to make random-sized messages
 function getRandomInt(min, max) {
@@ -39,7 +40,8 @@ class ChatView extends Component {
 
     this.state = {
       messages: messages,
-      inputBarText: ''
+      inputBarText: '',
+      showAlert: false
     }
   }
 
@@ -153,12 +155,15 @@ class ChatView extends Component {
         </Header>
         <View style={{flexDirection: 'row', justifyContent: 'center'}}> 
         <View style={{padding: 5}}>
-            <Button small dark>
+            <Button small dark 
+            onPress={() => this.props.navigation.navigate("Members", 
+            {name: this.props.navigation.state.params.name, members: this.props.navigation.state.params.members})}>
             <Text style={{fontSize: 12}}>View Members</Text>
             </Button>
             </View>
             <View style={{padding: 5}}>
-            <Button small danger>
+            <Button small danger
+            onPress={() => this.setState({showAlert: true})}>
             <Text style={{fontSize: 12}}>Leave "{this.props.navigation.state.params.name}"</Text>
             </Button>
             </View>
@@ -172,6 +177,30 @@ class ChatView extends Component {
               </Button>
             </Segment>
           {this.chatView()}
+          <AwesomeAlert
+                show={this.state.showAlert}
+                showProgress={false}
+                title="Are you sure you want to leave the chatroom?"
+                closeOnTouchOutside={true}
+                closeOnHardwareBackPress={false}
+                showCancelButton={true}
+                showConfirmButton={true}
+                cancelText="No, cancel"
+                confirmText="Yes, I want to leave"
+                confirmButtonColor="#DD6B55"
+                onCancelPressed={() => this.setState({showAlert: false})}
+                onConfirmPressed={() => {
+                  if (this.props.navigation.state.params.page == 'YourChatList') {
+                    this.props.navigation.navigate('YourChatList', {delete: this.props.navigation.state.params.name})
+                  } else if (this.props.navigation.state.params.page == 'PublicChatList') {
+                    this.props.navigation.navigate('PublicChatList')
+                  } else if (this.props.navigation.state.params.page == 'CreateChat') {
+                    this.props.navigation.navigate('YourChatList', {add: this.props.navigation.state.params.name})
+                  }
+                  this.setState({showAlert: false})
+                }
+                }
+                />
          </Container>
     )
   }

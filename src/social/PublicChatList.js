@@ -14,11 +14,47 @@ class PublicChatList extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      groups: [
+        {name: "TTC Haters Club",
+        memberNum: 15,
+        members: this.generateUsers(15),
+        type: 'Public'},
+        {name: "Sleep Deprived Club",
+        memberNum: 20,
+        members: this.generateUsers(20),
+        type: 'Public'},
+        {name: "I'm Bored Chat",
+        memberNum: 7,
+        members: this.generateUsers(7),
+        type: 'Public'},
+        {name: "Chaotic Chatroom :)",
+        memberNum: 18,
+        members: this.generateUsers(18),
+        type: 'Public'},
+        {name: "Christmas is Coming!!",
+        memberNum: 5,
+        members: this.generateUsers(5),
+        type: 'Public'}
+      ]
+    }
   }
 
-  publicChatCard(title, num) {
+  generateUsers(num) {
+    let users = []
+    for (let i = 1; i <= num; i++) {
+      let name = 'User' + i
+      user = {}
+      user.name = name
+      user.reported = false
+      users.push(user)
+    }
+    return(users)
+  } 
+
+  publicChatCard(title, num, members) {
     return(
-      <Card>
+      <Card key={title}>
       <CardItem style={{height: 90, justifyContent: 'center' ,alignContent: 'center'}} bordered>
             <View>
               <Text style={{fontSize: 12, fontWeight: 'bold'}}>{title}</Text>
@@ -29,7 +65,8 @@ class PublicChatList extends Component {
             <Body>
               <Button dark small rounded
               onPress={() => this.props.navigation.navigate("ChatView", 
-              {name: title, type: 'public', anonymity: 'anonymous', type: 'Public'})}
+              {name: title, type: 'public', anonymity: 'anonymous', type: 'Public', 
+            members: members, page: 'PublicChatList'})}
                     >
                   <Text style={{fontSize: 8}}>Join Anonymously</Text>
                 </Button>
@@ -37,7 +74,8 @@ class PublicChatList extends Component {
               <Body>
               <Button rounded success small
               onPress={() => this.props.navigation.navigate("ChatView", 
-              {name: title, type: 'public', anonymity: 'public', type: 'Public'})}
+              {name: title, type: 'public', anonymity: 'public', type: 'Public',
+            members: members, page: 'PublicChatList'})}
                     >
                   <Text style={{fontSize: 8}}>Join as Public User</Text>
                 </Button>
@@ -46,6 +84,15 @@ class PublicChatList extends Component {
               </Body>
           </CardItem>
     </Card>
+    )
+  }
+
+  chatList() {
+    return(
+      this.state.groups.map(group => {
+        return(
+          this.publicChatCard(group.name, group.memberNum, group.members))
+      })
     )
   }
 
@@ -80,11 +127,7 @@ class PublicChatList extends Component {
             </Segment>
         <Container style={styles.container}>
         <ScrollView>
-        {this.publicChatCard("TTC Haters Club", 15)}
-        {this.publicChatCard("Sleep Deprived Club", 20)}
-        {this.publicChatCard("I'm Bored Chat", 7)}
-        {this.publicChatCard("Chaotic Chatroom :)", 18)}
-        {this.publicChatCard("Christmas is Coming!!", 5)}
+        {this.chatList()}
         </ScrollView>
     </Container>
       </Container>

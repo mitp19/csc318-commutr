@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import {
-  Card, CardItem, Icon, Button, Container
+  Card, CardItem, Icon, Button, Container, Header, Body
 } from 'native-base';
 
 let state = {
@@ -80,8 +80,12 @@ class TabA extends Component {
     return (
       <Container style={styles.header}>
       {console.log(this.props.navigation.state.params)}
+      <Header>
+        <Body>
+      <Text style={{fontWeight: 'bold', fontSize: 18}}>Explore</Text>
+      </Body>
+      </Header>
         <View style={styles.container}>
-        <Text style={styles.text}>Explore</Text>
         <Card>
           <CardItem style={{width: 300}}>
             <Icon name='book' type='FontAwesome' />
