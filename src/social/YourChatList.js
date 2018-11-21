@@ -3,11 +3,90 @@ import { StyleSheet, ScrollView } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
 import { View, Container, Header, Left, Body, Right, 
   Button, Icon, Segment, Content, Text, Card, CardItem, Title} from 'native-base';
-  import AwesomeAlert from 'react-native-awesome-alerts'
+import AwesomeAlert from 'react-native-awesome-alerts'
+import { SearchBar } from 'react-native-elements'
 
 let state = {
     showAlert: false,
     groups: [
+      {name: "Group TBD",
+      memberNum: 6,
+      members: [
+        {name: 'Jonathan',
+        reported: false},
+        {name: 'Mit',
+        reported: false},
+        {name: 'Felipe',
+        reported: false},
+        {name: 'Rae',
+        reported: false},
+        {name: 'Khori',
+        reported: false},
+        {name: 'Susan',
+        reported: false}
+      ],
+      type: 'Private'
+    },
+      {name: "EAS402 Group",
+      memberNum: 12,
+      members: [
+        {name: 'Paulina',
+        reported: false},
+        {name: 'Mika',
+        reported: false},
+        {name: 'Christy',
+        reported: false},
+        {name: 'Vivianne',
+        reported: false},
+        {name: 'Calvin',
+        reported: false},
+        {name: 'Mervin',
+        reported: false},
+        {name: 'Larry',
+        reported: false},
+        {name: 'Mike',
+        reported: false},
+        {name: 'Victoria',
+        reported: false},
+        {name: 'Nic',
+        reported: false},
+        {name: 'Toshimi',
+        reported: false},
+        {name: 'Susan',
+        reported: false}
+      ],
+      type: 'Private'
+    },
+      {name: "Book Club Group",
+      memberNum: 20,
+      members: generateUsers(20),
+      type: 'Public'
+    },
+      {name: "Saskatoon Group",
+      memberNum: 6,
+      members: [
+        {name: 'Palima',
+        reported: false},
+        {name: 'Nikoo',
+        reported: false},
+        {name: 'Emily',
+        reported: false},
+        {name: 'Alyssa',
+        reported: false},
+        {name: 'Parker',
+        reported: false},
+        {name: 'Susan',
+        reported: false},
+        ],
+      type: 'Private'
+    },
+      {name: "Toronto Group",
+      memberNum: 8,
+      members: generateUsers(8),
+      type: 'Public'
+    },
+    ],
+    search: [
       {name: "Group TBD",
       memberNum: 6,
       members: [
@@ -201,7 +280,20 @@ class YourChatList extends Component {
           <Body>
             <Title>Your Chatrooms</Title>
           </Body>
-          <Right/>
+          <Right />
+          <SearchBar
+            inputStyle={{backgroundColor: 'white'}}
+            containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
+            showLoading
+            onChangeText={(text) =>
+             {const newList = this.state.search.filter(group => {
+                return group.name.toUpperCase().includes(text.toUpperCase())
+              })
+              this.setState({
+                groups: newList
+              })}}
+            cancelButtonTitle="Cancel"
+            placeholder='Search' />
           </Header>
             <Segment>
               <Button first onPress={() => navigate("ForumCard")}>

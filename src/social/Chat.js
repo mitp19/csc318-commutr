@@ -192,8 +192,8 @@ class ChatView extends Component {
                 onConfirmPressed={() => {
                   if (this.props.navigation.state.params.page == 'YourChatList') {
                     this.props.navigation.navigate('YourChatList', {delete: this.props.navigation.state.params.name})
-                  } else if (this.props.navigation.state.params.page == 'PublicChatList') {
-                    this.props.navigation.navigate('PublicChatList')
+                  } else if (this.props.navigation.state.params.page == 'ChatList') {
+                    this.props.navigation.navigate('ChatList')
                   } else if (this.props.navigation.state.params.page == 'CreateChat') {
                     this.props.navigation.navigate('YourChatList', {add: this.props.navigation.state.params.name})
                   }

@@ -23,9 +23,9 @@ class ChatHome extends Component {
       <Container style={styles.container}>
         <Card >
           <CardItem header button 
-          onPress={() => navigate("PublicChatList")}>
+          onPress={() => navigate("ChatList")}>
           <Text>
-            Browse Public Chatrooms
+            Browse Chatrooms
           </Text>
           <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
           <Icon 

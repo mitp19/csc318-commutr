@@ -89,10 +89,10 @@ class Members extends Component {
           <Right/>
           </Header>
             <Segment>
-              <Button first onPress={() => navigate("ForumCard")}>
+              <Button first onPress={() => this.props.navigation.navigate("ForumCard")}>
                 <Text>Forum</Text>
               </Button>
-              <Button last active onPress={() => navigate("ChatHome")}>
+              <Button last active onPress={() => this.props.navigation.navigate("ChatHome")}>
                 <Text>Chat</Text>
               </Button>
             </Segment>

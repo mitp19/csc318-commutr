@@ -182,6 +182,7 @@ class CreateChat extends Component {
                     {friend.name}
                   </Text>
                   <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
+                  <Body style={{justifyContent: "center"}}>
                   <Button transparent 
                   onPress={() => {
                     let members = this.state.members
@@ -214,7 +215,7 @@ class CreateChat extends Component {
                           style={{fontSize: 30, color: 'black'}}/>
                           </Button>
                           </Body>
-                          
+                          </Body>
                   </CardItem>
                 </Card>
                 )
