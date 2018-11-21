@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
 import { View, Container, Header, Left, Body, Right, 
   Button, Icon, Segment, Content, Text, Card, CardItem, Title} from 'native-base';
 
-class PrivateChatList extends Component {
+class YourChatList extends Component {
 
   static navigationOptions = ({ navigation }) => ({
     title: 'Social',
@@ -14,21 +14,27 @@ class PrivateChatList extends Component {
 
   constructor(props) {
     super(props)
+    this.state = {
+      groups: [
+        {name: "Group TBD"}
+      ]
+    }
   }
 
-  privateChatCard(title, num) {
+  privateChatCard(title, num, type) {
     return(
       <Card>
       <CardItem style={{ 
         alignItems: 'center'}} bordered>
             <View>
               <Text style={{fontSize: 16, fontWeight: 'bold'}}>{title}</Text>
+              <Text style={{fontSize: 12}}>{type} chatroom</Text>
               <Text style={{fontSize: 12}}>{num} members</Text>
             </View>
             <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
               <Button transparent
               onPress={() => this.props.navigation.navigate("ChatView", 
-              {name: title, type: 'private', anonymity: 'public'})}
+              {name: title, type: 'private', anonymity: 'public', type: type})}
                     >
                   <Icon 
                   name='chevron-circle-right' 
@@ -58,7 +64,7 @@ class PrivateChatList extends Component {
             </Button>
           </Left>
           <Body>
-            <Title>Your Private Chatrooms</Title>
+            <Title>Your Chatrooms</Title>
           </Body>
           <Right/>
           </Header>
@@ -71,18 +77,20 @@ class PrivateChatList extends Component {
               </Button>
             </Segment>
         <Container style={styles.container}>
-        {this.privateChatCard("Group TBD", 6)}
-        {this.privateChatCard("EAS402 Group", 14)}
-        {this.privateChatCard("Book Club Group", 20)}
-        {this.privateChatCard("Saskatoon Group", 4)}
-        {this.privateChatCard("Toronto Group", 6)}
+        <ScrollView>
+        {this.privateChatCard("Group TBD", 6, "Private")}
+        {this.privateChatCard("EAS402 Group", 14, "Private")}
+        {this.privateChatCard("Book Club Group", 20, "Public")}
+        {this.privateChatCard("Saskatoon Group", 4, "Public")}
+        {this.privateChatCard("Toronto Group", 6, "Public")}
+        </ScrollView>
     </Container>
       </Container>
     )
   }
 }
 
-export default PrivateChatList
+export default YourChatList
 
 const styles = StyleSheet.create({
   container: {

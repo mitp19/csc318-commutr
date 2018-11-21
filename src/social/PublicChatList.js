@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { StyleSheet } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
 import { View, Container, Header, Left, Body, Right, 
   Button, Icon, Segment, Content, Text, Card, CardItem, Title} from 'native-base';
@@ -29,7 +29,7 @@ class PublicChatList extends Component {
             <Body>
               <Button dark small rounded
               onPress={() => this.props.navigation.navigate("ChatView", 
-              {name: title, type: 'public', anonymity: 'anonymous'})}
+              {name: title, type: 'public', anonymity: 'anonymous', type: 'Public'})}
                     >
                   <Text style={{fontSize: 8}}>Join Anonymously</Text>
                 </Button>
@@ -37,7 +37,7 @@ class PublicChatList extends Component {
               <Body>
               <Button rounded success small
               onPress={() => this.props.navigation.navigate("ChatView", 
-              {name: title, type: 'public', anonymity: 'public'})}
+              {name: title, type: 'public', anonymity: 'public', type: 'Public'})}
                     >
                   <Text style={{fontSize: 8}}>Join as Public User</Text>
                 </Button>
@@ -79,11 +79,13 @@ class PublicChatList extends Component {
               </Button>
             </Segment>
         <Container style={styles.container}>
+        <ScrollView>
         {this.publicChatCard("TTC Haters Club", 15)}
         {this.publicChatCard("Sleep Deprived Club", 20)}
         {this.publicChatCard("I'm Bored Chat", 7)}
         {this.publicChatCard("Chaotic Chatroom :)", 18)}
         {this.publicChatCard("Christmas is Coming!!", 5)}
+        </ScrollView>
     </Container>
       </Container>
     )

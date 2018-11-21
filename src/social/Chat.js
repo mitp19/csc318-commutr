@@ -145,12 +145,24 @@ class ChatView extends Component {
                 style={{fontSize: 28, color: 'black'}}/>
             </Button>
           </Left>
-        <Body>
+        <Body style={{justifyContent: 'center', alignItems: 'center'}}>
             <Title>{this.props.navigation.state.params.name}</Title>
-            <Subtitle>You are {this.props.navigation.state.params.anonymity} to other users</Subtitle>
+            <Subtitle>{this.props.navigation.state.params.type} Chatroom: You are {this.props.navigation.state.params.anonymity} to other users</Subtitle>
           </Body>
           <Right/>
         </Header>
+        <View style={{flexDirection: 'row', justifyContent: 'center'}}> 
+        <View style={{padding: 5}}>
+            <Button small dark>
+            <Text style={{fontSize: 12}}>View Members</Text>
+            </Button>
+            </View>
+            <View style={{padding: 5}}>
+            <Button small danger>
+            <Text style={{fontSize: 12}}>Leave "{this.props.navigation.state.params.name}"</Text>
+            </Button>
+            </View>
+            </View>
             <Segment>
               <Button first onPress={() => this.props.navigation.navigate("ForumCard")}>
                 <Text>Forum</Text>

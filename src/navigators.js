@@ -26,7 +26,7 @@ import PlaceHolderMusicPodcast from './Media/PlaceHolderMusicPodcast'
 import ChatView from './social/Chat'
 import ChatHome from './social/ChatHome'
 import PublicChatList from './social/PublicChatList'
-import PrivateChatList from './social/PrivateChatList'
+import YourChatList from './social/YourChatList'
 import ForumCard from './social/ForumCard'
 import CreateChat from './social/CreateChat'
 
@@ -40,7 +40,7 @@ export const Social = createStackNavigator({
   ChatHome: { screen: ChatHome },
   ChatView: { screen: ChatView },
   PublicChatList: { screen: PublicChatList },
-  PrivateChatList: { screen: PrivateChatList },
+  YourChatList: { screen: YourChatList },
   CreateChat: { screen: CreateChat }
 },
 {headerMode: 'none'})

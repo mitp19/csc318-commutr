@@ -25,26 +25,31 @@ class CreateChat extends Component {
           thumbnail: '',
           checked: false,
         checkBox: 'checkbox-blank-outline',
+        path: 'https://image.ibb.co/kdJRXA/Jiayin.jpg'
       },
       {
         name: 'Jenni',
         thumbnail: '',
         checked: false,
         checkBox: 'checkbox-blank-outline',
+        path: 'https://image.ibb.co/ja29kV/Jenni.jpg'
       }, 
         {
           name: 'Guohai',
           thumbnail: '',
           checked: false,
          checkBox: 'checkbox-blank-outline',
+         path: 'https://image.ibb.co/eibrzq/Guohai.jpg'
         },
         {
           name: 'Ping',
           thumbnail: '',
           checked: false,
         checkBox: 'checkbox-blank-outline',
+        path: 'https://image.ibb.co/hhcaQV/Ping.jpg'
         }
-      ]
+      ],
+      members: []
     };
   }
 
@@ -174,25 +179,33 @@ class CreateChat extends Component {
               return(
                 <Card key={friend.name}>
                   <CardItem style = {{width: 360}}>
-                  <Thumbnail />
+                  <Left>
+                  <Thumbnail source={{uri: friend.path}}/>
+                  </Left>
                   <Text>
                     {friend.name}
                   </Text>
                   <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
                   <Button transparent 
                   onPress={() => {
+                    let members = this.state.members
                     let newFriends = this.state.friendList
                     let num = this.state.checkedNum
                     if (this.state.friendList[index].checked) {
                       newFriends[index].checked = false
                       newFriends[index].checkBox = 'checkbox-blank-outline'
                       num = num - 1
+                      members = this.state.members.filter(friend => {
+                        return friend.name !== this.state.members[index].name
+                      })
                     } else {
                       newFriends[index].checked = true
                       newFriends[index].checkBox = 'checkbox-marked'
                       num = num + 1
+                      members.push(newFriends[index])
                     }
-                    this.setState({checkedNum: num, friendList: newFriends})
+                    this.setState({checkedNum: num, friendList: newFriends,
+                    members: members})
                   }}>
                   <Icon 
                           name={this.state.friendList[index].checkBox} 
@@ -210,9 +223,16 @@ class CreateChat extends Component {
             </Form>
             <Content padder>
             <Button disabled={this.isDisabled()} block
-            onPress={() => 
+            onPress={() => {
+              let type;
+              if (this.state.selected === 'key0') {
+                type = 'Public'
+              } else {
+                type = 'Private'
+              }
               this.props.navigation.navigate("ChatView", {name: this.state.name,
-            anonymity: "public"})
+                anonymity: "public", type: type})
+            }
             }>
               <Text>Create Chatroom!</Text>
             </Button>

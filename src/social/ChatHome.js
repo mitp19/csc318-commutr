@@ -37,9 +37,9 @@ class ChatHome extends Component {
         </Card>
         <Card style={{alignItems: 'center'}}>
           <CardItem header button
-          onPress={() => navigate("PrivateChatList")}>
+          onPress={() => navigate("YourChatList")}>
           <Text>
-            Your Private Chatrooms
+            Your Chatrooms
           </Text>
           <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
           <Icon 
