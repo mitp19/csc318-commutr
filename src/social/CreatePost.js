@@ -46,18 +46,34 @@ class CreatePost extends Component {
                     </Button>
                     </Segment>
             <Container styles={styles.container}>
-            <View style={{ flexDirection: "column", flex: 1, justifyContent: 'space-between'}}>
-                <Textarea rowSpan={5} bordered placeholder="Enter Post"/>
-                <Right>
+            <Card transparent>
+                <CardItem>
+                    <View style={{ flexDirection: "column", flex: 1, justifyContent: 'space-between'}}>
+                    <Textarea rowSpan={5} bordered placeholder="Enter Post"/>
+                    </View>
+                </CardItem>
+                <CardItem>
+                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between'}}>
+                    <Button transparent>
+                        <Icon name='link'/>
+                    </Button>
+                    <Button transparent>
+                        <Icon name='camera'/>
+                    </Button>
+                    <Right>
                     <Button style={{bgcolor:'#34ed46'}}>
                         <Text>
                             Post
                         </Text>
                     </Button>
-                </Right>
-            </View>
+                    </Right>
+                </View>
+                </CardItem>
+
+
+            </Card>
             </Container>
-            </Container>
+        </Container>
 
         )
     }
