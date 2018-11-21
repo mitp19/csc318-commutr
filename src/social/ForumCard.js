@@ -3,7 +3,7 @@ import { Image, View } from 'react-native';
 import { StyleSheet } from 'react-native'
 import { Container, Header, Content, Card, 
   CardItem, Thumbnail, Text, Button, Icon, Left, Body, Right,
-Title, Segment } from 'native-base';
+Title, Segment} from 'native-base';
 
 export default class ForumCard extends Component {
   constructor(props) {
@@ -77,6 +77,12 @@ render() {
             </Button>
           </Segment>
           <Container style={styles.container}>
+            <Button onPress={() => this.props.navigation.navigate('CreatePost')}>
+              <Text>
+                New Post
+              </Text>
+            </Button>
+
           <Content>
             {this.renderForumCard()}
             {this.renderForumCard()}
