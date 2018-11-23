@@ -109,13 +109,17 @@ class ChatView extends Component {
 
   chatView() {
 
-    var messages = [];
+    let messages = [];
 
-    this.state.messages.forEach(function(message, index) {
-      messages.push(
-          <MessageBubble key={index} direction={message.direction} text={message.text}/>
-        );
-    });
+      this.state.messages.forEach(function(message, index) {
+        messages.push(
+            <MessageBubble key={index} direction={message.direction} text={message.text}/>
+          )
+      })
+
+      if (this.props.navigation.state.params.page === 'CreateChat') {
+        message = []
+    } 
 
     return (
               <View style={styles.outer}>
@@ -138,7 +142,16 @@ class ChatView extends Component {
         <Left>
         <Button transparent
             onPress={() => {
-            this.props.navigation.goBack(this.props.navigation.state.key)           
+              if (this.props.navigation.state.params.page === 'CreateChat') {
+                this.props.navigation.navigate("YourChatList", {
+                  name: this.props.navigation.state.params.name,
+                  anonymity: this.props.navigation.state.params.anonymity, 
+                  type: this.props.navigation.state.params.type, 
+                  members: this.props.navigation.state.params.member, 
+                  page: 'ChatView', delete: ''})
+            } else {
+              this.props.navigation.goBack(this.props.navigation.state.key)  
+            }         
             }}  
             >
               <Icon 
@@ -157,7 +170,12 @@ class ChatView extends Component {
         <View style={{padding: 5}}>
             <Button small dark 
             onPress={() => this.props.navigation.navigate("Members", 
-            {name: this.props.navigation.state.params.name, members: this.props.navigation.state.params.members})}>
+            {
+              name: this.props.navigation.state.params.name,
+              anonymity: this.props.navigation.state.params.anonymity, 
+              type: this.props.navigation.state.params.type, 
+              members: this.props.navigation.state.params.members, 
+              page: 'ChatView'})}>
             <Text style={{fontSize: 12}}>View Members</Text>
             </Button>
             </View>
@@ -191,11 +209,26 @@ class ChatView extends Component {
                 onCancelPressed={() => this.setState({showAlert: false})}
                 onConfirmPressed={() => {
                   if (this.props.navigation.state.params.page == 'YourChatList') {
-                    this.props.navigation.navigate('YourChatList', {delete: this.props.navigation.state.params.name})
+                    this.props.navigation.navigate('YourChatList', {
+                      name: this.props.navigation.state.params.name,
+                      anonymity: this.props.navigation.state.params.anonymity, 
+                      type: this.props.navigation.state.params.type, 
+                      members: this.props.navigation.state.params.member, 
+                      page: 'ChatView', delete: this.props.navigation.state.params.name})
                   } else if (this.props.navigation.state.params.page == 'ChatList') {
-                    this.props.navigation.navigate('ChatList')
+                    this.props.navigation.navigate('ChatList', {
+                      name: this.props.navigation.state.params.name,
+                      anonymity: this.props.navigation.state.params.anonymity, 
+                      type: this.props.navigation.state.params.type, 
+                      members: this.props.navigation.state.params.member, 
+                      page: 'ChatView', delete: this.props.navigation.state.params.name})
                   } else if (this.props.navigation.state.params.page == 'CreateChat') {
-                    this.props.navigation.navigate('YourChatList', {add: this.props.navigation.state.params.name})
+                    this.props.navigation.navigate('YourChatList', {
+                      name: this.props.navigation.state.params.name,
+                      anonymity: this.props.navigation.state.params.anonymity, 
+                      type: this.props.navigation.state.params.type, 
+                      members: this.props.navigation.state.params.member, 
+                      page: 'ChatView', delete: this.props.navigation.state.params.name})
                   }
                   this.setState({showAlert: false})
                 }

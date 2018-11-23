@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
 import { View, Container, Header, Left, Body, Right, 
-  Button, Icon, Segment, Content, Text, Card, CardItem, Title} from 'native-base';
+  Button, Input, Icon, Segment, Content, Text, Card, CardItem, Title, Item} from 'native-base';
 import AwesomeAlert from 'react-native-awesome-alerts'
 import { SearchBar } from 'react-native-elements'
 
@@ -164,7 +164,7 @@ let state = {
       type: 'Public'
     },
     ],
-    delete: {}
+    delete: ''
   }
 
   function generateUsers(num) {
@@ -265,7 +265,7 @@ class YourChatList extends Component {
     const { navigate } = this.props.navigation
     return (
       <Container >
-        <Header hasSegment>
+        <Header hasSegment searchBar rounded>
         <Left>
         <Button transparent
             onPress={() => this.props.navigation.navigate("ChatHome")
@@ -281,19 +281,16 @@ class YourChatList extends Component {
             <Title>Your Chatrooms</Title>
           </Body>
           <Right />
-          <SearchBar
-            inputStyle={{backgroundColor: 'white'}}
-            containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
-            showLoading
-            onChangeText={(text) =>
+          <Item>
+          <Icon name="ios-search" />
+          <Input placeholder="Search" onChangeText={(text) =>
              {const newList = this.state.search.filter(group => {
                 return group.name.toUpperCase().includes(text.toUpperCase())
               })
               this.setState({
                 groups: newList
-              })}}
-            cancelButtonTitle="Cancel"
-            placeholder='Search' />
+              })}}/>
+        </Item>
           </Header>
             <Segment>
               <Button first onPress={() => navigate("ForumCard")}>
@@ -305,7 +302,9 @@ class YourChatList extends Component {
             </Segment>
         <Container style={styles.container}>
         <ScrollView>
+          <Content padder>
         {this.chatList()}
+        </Content>
         </ScrollView>
     </Container>
     <AwesomeAlert
@@ -326,7 +325,7 @@ class YourChatList extends Component {
          })
          this.setState({
            showAlert: false,
-           groups: newGroups
+           groups: newGroups, search: newGroups
            })
       }}
       />
@@ -341,8 +340,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignContent: 'center',
-        backgroundColor: '#26365e',
-        padding: 20},
+        backgroundColor: '#26365e'},
   text: {
     color: 'white',
     fontSize: 40,

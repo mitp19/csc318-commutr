@@ -7,7 +7,7 @@ import {
 } from 'react-native';
 
 import {
-  Container, Header, Icon, Picker, Left, Right, Button, 
+  Container, Header, Icon, Picker, Left, Right, Button, Item, Input,
   Body, Title, Card, CardItem, Content
 } from 'native-base';
 
@@ -293,7 +293,7 @@ class Downloads extends Component {
   render () {
     return (
       <Container style={styles.container}>
-        <Header>
+        <Header searchBar rounded>
           <Left>
             <Button transparent
             onPress={() =>
@@ -319,21 +319,17 @@ class Downloads extends Component {
           <Body>
           <Title>Downloads</Title>
           </Body>
-          <Right />
-          <SearchBar
-            inputStyle={{backgroundColor: 'white'}}
-            containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
-            showLoading
-            onChangeText={(text) =>
+          <Item>
+          <Icon name="ios-search" />
+          <Input placeholder="Search" onChangeText={(text) =>
              {const newDownloads = this.state.search.filter(download => {
                 return download.title.toUpperCase().includes(text.toUpperCase()) || 
                 download.artist.toUpperCase().includes(text.toUpperCase())
               })
               this.setState({
                 downloads: newDownloads
-              })}}
-            cancelButtonTitle="Cancel"
-            placeholder='Search' />
+              })}}/>
+        </Item>
         </Header>
         <Picker
               renderHeader={backAction =>
