@@ -57,7 +57,7 @@ export default class Goals extends Component {
     }
     render() {
         return (
-            <Container styles={styles.container}>
+            // <Container styles={styles.container}>
                 <Content>
                     <Card>
                         <CardItem header bordered>
@@ -85,7 +85,7 @@ export default class Goals extends Component {
                         </CardItem>
                     </Card>
                 </Content>
-            </Container>
+            // </Container>
         );
     }
 }

@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
-import { View, Container, Header, Left, Body, Right, 
-  List, ListItem, Thumbnail, Button, Icon, Segment, Content, Text, Card, CardItem, Title, Form, Item, Input,
+import { View, Container, Header, Left, Body, Right, Thumbnail, Button, Icon, Segment, Content, Text, Card, CardItem, Title, Form, Item, Input,
 Label, Picker} from 'native-base';
 
 class CreateChat extends Component {
@@ -49,7 +48,7 @@ class CreateChat extends Component {
     };
   }
 
-  onValueChange(value: string) {
+  onValueChange(value) {
     this.setState({
       selected: value
     });

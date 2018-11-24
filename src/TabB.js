@@ -9,13 +9,15 @@ import {
   Text, Body, Button, Icon, Title, Left, Right, Item, Input
 } from "native-base";
 import Goals from "./commute/Goals";
+import Alerts from "./commute/Alerts";
 
 class TabB extends Component {
 
   constructor(props) {
     super(props);
     this.state = {
-      showCommute: false
+      showCommute: false,
+      showAlerts: false
     };
   }
 
@@ -26,11 +28,17 @@ class TabB extends Component {
 
   handleWorkPress() {
     let previousState = this.state
-    this.setState({showCommute: !previousState.showCommute})
+    this.setState({showCommute: !previousState.showCommute, showAlerts: !previousState.showAlerts});
   }
   renderGoals() {
     return (
       <Goals/>
+    );
+  }
+
+  renderAlerts() {
+    return (
+      <Alerts/>
     );
   }
   renderMap() {
@@ -57,6 +65,7 @@ class TabB extends Component {
           </Body>
           <Right />
         </Header>
+        {/* <Destination/> */}
         <Content padder>
           <Card>
             <CardItem header bordered>
@@ -104,6 +113,7 @@ class TabB extends Component {
             </CardItem>
           </Card>
           {this.state.showCommute && this.renderMap()}
+          {this.state.showAlerts && this.renderAlerts()}
           {this.renderGoals()}
         </Content>
       </Container>

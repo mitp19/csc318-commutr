@@ -10,7 +10,6 @@ import {
   Text, Body, Button, Icon, Title, Left, Right, Item, Input, Thumbnail
 } from "native-base";
 
-
 class TabC extends Component {
 
   static navigationOptions = ({ navigation }) => ({
@@ -31,6 +30,7 @@ class TabC extends Component {
         <Content padder>
 
         {/* Commute card */}
+
           <Card>
             <CardItem header bordered>
               <Text style={{fontSize:30}}> Commute</Text>
@@ -42,6 +42,8 @@ class TabC extends Component {
 
                 <Icon name='arrow-forward' style={{fontSize:30}}/>
               </Button>
+            </CardItem>
+            <CardItem>
             </CardItem>
 
             <CardItem bordered>

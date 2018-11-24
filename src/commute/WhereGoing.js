@@ -8,6 +8,7 @@ import {
     Container, Header, Content, Card, CardItem,
     Text, Body, Button, Icon, Title, Left, Right, Item, Input
 } from "native-base";
+import Destination from "./commute/Destination";
 
 export default class WhereGoing extends Component {
 
@@ -21,6 +22,8 @@ export default class WhereGoing extends Component {
                     </Body>
                     <Right />
                 </Header>
+                <Destination> </Destination>
+
                 <Content padder>
                     <Card>
                         <CardItem header bordered>
