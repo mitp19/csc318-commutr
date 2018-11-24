@@ -8,12 +8,11 @@ import {
 } from 'react-native';
 
 import {
-  Container, Header, Icon, Picker, Left, Right, Button, Body, Title, Card, CardItem,Content
+  Container, Header, Icon, Picker, Left, Right, Button, Body, 
+  Title, Card, CardItem,Content, Input, Item
 } from 'native-base';
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
-
-import { SearchBar } from 'react-native-elements';
 
 state = {
   selected: "key0",
@@ -309,7 +308,7 @@ class Music extends Component {
   render () {
     return (
       <Container style={styles.container}>
-        <Header>
+        <Header searchBar rounded>
           <Left>
             <Button transparent
             onPress={() =>
@@ -324,21 +323,17 @@ class Music extends Component {
           <Body>
           <Title>Music</Title>
           </Body>
-          <Right />
-          <SearchBar
-            inputStyle={{backgroundColor: 'white'}}
-            containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
-            showLoading
-            onChangeText={(text) =>
+          <Item>
+          <Icon name="ios-search" />
+          <Input placeholder="Search" onChangeText={(text) =>
               {const newMusic = this.state.search.filter(music => {
                  return music.title.toUpperCase().includes(text.toUpperCase()) || 
                  music.artist.toUpperCase().includes(text.toUpperCase())
                })
                this.setState({
                  music: newMusic
-               })}}
-            cancelButtonTitle="Cancel"
-            placeholder='Search' />
+               })}}/>
+        </Item>
         </Header>
         <Picker
               renderHeader={backAction =>

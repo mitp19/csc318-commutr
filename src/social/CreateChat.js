@@ -4,6 +4,39 @@ import FontAwesome, { Icons } from "react-native-fontawesome";
 import { View, Container, Header, Left, Body, Right, Thumbnail, Button, Icon, Segment, Content, Text, Card, CardItem, Title, Form, Item, Input,
 Label, Picker} from 'native-base';
 
+let state = {
+  selected: "key0",
+  name: '',
+  checkedNum: 0,
+  friendList: [
+    {
+      name: 'Jiayin',
+      checked: false,
+    checkBox: 'checkbox-blank-outline',
+    path: 'https://image.ibb.co/kdJRXA/Jiayin.jpg'
+  },
+  {
+    name: 'Jenni',
+    checked: false,
+    checkBox: 'checkbox-blank-outline',
+    path: 'https://image.ibb.co/ja29kV/Jenni.jpg'
+  }, 
+    {
+      name: 'Guohai',
+      checked: false,
+     checkBox: 'checkbox-blank-outline',
+     path: 'https://image.ibb.co/eibrzq/Guohai.jpg'
+    },
+    {
+      name: 'Ping',
+      checked: false,
+    checkBox: 'checkbox-blank-outline',
+    path: 'https://image.ibb.co/hhcaQV/Ping.jpg'
+    }
+  ],
+  members: []
+}
+
 class CreateChat extends Component {
 
   static navigationOptions = ({ navigation }) => ({
@@ -232,7 +265,8 @@ class CreateChat extends Component {
                 type = 'Private'
               }
               this.props.navigation.navigate("ChatView", {name: this.state.name,
-                anonymity: "public", type: type, members: this.state.members, page: 'CreateChat'})
+                anonymity: "public", type: type, members: this.state.members, page: 'CreateChat',
+              delete: ''})
             }
             }>
               <Text>Create Chatroom!</Text>

@@ -8,7 +8,8 @@ import {
 } from 'react-native';
 
 import {
-  Container, Header, Icon, Picker, Left, Right, Button, Body, Title, Card, CardItem, Content
+  Container, Header, Icon, Picker, Item, Input,
+  Left, Right, Button, Body, Title, Card, CardItem, Content
 } from 'native-base';
 
 import FontAwesome, { Icons } from 'react-native-fontawesome';
@@ -422,7 +423,7 @@ class BooksArticles extends Component {
   render () {
     return (
       <Container style={styles.container}>
-        <Header>
+        <Header searchBar rounded>
           <Left>
             <Button transparent
             onPress={() =>
@@ -437,21 +438,17 @@ class BooksArticles extends Component {
           <Body>
           <Title>Books/Articles</Title>
           </Body>
-          <Right />
-          <SearchBar
-            inputStyle={{backgroundColor: 'white'}}
-            containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
-            showLoading
-            onChangeText={(text) =>
+          <Item>
+          <Icon name="ios-search" />
+          <Input placeholder="Search" onChangeText={(text) =>
               {const newBooks = this.state.search.filter(book => {
                  return book.title.toUpperCase().includes(text.toUpperCase()) || 
                  book.artist.toUpperCase().includes(text.toUpperCase())
                })
                this.setState({
                  books: newBooks
-               })}}
-            cancelButtonTitle="Cancel"
-            placeholder='Search' />
+               })}}/>
+        </Item>
         </Header>
         <Picker
               renderHeader={backAction =>

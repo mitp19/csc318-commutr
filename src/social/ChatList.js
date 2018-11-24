@@ -2,9 +2,113 @@ import React, { Component } from 'react'
 import { StyleSheet, ScrollView } from 'react-native'
 import FontAwesome, { Icons } from "react-native-fontawesome";
 import { View, Container, Header, Left, Body, Right, 
-  Button, Icon, Segment, Content, Text, Card, CardItem, Title} from 'native-base';
-import { SearchBar } from 'react-native-elements'
+  Button, Item, Icon, Input, Segment, Content, Text, Card, CardItem, Title} from 'native-base';
 import AwesomeAlert from 'react-native-awesome-alerts'
+
+let state = {
+  showAlert: false,
+  groups: [
+    {name: "TTC Haters Club",
+    memberNum: 15,
+    members: generateUsers(15),
+    type: 'Public',
+    disabled: false
+  },
+    {name: "Sleep Deprived Club",
+    memberNum: 20,
+    members: generateUsers(20),
+    type: 'Public',
+    disabled: false
+  },
+    {name: "Sleeping is For Losers",
+    memberNum: 8,
+    members: generateUsers(8),
+    type: 'Private',
+    disabled: false
+  },
+    {name: "I'm Bored Chat",
+    memberNum: 7,
+    members: generateUsers(7),
+    type: 'Public',
+    disabled: false
+  },
+    {name: "Chaotic Chatroom :)",
+    memberNum: 18,
+    members: generateUsers(18),
+    type: 'Public',
+    disabled: false
+  },
+    {name: "When Will School be Over?",
+    memberNum: 4,
+    members: generateUsers(4),
+    type: 'Private',
+    disabled: false
+  },
+    {name: "Christmas is Coming!!",
+    memberNum: 5,
+    members: generateUsers(5),
+    type: 'Public',
+    disabled: false
+  }
+  ],
+  search: [
+    {name: "TTC Haters Club",
+    memberNum: 15,
+    members: generateUsers(15),
+    type: 'Public',
+    disabled: false
+  },
+    {name: "Sleep Deprived Club",
+    memberNum: 20,
+    members: generateUsers(20),
+    type: 'Public',
+    disabled: false
+  },
+    {name: "Sleeping is For Losers",
+    memberNum: 8,
+    members: generateUsers(8),
+    type: 'Private',
+    disabled: false
+  },
+    {name: "I'm Bored Chat",
+    memberNum: 7,
+    members: generateUsers(7),
+    type: 'Public',
+    disabled: false
+  },
+    {name: "Chaotic Chatroom :)",
+    memberNum: 18,
+    members: generateUsers(18),
+    type: 'Public',
+    disabled: false
+  },
+    {name: "When Will School be Over?",
+    memberNum: 4,
+    members: generateUsers(4),
+    type: 'Private',
+    disabled: false
+  },
+    {name: "Christmas is Coming!!",
+    memberNum: 5,
+    members: generateUsers(5),
+    type: 'Public',
+    disabled: false
+  }
+  ],
+  groupRequest: ''
+}
+
+function generateUsers(num) {
+  let users = []
+  for (let i = 1; i <= num; i++) {
+    let name = 'User' + i
+    user = {}
+    user.name = name
+    user.reported = false
+    users.push(user)
+  }
+  return(users)
+} 
 
 class ChatList extends Component {
 
@@ -16,111 +120,13 @@ class ChatList extends Component {
 
   constructor(props) {
     super(props)
-    this.state = {
-      showAlert: false,
-      groups: [
-        {name: "TTC Haters Club",
-        memberNum: 15,
-        members: this.generateUsers(15),
-        type: 'Public',
-        disabled: false
-      },
-        {name: "Sleep Deprived Club",
-        memberNum: 20,
-        members: this.generateUsers(20),
-        type: 'Public',
-        disabled: false
-      },
-        {name: "Sleeping is For Losers",
-        memberNum: 8,
-        members: this.generateUsers(8),
-        type: 'Private',
-        disabled: false
-      },
-        {name: "I'm Bored Chat",
-        memberNum: 7,
-        members: this.generateUsers(7),
-        type: 'Public',
-        disabled: false
-      },
-        {name: "Chaotic Chatroom :)",
-        memberNum: 18,
-        members: this.generateUsers(18),
-        type: 'Public',
-        disabled: false
-      },
-        {name: "When Will School be Over?",
-        memberNum: 4,
-        members: this.generateUsers(4),
-        type: 'Private',
-        disabled: false
-      },
-        {name: "Christmas is Coming!!",
-        memberNum: 5,
-        members: this.generateUsers(5),
-        type: 'Public',
-        disabled: false
-      }
-      ],
-      search: [
-        {name: "TTC Haters Club",
-        memberNum: 15,
-        members: this.generateUsers(15),
-        type: 'Public',
-        disabled: false
-      },
-        {name: "Sleep Deprived Club",
-        memberNum: 20,
-        members: this.generateUsers(20),
-        type: 'Public',
-        disabled: false
-      },
-        {name: "Sleeping is For Losers",
-        memberNum: 8,
-        members: this.generateUsers(8),
-        type: 'Private',
-        disabled: false
-      },
-        {name: "I'm Bored Chat",
-        memberNum: 7,
-        members: this.generateUsers(7),
-        type: 'Public',
-        disabled: false
-      },
-        {name: "Chaotic Chatroom :)",
-        memberNum: 18,
-        members: this.generateUsers(18),
-        type: 'Public',
-        disabled: false
-      },
-        {name: "When Will School be Over?",
-        memberNum: 4,
-        members: this.generateUsers(4),
-        type: 'Private',
-        disabled: false
-      },
-        {name: "Christmas is Coming!!",
-        memberNum: 5,
-        members: this.generateUsers(5),
-        type: 'Public',
-        disabled: false
-      }
-      ],
-      groupRequest: ''
-    }
+    this.state = state;
   }
 
-  generateUsers(num) {
-    let users = []
-    for (let i = 1; i <= num; i++) {
-      let name = 'User' + i
-      user = {}
-      user.name = name
-      user.reported = false
-      users.push(user)
-    }
-    return(users)
-  } 
+  componentWillUnmount() {
+    // Remember state for the next mount
+    state = this.state;
+  }
 
   chatCard(title, num, members, type) {
     if (type === 'Public') {
@@ -128,9 +134,9 @@ class ChatList extends Component {
         <Card key={title}>
         <CardItem style={{height: 90, justifyContent: 'center' ,alignContent: 'center'}} bordered>
               <View>
-                <Text style={{fontSize: 12, fontWeight: 'bold'}}>{title}</Text>
-                <Text style={{fontSize: 10}}>{type} chatroom</Text>
-                <Text style={{fontSize: 9}}>{num} members</Text>
+                <Text style={{fontSize: 14, fontWeight: 'bold'}}>{title}</Text>
+                <Text style={{fontSize: 12}}>{type} chatroom</Text>
+                <Text style={{fontSize: 11}}>{num} members</Text>
               </View>
               <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
               <View>
@@ -140,7 +146,7 @@ class ChatList extends Component {
                 {name: title, type: 'public', anonymity: 'anonymous', type: 'Public', 
               members: members, page: 'ChatList'})}
                       >
-                    <Text style={{fontSize: 8}}>Join Anonymously</Text>
+                    <Text style={{fontSize: 10}}>Join Anonymously</Text>
                   </Button>
                 </Body>
                 <Body style={{justifyContent: "center"}}>
@@ -149,7 +155,7 @@ class ChatList extends Component {
                 {name: title, type: 'public', anonymity: 'public', type: 'Public',
               members: members, page: 'ChatList'})}
                       >
-                    <Text style={{fontSize: 8}}>Join as Public User</Text>
+                    <Text style={{fontSize: 10}}>Join as Public User</Text>
                   </Button>
                 </Body>
                 </View>
@@ -168,15 +174,15 @@ class ChatList extends Component {
       if (this.state.groups[index].disabled) {
         buttonText = 'Request Sent'
       } else {
-        buttonText = 'Request Invite'
+        buttonText = 'Request to Join'
       }
       return (
         <Card key={title}>
         <CardItem style={{height: 90, justifyContent: 'center' ,alignContent: 'center'}} bordered>
               <View>
-                <Text style={{fontSize: 12, fontWeight: 'bold'}}>{title}</Text>
-                <Text style={{fontSize: 10}}>{type} chatroom</Text>
-                <Text style={{fontSize: 9}}>{num} members</Text>
+                <Text style={{fontSize: 14, fontWeight: 'bold'}}>{title}</Text>
+                <Text style={{fontSize: 12}}>{type} chatroom</Text>
+                <Text style={{fontSize: 11}}>{num} members</Text>
               </View>
               <Body style={{flexDirection: "row", justifyContent: "flex-end"}}>
               <View>
@@ -210,7 +216,7 @@ class ChatList extends Component {
     const { navigate } = this.props.navigation
     return (
       <Container >
-        <Header hasSegment>
+        <Header hasSegment searchBar rounded>
         <Left>
         <Button transparent
             onPress={() => navigate("ChatHome")
@@ -226,19 +232,16 @@ class ChatList extends Component {
             <Title>Browse Chatrooms</Title>
           </Body>
           <Right/>
-          <SearchBar
-            inputStyle={{backgroundColor: 'white'}}
-            containerStyle={{backgroundColor: 'white', borderWidth: 1, borderRadius: 5}}
-            showLoading
-            onChangeText={(text) =>
+          <Item>
+          <Icon name="ios-search" />
+          <Input placeholder="Search" onChangeText={(text) =>
              {const newList = this.state.search.filter(group => {
                 return group.name.toUpperCase().includes(text.toUpperCase())
               })
               this.setState({
                 groups: newList
-              })}}
-            cancelButtonTitle="Cancel"
-            placeholder='Search' />
+              })}}/>
+        </Item>
           </Header>
             <Segment>
               <Button first onPress={() => navigate("ForumCard")}>
@@ -250,7 +253,9 @@ class ChatList extends Component {
             </Segment>
         <Container style={styles.container}>
         <ScrollView>
+          <Content padder>
         {this.chatList()}
+        </Content>
         </ScrollView>
     </Container>
     <AwesomeAlert
@@ -272,7 +277,7 @@ class ChatList extends Component {
                       newGroups[i].disabled = true
                     }
                 }
-                  this.setState({showAlert: false, groups: newGroups})}
+                  this.setState({showAlert: false, groups: newGroups, search: newGroups})}
                 }
                 />
       </Container>
@@ -286,8 +291,7 @@ const styles = StyleSheet.create({
   container: {
     justifyContent: 'center',
     alignContent: 'center',
-        backgroundColor: '#26365e',
-        padding: 20},
+        backgroundColor: '#26365e'},
   text: {
     color: 'white',
     fontSize: 40,
