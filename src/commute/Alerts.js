@@ -66,10 +66,10 @@ export default class Alerts extends Component {
                     <CardItem footer bordered>
                         <Text> Community Alerts</Text>
                         {/* <Right> */}
-                        <Button small transparent >
-                            <Text style={{ left: 4, fontSize: 10 }} onPress={() => {this.setState({modalVisible: true})
-            this.refs.modal3.open()}}> Add Alert for Route </Text>
-                            <Icon transparent name='chevron-circle-right'
+                        <Button small transparent onPress={() => {this.setState({modalVisible: true})
+            this.refs.modal3.open()}}>
+                            <Text style={{fontSize: 10 }}> Add Your Service Alert </Text>
+                            <Icon style={{padding:0, margin:0}}name='plus-circle'
                                 type='FontAwesome' />
                         </Button>
                         {/* </Right> */}
@@ -80,7 +80,7 @@ export default class Alerts extends Component {
             padding: 15,
             height: 300, width: 300
             }} position={"center"} 
-            backdropPressToClose={false}
+            backdropPressToClose={true}
           ref={"modal3"} isDisabled={this.modalVisible}>
           
             <Text style={{fontWeight: "bold"}}>Create New Post</Text>
