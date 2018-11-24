@@ -317,9 +317,11 @@ export default class ForumCard extends Component {
 
   renderYourPost(post) {
     let key
+    let index = 0
     for (let i = 0; i < this.state.yourPosts.length; i++) {
       if (this.state.yourPosts[i].time === post.time) {
         key = this.state.yourPosts[i].key
+        index = i
       }
     }
     return(
@@ -354,17 +356,17 @@ export default class ForumCard extends Component {
               <Button transparent onPress={() => {
                 let newFeed = this.state.yourPosts
                     if (post.likeButton == 'thumbs-o-up') {
-                      newFeed[post.key].likeButton = 'thumbs-up'
-                      newFeed[post.key].likes++
+                      newFeed[index].likeButton = 'thumbs-up'
+                      newFeed[index].likes++
                     } else {
-                      newFeed[post.key].likeButton = 'thumbs-o-up'
-                      newFeed[post.key].likes--
+                      newFeed[index].likeButton = 'thumbs-o-up'
+                      newFeed[index].likes--
                     }
                 
                 this.setState({yourPosts: newFeed, searchYourPosts: newFeed})
                 }}>
-                  <Icon active name={this.state.yourPosts[key].likeButton} type="FontAwesome"/>
-                  <Text>{this.state.yourPosts[key].likes}</Text>
+                  <Icon active name={this.state.yourPosts[index].likeButton} type="FontAwesome"/>
+                  <Text>{this.state.yourPosts[index].likes}</Text>
                 </Button>
               </Left>
               <Body>
@@ -742,7 +744,7 @@ render() {
                         let ampm = hours >= 12 ? 'pm' : 'am';
                         hours = hours % 12;
                         hours = hours ? hours : 12; // the hour '0' should be '12'
-                        minutes = minutes < 10 ? '0'+minutes : minutes;
+                        minutes = minutes < 10 ? '0'+ minutes : minutes;
                         seconds = seconds ? seconds : '00';
                         const time = hours + ":" + minutes + ":" + seconds + " " + ampm
                         const newPost = {
