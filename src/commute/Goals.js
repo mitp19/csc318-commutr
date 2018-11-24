@@ -16,9 +16,9 @@ export default class Goals extends Component {
         this.state = {
             placeholder: "Add a new goal",
             items: [
-                {status: true, goal: "Read Chapter 3 of Factfulness"},
-                {status: false, goal: "Reply back to Mom's text"},
-                {status: false, goal: "Figure out what life is"}
+                {index: 0, status: true, goal: "Read Chapter 3 of Factfulness"},
+                {index: 1, status: false, goal: "Reply back to Mom's text"},
+                {index: 2, status: false, goal: "Figure out what life is"}
             ], 
             new_goal: ""
         }
@@ -36,7 +36,7 @@ export default class Goals extends Component {
         let added_goal = previousState.new_goal;
         if (previousState.items.includes(added_goal)) {alert("Goal Already Exists"); return;}
         if (added_goal == "") {alert("No Goal Entered"); return;}
-        previousState.items.push({status: false, goal: added_goal})
+        previousState.items.push({index: this.state.items.length, status: false, goal: added_goal})
         this.setState({
             items: previousState.items,
             new_goal: "",
@@ -44,10 +44,21 @@ export default class Goals extends Component {
         this.goalInput.current._root.clear();
         }
     
+    handleCheckedGoal(index) {
+        let prevState = this.state;
+        prevState.items[index].status = !prevState.items[index].status
+        this.setState({
+            items: prevState.items
+            })
+    }
+    
     renderGoalList() {
         let GoalList = this.state.items.map((item) =>
                 <ListItem key={item.goal} style={{ width: 325 }}>
-                    <CheckBox checked={item.status} color={this.getColor(item.status)}/>
+                    <CheckBox  onPress={() => {
+                        this.handleCheckedGoal(item.index);
+                    }}
+                    checked={item.status} color={this.getColor(item.status)}/>
                     <Body>
                         <Text> {item.goal}</Text>
                     </Body>
