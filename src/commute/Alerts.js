@@ -77,13 +77,13 @@ export default class Alerts extends Component {
                     {this.communityAlerts()}
                 <Modal style={{
                     padding: 15,
-                    height: 300, width: 300
+                    height: 150, width: 300
                 }} position={"center"}
                     backdropPressToClose={true}
                     ref={"modal3"} isDisabled={this.modalVisible}>
 
                     <Text style={{ fontWeight: "bold" }}>Create New Post</Text>
-                    <Textarea rowSpan={8} bordered placeholder="A a new service alert for your route." onChangeText={(text) => { this.setState({ text: text }) }} />
+                    <Textarea style={{height: 75}} rowSpan={8} bordered placeholder="A a new service alert for your route." onChangeText={(text) => { this.setState({ text: text }) }} />
                     <View style={{ marginTop: 5, flexDirection: "row" }}>
                         <Button style={{ marginRight: 5 }} danger small onPress={() => this.refs.modal3.close()}>
                             <Text>Cancel</Text>
