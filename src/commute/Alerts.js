@@ -82,8 +82,8 @@ export default class Alerts extends Component {
                     backdropPressToClose={true}
                     ref={"modal3"} isDisabled={this.modalVisible}>
 
-                    <Text style={{ fontWeight: "bold" }}>Create New Post</Text>
-                    <Textarea style={{height: 75}} rowSpan={8} bordered placeholder="A a new service alert for your route." onChangeText={(text) => { this.setState({ text: text }) }} />
+                    <Text style={{ fontWeight: "bold" }}> Update Other Commuters!</Text>
+                    <Textarea style={{height: 70}} rowSpan={8} bordered placeholder="Add a service alert for your route" onChangeText={(text) => { this.setState({ text: text }) }} />
                     <View style={{ marginTop: 5, flexDirection: "row" }}>
                         <Button style={{ marginRight: 5 }} danger small onPress={() => this.refs.modal3.close()}>
                             <Text>Cancel</Text>

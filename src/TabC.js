@@ -102,16 +102,6 @@ class TabC extends Component {
               </Body>
             </CardItem>
 
-
-            <CardItem Bordered>
-              <Body>
-                <Item>
-                  <Input placeholder='Enter New Goal' />
-                  <Icon active name='arrow-round-forward' />
-                </Item>
-              </Body>
-            </CardItem>
-
             <CardItem>
               <Button block onPress={() =>
                     this.props.navigation.navigate('TabB')
