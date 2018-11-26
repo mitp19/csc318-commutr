@@ -19,7 +19,8 @@ class TabB extends Component {
       showWhereAreYouGoing: true,
       showCommute: false,
       showAlerts: false,
-      headed: ""
+      headed: "",
+      startingLocation: "Current Location"
     };
   }
 
@@ -28,10 +29,11 @@ class TabB extends Component {
     tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.bus}</FontAwesome>
   })
 
-  handleWorkPress(headed) {
+  handleWorkPress(startingLocation, destination) {
     let previousState = this.state
     this.setState({
-      headed: headed,
+      startingLocation: startingLocation,
+      headed: destination,
       showCommute: !previousState.showCommute,
       showAlerts: !previousState.showAlerts,
       showWhereAreYouGoing: !previousState.showWhereAreYouGoing,
@@ -45,6 +47,7 @@ class TabB extends Component {
       showCommute: !previousState.showCommute,
       showAlerts: !previousState.showAlerts,
       showWhereAreYouGoing: !previousState.showWhereAreYouGoing,
+      goingTo: ""
     });
   }
 
@@ -65,10 +68,12 @@ class TabB extends Component {
       <Card>
         <CardItem header bordered>
           <Text>
-            You are heading to: {this.state.headed}
+            You are heading{"\n\n"}
+            From: {this.state.startingLocation}{"\n\n"}
+            To: {this.state.headed}
           </Text>
           <Right>
-          <Button style={{ marginLeft: 75 }} small onPress={() => { this.handleEditGoingTo() }}>
+          <Button small onPress={() => { this.handleEditGoingTo() }}>
             <Icon style={{ marginRight: 0, marginLeft: 0, paddingRight: 7, paddingLeft: 7 }} name='edit'
               type='FontAwesome' />
           </Button>
@@ -77,8 +82,8 @@ class TabB extends Component {
         <CardItem>
           {this.renderAlerts()}
         </CardItem>
-        <CardItem bordered style={{paddingLeft: 0, paddingRight: 0}}>
-                    <Text> Route and Transfer Details</Text>
+        <CardItem bordered >
+            <Text> Route and Transfer Details</Text>
         </CardItem>
         <CardItem cardBody>
           <Image
@@ -100,11 +105,11 @@ class TabB extends Component {
         <CardItem bordered>
           <Body>
             <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between' }}>
-              <Button onPress={() => { this.handleWorkPress("Home") }} iconLeft>
+              <Button onPress={() => { this.handleWorkPress("Your Location", "Home") }} iconLeft>
                 <Icon name='home' />
                 <Text>Home</Text>
               </Button>
-              <Button onPress={() => { this.handleWorkPress("Work") }} iconLeft primary style={{ left: 10 }}>
+              <Button onPress={() => { this.handleWorkPress("Your Location", "Work") }} iconLeft primary style={{ left: 10 }}>
                 <Icon name='briefcase' />
                 <Text>Work</Text>
               </Button>
@@ -114,10 +119,10 @@ class TabB extends Component {
         <CardItem bordered>
           <Body style={{ paddingBottom: 10 }}>
             <Text>Recent Destinations</Text>
-            <Button block style={{ top: 5 }}>
+            <Button onPress={() => { this.handleWorkPress("Your Location", "150 College St.")}} block style={{ top: 5 }}>
               <Text>150 College St.</Text>
             </Button>
-            <Button block style={{ top: 10 }}>
+            <Button onPress={() => { this.handleWorkPress("Your Location", "39 Sunflower Rd.") }} block style={{ top: 10 }}>
               <Text>39 Sunflower Rd.</Text>
             </Button>
           </Body>
@@ -125,15 +130,25 @@ class TabB extends Component {
         <CardItem>
           <Body>
             <Item>
-              <Input placeholder='Enter Starting Location' />
+              
+              <Input 
+              onChangeText={(startingLocation) => this.setState({startingLocation})}
+              placeholder='Enter Starting Location' />
             </Item>
           </Body>
         </CardItem>
         <CardItem>
           <Body>
             <Item>
-              <Input placeholder='Enter New Destination' />
-              <Icon active name='arrow-round-forward' />
+              <Input placeholder='Enter New Destination'
+               onChangeText={(goingTo) => this.setState({goingTo})}/>
+              <Button 
+                  onPress={() => {this.handleWorkPress(this.state.startingLocation, this.state.goingTo)} }
+                  active 
+                  transparent>
+                      <Icon name='arrow-round-forward'/>
+                  </Button>
+              {/* <Icon active name='arrow-round-forward' /> */}
             </Item>
           </Body>
         </CardItem>
