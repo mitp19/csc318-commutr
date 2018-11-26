@@ -10,7 +10,7 @@ import FontAwesome, { Icons } from "react-native-fontawesome";
 
 class TabE extends Component {
 
-  static navigationOptions = ({ navigation }) => ({
+  static navigationOptions = ({ navigation }) => ({ 
     title: 'Canvas AR',
     tabBarIcon: ({ tintColor }) => 
     <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.paintBrush}</FontAwesome>

@@ -5,7 +5,7 @@ import {
 } from 'react-native'
 
 import {
-    Container, Content, Card, CardItem, Text, Body, ListItem, CheckBox,
+    Content, Card, CardItem, Text, Body, ListItem, CheckBox,
     Item, Input, Icon, Button
 } from "native-base";
 
@@ -29,6 +29,10 @@ export default class Goals extends Component {
             return "green";
         }
         return "red";
+    }
+    
+    selectedLocation() {
+
     }
 
     handleAddNewGoal() {

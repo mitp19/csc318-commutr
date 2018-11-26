@@ -12,6 +12,12 @@ import Destination from "./commute/Destination";
 
 export default class WhereGoing extends Component {
 
+    constructor(props) {
+        super(props)
+        this.state = {
+
+        }
+    }
     render() {
         return (
             <Container styles={styles.container}>
@@ -28,6 +34,10 @@ export default class WhereGoing extends Component {
                     <Card>
                         <CardItem header bordered>
                             <Text> Where are you going?</Text>
+                            <Button iconLeft primary style={{ left: 10 }}>
+                                        <Icon name='plus' />
+                                        <Text>Add New Location</Text>
+                            </Button>
                         </CardItem>
                         <CardItem bordered>
                             <Body>

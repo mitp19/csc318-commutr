@@ -16,8 +16,10 @@ class TabB extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      showWhereAreYouGoing: true,
       showCommute: false,
-      showAlerts: false
+      showAlerts: false,
+      headed: ""
     };
   }
 
@@ -26,32 +28,116 @@ class TabB extends Component {
     tabBarIcon: ({ tintColor }) => <FontAwesome style={{ fontSize: 25, color: tintColor }}>{Icons.bus}</FontAwesome>
   })
 
-  handleWorkPress() {
+  handleWorkPress(headed) {
     let previousState = this.state
-    this.setState({showCommute: !previousState.showCommute, showAlerts: !previousState.showAlerts});
+    this.setState({
+      headed: headed,
+      showCommute: !previousState.showCommute,
+      showAlerts: !previousState.showAlerts,
+      showWhereAreYouGoing: !previousState.showWhereAreYouGoing,
+    });
   }
+
+  handleEditGoingTo() {
+    let previousState = this.state
+    this.setState({
+      headed: "",
+      showCommute: !previousState.showCommute,
+      showAlerts: !previousState.showAlerts,
+      showWhereAreYouGoing: !previousState.showWhereAreYouGoing,
+    });
+  }
+
   renderGoals() {
     return (
-      <Goals/>
+      <Goals />
     );
   }
 
   renderAlerts() {
     return (
-      <Alerts/>
+      <Alerts />
     );
   }
   renderMap() {
     return (
-      <Container style={{flex:1, height: 700, bottom: 5, alignSelf: 'auto'}}>
-      <Card> 
+      // <Container style={{ flex: 1, height: 700, bottom: 5, alignSelf: 'auto' }}>
+      <Card>
+        <CardItem header bordered>
+          <Text>
+            You are heading to: {this.state.headed}
+          </Text>
+          <Right>
+          <Button style={{ marginLeft: 75 }} small onPress={() => { this.handleEditGoingTo() }}>
+            <Icon style={{ marginRight: 0, marginLeft: 0, paddingRight: 7, paddingLeft: 7 }} name='edit'
+              type='FontAwesome' />
+          </Button>
+          </Right>
+        </CardItem>
+        <CardItem>
+          {this.renderAlerts()}
+        </CardItem>
+        <CardItem bordered style={{paddingLeft: 0, paddingRight: 0}}>
+                    <Text> Route and Transfer Details</Text>
+        </CardItem>
         <CardItem cardBody>
-          <Image 
-          source={require('./assets/map.jpg')} 
-          style={{flex:1, height: 700, alignSelf: 'auto'}}/>
+          <Image
+            source={require('./assets/map.jpg')}
+            style={{ flex: 1, height: 700, alignSelf: 'auto' }} />
         </CardItem>
       </Card>
-      </Container>
+      // </Container>
+    );
+  }
+
+
+  renderWhereAreYouGoing() {
+    return (
+      <Card>
+        <CardItem header bordered>
+          <Text> Where are you going?</Text>
+        </CardItem>
+        <CardItem bordered>
+          <Body>
+            <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between' }}>
+              <Button onPress={() => { this.handleWorkPress("Home") }} iconLeft>
+                <Icon name='home' />
+                <Text>Home</Text>
+              </Button>
+              <Button onPress={() => { this.handleWorkPress("Work") }} iconLeft primary style={{ left: 10 }}>
+                <Icon name='briefcase' />
+                <Text>Work</Text>
+              </Button>
+            </View>
+          </Body>
+        </CardItem>
+        <CardItem bordered>
+          <Body style={{ paddingBottom: 10 }}>
+            <Text>Recent Destinations</Text>
+            <Button block style={{ top: 5 }}>
+              <Text>150 College St.</Text>
+            </Button>
+            <Button block style={{ top: 10 }}>
+              <Text>39 Sunflower Rd.</Text>
+            </Button>
+          </Body>
+        </CardItem>
+        <CardItem>
+          <Body>
+            <Item>
+              <Input placeholder='Enter Starting Location' />
+            </Item>
+          </Body>
+        </CardItem>
+        <CardItem>
+          <Body>
+            <Item>
+              <Input placeholder='Enter New Destination' />
+              <Icon active name='arrow-round-forward' />
+            </Item>
+          </Body>
+        </CardItem>
+      </Card>
     );
   }
 
@@ -67,53 +153,9 @@ class TabB extends Component {
         </Header>
         {/* <Destination/> */}
         <Content padder>
-          <Card>
-            <CardItem header bordered>
-              <Text> Where are you going?</Text>
-            </CardItem>
-            <CardItem bordered>
-              <Body>
-                <View style={{ flexDirection: "row", flex: 1, justifyContent: 'space-between' }}>
-                  <Button iconLeft>
-                    <Icon name='home' />
-                    <Text>Home</Text>
-                  </Button>
-                  <Button onPress={this.handleWorkPress.bind(this)} iconLeft primary style={{ left: 10 }}>
-                    <Icon name='briefcase' />
-                    <Text>Work</Text>
-                  </Button>
-                </View>
-              </Body>
-            </CardItem>
-            <CardItem bordered>
-              <Body style={{paddingBottom:10}}>
-                <Text>Recent Destinations</Text>
-                <Button block style={{ top: 5 }}>
-                  <Text>150 College St.</Text>
-                </Button>
-                <Button block style={{ top: 10 }}>
-                  <Text>39 Sunflower Rd.</Text>
-                </Button>
-              </Body>
-            </CardItem>
-            <CardItem>
-              <Body>
-                <Item>
-                  <Input placeholder='Enter Starting Location' />
-                </Item>
-              </Body>
-            </CardItem>
-            <CardItem>
-              <Body>
-                <Item>
-                  <Input placeholder='Enter New Destination' />
-                  <Icon active name='arrow-round-forward' />
-                </Item>
-              </Body>
-            </CardItem>
-          </Card>
+          {this.state.showWhereAreYouGoing && this.renderWhereAreYouGoing()}
           {this.state.showCommute && this.renderMap()}
-          {this.state.showAlerts && this.renderAlerts()}
+          {/* {this.state.showAlerts && this.renderAlerts()} */}
           {this.renderGoals()}
         </Content>
       </Container>
